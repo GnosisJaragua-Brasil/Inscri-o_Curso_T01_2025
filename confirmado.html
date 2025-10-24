@@ -21,7 +21,7 @@
   <style>
     :root {
       --color-primary: #6f42c1;
-      --color-dark-bg: #1e3a8a; /* Azul sólido */
+      --color-dark-bg: #1e3a8a;
       --color-text-light: #ffffff;
       --color-accent: #448ea0;
       --font-base: 'Inter', sans-serif;
@@ -54,7 +54,7 @@
 
     .check-icon {
       font-size: 3rem;
-      color: #28a745; /* Verde sucesso */
+      color: #28a745;
       margin-bottom: 1rem;
       animation: pulse 1.5s infinite;
     }
@@ -110,6 +110,37 @@
       margin-bottom: 0.75rem;
     }
 
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .info-card {
+      background: white;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-left: 4px solid var(--color-primary);
+    }
+
+    .info-card h6 {
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .info-card p {
+      margin-bottom: 0;
+      font-size: 0.9rem;
+    }
+
+    .info-icon {
+      color: var(--color-primary);
+      margin-right: 0.5rem;
+    }
+
     .whatsapp-box {
       background-color: #25D366;
       color: #fff;
@@ -145,11 +176,90 @@
       transform: scale(1.05);
     }
 
+    /* Estilos do Modal */
+    .modal-content {
+      border-radius: 1rem;
+      border: none;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .modal-header {
+      background-color: var(--color-primary);
+      color: white;
+      border-bottom: none;
+      border-radius: 1rem 1rem 0 0;
+      padding: 1.5rem;
+    }
+
+    .modal-title {
+      font-family: var(--font-heading);
+      font-weight: 600;
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .schedule-phase {
+      margin-bottom: 2rem;
+      border-left: 4px solid var(--color-primary);
+      padding-left: 1rem;
+    }
+
+    .phase-title {
+      color: var(--color-primary);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .schedule-item {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      border-left: 3px solid var(--color-accent);
+    }
+
+    .schedule-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .schedule-date {
+      font-weight: 600;
+      color: var(--color-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .schedule-topic {
+      color: #495057;
+      margin-bottom: 0;
+    }
+
+    .btn-schedule {
+      background: linear-gradient(135deg, var(--color-primary), #5a32a8);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-schedule:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(111, 66, 193, 0.3);
+    }
+
     @media (max-width: 768px) {
       .confirmation-card { padding: 2rem; }
       h1.title-main { font-size: 1.7rem; }
       h2.subtitle { font-size: 1.1rem; }
       .check-icon { font-size: 2.5rem; }
+      .info-grid { grid-template-columns: 1fr; }
+      .modal-body { max-height: 60vh; }
     }
   </style>
 </head>
@@ -168,19 +278,58 @@
 
             <div class="details-box">
               <h5><i class="fas fa-info-circle me-2"></i>Informações Importantes:</h5>
-              <ul class="mb-0">
-                <li><strong>Data:</strong> 02 de Novembro</li>
-                <li><strong>Horário:</strong> 09h às 10h30</li>
-                <li><strong>Local:</strong> Centro Comercial San Michelli - R. Guilherme Dancker, 161, Sala 15 - Centro, Jaraguá do Sul – SC</li>
-                <li><strong>Duração:</strong> Aproximadamente <strong>6 Meses, 23 Encontros</li>
-                <li><strong>Duração das aulas:</strong> Aproximadamente 1h30m</li>
-                <li><strong>Levar:</strong> Caderno para anotações</li>
-              </ul>
+              
+              <div class="info-grid">
+                <div class="info-card">
+                  <h6><i class="fas fa-calendar-alt info-icon"></i>Data e Horário</h6>
+                  <p><strong>Primeira Aula:</strong> 02 de Novembro de 2025<br>
+                  <strong>Horário:</strong> 09h às 10h30<br>
+                  <strong>Duração do Curso:</strong> 6 meses<br>
+                  <strong>Total de Encontros:</strong> 23 aulas</p>
+                </div>
+                
+                <div class="info-card">
+                  <h6><i class="fas fa-map-marker-alt info-icon"></i>Localização</h6>
+                  <p><strong>Centro Comercial San Michelli</strong><br>
+                  R. Guilherme Dancker, 161, Sala 15<br>
+                  Centro, Jaraguá do Sul – SC</p>
+                </div>
+                
+                <div class="info-card">
+                  <h6><i class="fas fa-clock info-icon"></i>Duração das Aulas</h6>
+                  <p><strong>1h30min</strong> por encontro<br>
+                  <strong>Material:</strong> Caderno para anotações<br>
+                  <strong>Frequência:</strong> Semanal</p>
+                </div>
+                
+                <div class="info-card">
+                  <h6><i class="fas fa-book info-icon"></i>Conteúdo do Curso</h6>
+                  <p>Autoconhecimento prático<br>
+                  Técnicas de meditação<br>
+                  Estudo da psicologia<br>
+                  Desenvolvimento interior</p>
+                </div>
+              </div>
+              
+              <div class="mt-3 p-3 bg-light rounded">
+                <h6 class="text-primary mb-2"><i class="fas fa-lightbulb info-icon"></i>Recomendações</h6>
+                <p class="mb-1"><i class="fas fa-check text-success me-1"></i> Chegar com 15 minutos de antecedência</p>
+                <p class="mb-1"><i class="fas fa-check text-success me-1"></i> Trazer caderno para anotações</p>
+                <p class="mb-1"><i class="fas fa-check text-success me-1"></i> Usar roupas confortáveis</p>
+                <p class="mb-0"><i class="fas fa-check text-success me-1"></i> Manter celular no modo silencioso</p>
+              </div>
+            </div>
+
+            <!-- Botão para abrir o modal do cronograma -->
+            <div class="text-center mb-4">
+              <button class="btn btn-schedule" data-bs-toggle="modal" data-bs-target="#scheduleModal">
+                <i class="fas fa-calendar-check me-2"></i> Ver Cronograma Completo do Curso
+              </button>
             </div>
 
             <div class="whatsapp-box text-center">
               <h5><i class="fab fa-whatsapp me-2"></i>Entre no grupo da turma</h5>
-              <p>Receba lembretes e materiais exclusivos pelo WhatsApp.</p>
+              <p>Receba lembretes, materiais exclusivos e comunicações importantes pelo WhatsApp.</p>
               <a href="https://chat.whatsapp.com/Kk7sd2uX9QEHFCKDiuxb2B" class="btn btn-lg mb-3">
                 <i class="fab fa-whatsapp me-2"></i> Entrar no Grupo
               </a>
@@ -204,6 +353,178 @@
     </div>
   </section>
 
+  <!-- Modal do Cronograma -->
+  <div class="modal fade" id="scheduleModal" tabindex="-1" aria-labelledby="scheduleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="scheduleModalLabel">
+            <i class="fas fa-calendar-alt me-2"></i>Cronograma do Curso - 1ª Câmara
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Fase 1 -->
+          <div class="schedule-phase">
+            <h6 class="phase-title">FASE 1: INTRODUÇÃO E FUNDAMENTOS (MÊS 1)</h6>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 1 • 02/11/2025</div>
+              <p class="schedule-topic">Apresentação do curso e introdução ao autoconhecimento</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 2 • 09/11/2025</div>
+              <p class="schedule-topic">Os três fatores de revolução da consciência</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 3 • 16/11/2025</div>
+              <p class="schedule-topic">A essência e a personalidade</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 4 • 23/11/2025</div>
+              <p class="schedule-topic">Os sete corpos e a constituição humana</p>
+            </div>
+          </div>
+
+          <!-- Fase 2 -->
+          <div class="schedule-phase">
+            <h6 class="phase-title">FASE 2: PSICOLOGIA E MEDITAÇÃO (MÊS 2)</h6>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 5 • 30/11/2025</div>
+              <p class="schedule-topic">Os eus psicológicos e a dissolução do ego</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 6 • 07/12/2025</div>
+              <p class="schedule-topic">Técnicas básicas de meditação</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 7 • 14/12/2025</div>
+              <p class="schedule-topic">A mente e seus estados</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 8 • 21/12/2025</div>
+              <p class="schedule-topic">Auto-observação e recordação de si</p>
+            </div>
+          </div>
+
+          <!-- Fase 3 -->
+          <div class="schedule-phase">
+            <h6 class="phase-title">FASE 3: DESENVOLVIMENTO INTERIOR (MÊS 3)</h6>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 9 • 11/01/2026</div>
+              <p class="schedule-topic">Os centros de energia e sua função</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 10 • 18/01/2026</div>
+              <p class="schedule-topic">A transmutação das energias</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 11 • 25/01/2026</div>
+              <p class="schedule-topic">Os sonhos e seu significado</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 12 • 01/02/2026</div>
+              <p class="schedule-topic">Práticas de relaxamento consciente</p>
+            </div>
+          </div>
+
+          <!-- Fase 4 -->
+          <div class="schedule-phase">
+            <h6 class="phase-title">FASE 4: APROFUNDAMENTO PRÁTICO (MÊS 4)</h6>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 13 • 08/02/2026</div>
+              <p class="schedule-topic">A morte do ego e o nascimento do ser</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 14 • 15/02/2026</div>
+              <p class="schedule-topic">Mantras e sua aplicação prática</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 15 • 22/02/2026</div>
+              <p class="schedule-topic">A alquimia interior</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 16 • 01/03/2026</div>
+              <p class="schedule-topic">Trabalho com a atenção e concentração</p>
+            </div>
+          </div>
+
+          <!-- Fase 5 -->
+          <div class="schedule-phase">
+            <h6 class="phase-title">FASE 5: INTEGRAÇÃO E APLICAÇÃO (MÊS 5)</h6>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 17 • 08/03/2026</div>
+              <p class="schedule-topic">A lei do karma e suas implicações</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 18 • 15/03/2026</div>
+              <p class="schedule-topic">A reencarnação e a evolução</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 19 • 22/03/2026</div>
+              <p class="schedule-topic">Os arquétipos e símbolos universais</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 20 • 29/03/2026</div>
+              <p class="schedule-topic">A sabedoria das tradições antigas</p>
+            </div>
+          </div>
+
+          <!-- Fase 6 -->
+          <div class="schedule-phase">
+            <h6 class="phase-title">FASE 6: CONCLUSÃO E CONTINUIDADE (MÊS 6)</h6>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 21 • 05/04/2026</div>
+              <p class="schedule-topic">A senda do autoconhecimento</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 22 • 12/04/2026</div>
+              <p class="schedule-topic">Integração dos conhecimentos adquiridos</p>
+            </div>
+            
+            <div class="schedule-item">
+              <div class="schedule-date">Aula 23 • 19/04/2026</div>
+              <p class="schedule-topic">Encerramento e próximos passos</p>
+            </div>
+          </div>
+
+          <div class="alert alert-info mt-4">
+            <i class="fas fa-info-circle me-2"></i>
+            <strong>Observação:</strong> As datas podem sofrer ajustes conforme necessidades do grupo. 
+            Todas as alterações serão comunicadas com antecedência pelo grupo do WhatsApp.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <a href="https://chat.whatsapp.com/Kk7sd2uX9QEHFCKDiuxb2B" class="btn btn-success">
+            <i class="fab fa-whatsapp me-2"></i> Entrar no Grupo
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer class="py-4 bg-dark text-white text-center">
     <div class="container">
       <div class="mb-3">
@@ -217,6 +538,7 @@
     </div>
   </footer>
 
+  <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
