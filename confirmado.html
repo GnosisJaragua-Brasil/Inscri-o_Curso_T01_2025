@@ -20,7 +20,7 @@
   <!-- Estilos personalizados -->
   <style>
     :root {
-      --color-primary: #005499;
+      --color-primary: #6f42c1;
       --color-dark-bg: #1e3a8a;
       --color-text-light: #ffffff;
       --color-accent: #448ea0;
@@ -142,13 +142,13 @@
     }
 
     .whatsapp-box {
-      background-color: #0bb348;
+      background-color: #25D366;
       color: #fff;
     }
 
     .whatsapp-box a.btn {
       background-color: #fff;
-      color: #12aa49;
+      color: #25D366;
       font-weight: 500;
     }
 
@@ -264,9 +264,19 @@
       flex-shrink: 0;
     }
 
+    .schedule-content {
+      flex: 1;
+    }
+
     .schedule-topic {
       color: #495057;
-      margin-bottom: 0;
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+
+    .schedule-date {
+      color: var(--color-accent);
+      font-size: 0.85rem;
       font-weight: 500;
     }
 
@@ -340,8 +350,7 @@
                   <h6><i class="fas fa-book info-icon"></i>Conteúdo do Curso</h6>
                   <p>Autoconhecimento prático<br>
                   Técnicas de meditação<br>
-                  Desenvolvimento dos Chakras<br>
-                  Estudo da psicologia gnóstica<br>
+                  Estudo da psicologia<br>
                   Desenvolvimento interior</p>
                 </div>
               </div>
@@ -411,132 +420,23 @@
             <!-- Câmara Básica -->
             <div class="chamber-section">
               <h5 class="chamber-title">Câmara Básica</h5>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">01</div>
-                <div class="schedule-topic">O que é Gnosis</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">02</div>
-                <div class="schedule-topic">Personalidade, Essência e Ego</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">03</div>
-                <div class="schedule-topic">O Despertar da Consciência</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">04</div>
-                <div class="schedule-topic">O Eu Psicológico</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">05</div>
-                <div class="schedule-topic">Luz, Calor e Som</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">06</div>
-                <div class="schedule-topic">A Máquina Humana</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">07</div>
-                <div class="schedule-topic">O Mundo das Relações</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">08</div>
-                <div class="schedule-topic">O Caminho e a Vida</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">09</div>
-                <div class="schedule-topic">O Nível de Ser</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">10</div>
-                <div class="schedule-topic">O Decálogo</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">11</div>
-                <div class="schedule-topic">Educação Fundamental</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">12</div>
-                <div class="schedule-topic">A Árvore Genealógica das Religiões</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">13</div>
-                <div class="schedule-topic">Evolução, Involução e Revolução</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">14</div>
-                <div class="schedule-topic">O Raio da Morte</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">15</div>
-                <div class="schedule-topic">Reencarnação, Retorno e Recorrência</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">16</div>
-                <div class="schedule-topic">A Balança da Justiça</div>
+              <div id="basicChamberDates">
+                <!-- As datas serão inseridas aqui pelo JavaScript -->
               </div>
             </div>
 
             <!-- Câmara Avançada -->
             <div class="chamber-section">
               <h5 class="chamber-title">Câmara Avançada</h5>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">17</div>
-                <div class="schedule-topic">Os Quatro Caminhos</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">18</div>
-                <div class="schedule-topic">O Diagrama Interno do Homem</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">19</div>
-                <div class="schedule-topic">Transformação da Energia</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">20</div>
-                <div class="schedule-topic">Os Elementais</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">21</div>
-                <div class="schedule-topic">Os Quatro Estados de Consciência</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">22</div>
-                <div class="schedule-topic">A Iniciação</div>
-              </div>
-              
-              <div class="schedule-item">
-                <div class="schedule-number">23</div>
-                <div class="schedule-topic">Apresentação da 2ª Câmara</div>
+              <div id="advancedChamberDates">
+                <!-- As datas serão inseridas aqui pelo JavaScript -->
               </div>
             </div>
 
             <div class="alert alert-info mt-4">
               <i class="fas fa-info-circle me-2"></i>
               <strong>Observação:</strong> As datas podem sofrer ajustes conforme necessidades do grupo. 
-            Todas as alterações serão comunicadas com antecedência pelo grupo do WhatsApp.
+              Todas as alterações serão comunicadas com antecedência pelo grupo do WhatsApp.
             </div>
           </div>
         </div>
@@ -565,5 +465,119 @@
 
   <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Lista de feriados e datas festivas que devem ser puladas (2025-2026)
+    const holidays = [
+      '2025-11-02', // Primeira aula (não é feriado, mas é a data inicial)
+      '2025-11-15', // Proclamação da República
+      '2025-12-25', // Natal
+      '2026-01-01', // Ano Novo
+      '2026-02-16', // Carnaval
+      '2026-02-17', // Carnaval
+      '2026-04-03', // Sexta-feira Santa
+      '2026-04-21', // Tiradentes
+      '2026-05-01', // Dia do Trabalho
+    ];
+
+    // Conteúdo das palestras
+    const basicChamber = [
+      "O que é Gnosis",
+      "Personalidade, Essência e Ego",
+      "O Despertar da Consciência",
+      "O Eu Psicológico",
+      "Luz, Calor e Som",
+      "A Máquina Humana",
+      "O Mundo das Relações",
+      "O Caminho e a Vida",
+      "O Nível de Ser",
+      "O Decálogo",
+      "Educação Fundamental",
+      "A Árvore Genealógica das Religiões",
+      "Evolução, Involução e Revolução",
+      "O Raio da Morte",
+      "Reencarnação, Retorno e Recorrência",
+      "A Balança da Justiça"
+    ];
+
+    const advancedChamber = [
+      "Os Quatro Caminhos",
+      "O Diagrama Interno do Homem",
+      "Transformação da Energia",
+      "Os Elementais",
+      "Os Quatro Estados de Consciência",
+      "A Iniciação",
+      "Apresentação da 2ª Câmara"
+    ];
+
+    // Função para formatar data
+    function formatDate(date) {
+      const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+      return date.toLocaleDateString('pt-BR', options);
+    }
+
+    // Função para verificar se é feriado
+    function isHoliday(date) {
+      const dateString = date.toISOString().split('T')[0];
+      return holidays.includes(dateString);
+    }
+
+    // Função para calcular as datas das palestras
+    function calculateScheduleDates() {
+      let currentDate = new Date('2025-11-02'); // Data da primeira aula
+      const scheduleDates = [];
+
+      // Calcular datas para as 23 palestras
+      for (let i = 0; i < 23; i++) {
+        // Encontrar próximo domingo que não seja feriado
+        while (currentDate.getDay() !== 0 || isHoliday(currentDate)) {
+          currentDate.setDate(currentDate.getDate() + 1);
+        }
+        
+        scheduleDates.push(new Date(currentDate));
+        currentDate.setDate(currentDate.getDate() + 7); // Próxima semana
+      }
+
+      return scheduleDates;
+    }
+
+    // Função para renderizar o cronograma
+    function renderSchedule() {
+      const dates = calculateScheduleDates();
+      const basicContainer = document.getElementById('basicChamberDates');
+      const advancedContainer = document.getElementById('advancedChamberDates');
+
+      // Renderizar Câmara Básica (16 primeiras aulas)
+      basicChamber.forEach((topic, index) => {
+        const scheduleItem = document.createElement('div');
+        scheduleItem.className = 'schedule-item';
+        scheduleItem.innerHTML = `
+          <div class="schedule-number">${(index + 1).toString().padStart(2, '0')}</div>
+          <div class="schedule-content">
+            <div class="schedule-topic">${topic}</div>
+            <div class="schedule-date">${formatDate(dates[index])}</div>
+          </div>
+        `;
+        basicContainer.appendChild(scheduleItem);
+      });
+
+      // Renderizar Câmara Avançada (7 últimas aulas)
+      advancedChamber.forEach((topic, index) => {
+        const scheduleItem = document.createElement('div');
+        scheduleItem.className = 'schedule-item';
+        scheduleItem.innerHTML = `
+          <div class="schedule-number">${(index + 17).toString().padStart(2, '0')}</div>
+          <div class="schedule-content">
+            <div class="schedule-topic">${topic}</div>
+            <div class="schedule-date">${formatDate(dates[index + 16])}</div>
+          </div>
+        `;
+        advancedContainer.appendChild(scheduleItem);
+      });
+    }
+
+    // Executar quando a página carregar
+    document.addEventListener('DOMContentLoaded', renderSchedule);
+  </script>
 </body>
 </html>
