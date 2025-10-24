@@ -202,17 +202,41 @@
       overflow-y: auto;
     }
 
-    .schedule-phase {
-      margin-bottom: 2rem;
-      border-left: 4px solid var(--color-primary);
-      padding-left: 1rem;
+    .schedule-section {
+      margin-bottom: 2.5rem;
     }
 
-    .phase-title {
+    .schedule-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--color-primary);
+    }
+
+    .schedule-title {
+      color: var(--color-primary);
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .schedule-subtitle {
+      color: var(--color-accent);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .chamber-section {
+      margin-bottom: 2rem;
+    }
+
+    .chamber-title {
       color: var(--color-primary);
       font-weight: 600;
+      font-size: 1.3rem;
       margin-bottom: 1rem;
-      font-size: 1.2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #dee2e6;
     }
 
     .schedule-item {
@@ -220,22 +244,30 @@
       border-radius: 8px;
       padding: 1rem;
       margin-bottom: 0.75rem;
-      border-left: 3px solid var(--color-accent);
+      border-left: 4px solid var(--color-accent);
+      display: flex;
+      align-items: flex-start;
     }
 
-    .schedule-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .schedule-date {
+    .schedule-number {
+      background: var(--color-primary);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-weight: 600;
-      color: var(--color-primary);
-      margin-bottom: 0.25rem;
+      font-size: 0.9rem;
+      margin-right: 1rem;
+      flex-shrink: 0;
     }
 
     .schedule-topic {
       color: #495057;
       margin-bottom: 0;
+      font-weight: 500;
     }
 
     .btn-schedule {
@@ -260,6 +292,8 @@
       .check-icon { font-size: 2.5rem; }
       .info-grid { grid-template-columns: 1fr; }
       .modal-body { max-height: 60vh; }
+      .schedule-item { flex-direction: column; }
+      .schedule-number { margin-bottom: 0.5rem; }
     }
   </style>
 </head>
@@ -359,160 +393,150 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="scheduleModalLabel">
-            <i class="fas fa-calendar-alt me-2"></i>Cronograma do Curso - 1ª Câmara
+            <i class="fas fa-calendar-alt me-2"></i>Cronograma - 1ª Câmara
           </h5>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <!-- Fase 1 -->
-          <div class="schedule-phase">
-            <h6 class="phase-title">FASE 1: INTRODUÇÃO E FUNDAMENTOS (MÊS 1)</h6>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 1 • 02/11/2025</div>
-              <p class="schedule-topic">Apresentação do curso e introdução ao autoconhecimento</p>
+          <div class="schedule-section">
+            <div class="schedule-header">
+              <h4 class="schedule-title">CRONOGRAMA – 1ª CÂMARA</h4>
+              <div class="schedule-subtitle">
+                <div><strong>DIAS: DOMINGOS</strong></div>
+                <div><strong>HORÁRIOS: 09H ÀS 10H30</strong></div>
+              </div>
             </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 2 • 09/11/2025</div>
-              <p class="schedule-topic">Os três fatores de revolução da consciência</p>
-            </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 3 • 16/11/2025</div>
-              <p class="schedule-topic">A essência e a personalidade</p>
-            </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 4 • 23/11/2025</div>
-              <p class="schedule-topic">Os sete corpos e a constituição humana</p>
-            </div>
-          </div>
 
-          <!-- Fase 2 -->
-          <div class="schedule-phase">
-            <h6 class="phase-title">FASE 2: PSICOLOGIA E MEDITAÇÃO (MÊS 2)</h6>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 5 • 30/11/2025</div>
-              <p class="schedule-topic">Os eus psicológicos e a dissolução do ego</p>
+            <!-- Câmara Básica -->
+            <div class="chamber-section">
+              <h5 class="chamber-title">Câmara Básica</h5>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">01</div>
+                <div class="schedule-topic">O que é Gnosis</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">02</div>
+                <div class="schedule-topic">Personalidade, Essência e Ego</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">03</div>
+                <div class="schedule-topic">O Despertar da Consciência</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">04</div>
+                <div class="schedule-topic">O Eu Psicológico</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">05</div>
+                <div class="schedule-topic">Luz, Calor e Som</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">06</div>
+                <div class="schedule-topic">A Máquina Humana</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">07</div>
+                <div class="schedule-topic">O Mundo das Relações</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">08</div>
+                <div class="schedule-topic">O Caminho e a Vida</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">09</div>
+                <div class="schedule-topic">O Nível de Ser</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">10</div>
+                <div class="schedule-topic">O Decálogo</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">11</div>
+                <div class="schedule-topic">Educação Fundamental</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">12</div>
+                <div class="schedule-topic">A Árvore Genealógica das Religiões</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">13</div>
+                <div class="schedule-topic">Evolução, Involução e Revolução</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">14</div>
+                <div class="schedule-topic">O Raio da Morte</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">15</div>
+                <div class="schedule-topic">Reencarnação, Retorno e Recorrência</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">16</div>
+                <div class="schedule-topic">A Balança da Justiça</div>
+              </div>
             </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 6 • 07/12/2025</div>
-              <p class="schedule-topic">Técnicas básicas de meditação</p>
-            </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 7 • 14/12/2025</div>
-              <p class="schedule-topic">A mente e seus estados</p>
-            </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 8 • 21/12/2025</div>
-              <p class="schedule-topic">Auto-observação e recordação de si</p>
-            </div>
-          </div>
 
-          <!-- Fase 3 -->
-          <div class="schedule-phase">
-            <h6 class="phase-title">FASE 3: DESENVOLVIMENTO INTERIOR (MÊS 3)</h6>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 9 • 11/01/2026</div>
-              <p class="schedule-topic">Os centros de energia e sua função</p>
+            <!-- Câmara Avançada -->
+            <div class="chamber-section">
+              <h5 class="chamber-title">Câmara Avançada</h5>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">17</div>
+                <div class="schedule-topic">Os Quatro Caminhos</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">18</div>
+                <div class="schedule-topic">O Diagrama Interno do Homem</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">19</div>
+                <div class="schedule-topic">Transformação da Energia</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">20</div>
+                <div class="schedule-topic">Os Elementais</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">21</div>
+                <div class="schedule-topic">Os Quatro Estados de Consciência</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">22</div>
+                <div class="schedule-topic">A Iniciação</div>
+              </div>
+              
+              <div class="schedule-item">
+                <div class="schedule-number">23</div>
+                <div class="schedule-topic">Apresentação da 2ª Câmara</div>
+              </div>
             </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 10 • 18/01/2026</div>
-              <p class="schedule-topic">A transmutação das energias</p>
-            </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 11 • 25/01/2026</div>
-              <p class="schedule-topic">Os sonhos e seu significado</p>
-            </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 12 • 01/02/2026</div>
-              <p class="schedule-topic">Práticas de relaxamento consciente</p>
-            </div>
-          </div>
 
-          <!-- Fase 4 -->
-          <div class="schedule-phase">
-            <h6 class="phase-title">FASE 4: APROFUNDAMENTO PRÁTICO (MÊS 4)</h6>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 13 • 08/02/2026</div>
-              <p class="schedule-topic">A morte do ego e o nascimento do ser</p>
-            </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 14 • 15/02/2026</div>
-              <p class="schedule-topic">Mantras e sua aplicação prática</p>
-            </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 15 • 22/02/2026</div>
-              <p class="schedule-topic">A alquimia interior</p>
-            </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 16 • 01/03/2026</div>
-              <p class="schedule-topic">Trabalho com a atenção e concentração</p>
-            </div>
-          </div>
-
-          <!-- Fase 5 -->
-          <div class="schedule-phase">
-            <h6 class="phase-title">FASE 5: INTEGRAÇÃO E APLICAÇÃO (MÊS 5)</h6>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 17 • 08/03/2026</div>
-              <p class="schedule-topic">A lei do karma e suas implicações</p>
-            </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 18 • 15/03/2026</div>
-              <p class="schedule-topic">A reencarnação e a evolução</p>
-            </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 19 • 22/03/2026</div>
-              <p class="schedule-topic">Os arquétipos e símbolos universais</p>
-            </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 20 • 29/03/2026</div>
-              <p class="schedule-topic">A sabedoria das tradições antigas</p>
-            </div>
-          </div>
-
-          <!-- Fase 6 -->
-          <div class="schedule-phase">
-            <h6 class="phase-title">FASE 6: CONCLUSÃO E CONTINUIDADE (MÊS 6)</h6>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 21 • 05/04/2026</div>
-              <p class="schedule-topic">A senda do autoconhecimento</p>
-            </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 22 • 12/04/2026</div>
-              <p class="schedule-topic">Integração dos conhecimentos adquiridos</p>
-            </div>
-            
-            <div class="schedule-item">
-              <div class="schedule-date">Aula 23 • 19/04/2026</div>
-              <p class="schedule-topic">Encerramento e próximos passos</p>
-            </div>
-          </div>
-
-          <div class="alert alert-info mt-4">
-            <i class="fas fa-info-circle me-2"></i>
-            <strong>Observação:</strong> As datas podem sofrer ajustes conforme necessidades do grupo. 
+            <div class="alert alert-info mt-4">
+              <i class="fas fa-info-circle me-2"></i>
+              <strong>Observação:</strong> As datas podem sofrer ajustes conforme necessidades do grupo. 
             Todas as alterações serão comunicadas com antecedência pelo grupo do WhatsApp.
+            </div>
           </div>
         </div>
         <div class="modal-footer">
