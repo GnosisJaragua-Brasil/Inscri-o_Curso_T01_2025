@@ -13,6 +13,10 @@
 
   <link rel="icon" href="https://gnosisbrasil.com/wp-content/uploads/2020/07/cropped-logo-sol-7-32x32.webp" type="image/webp">
 
+  <!-- Incluir jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
   <style>
     :root {
       --color-primary: #005bd2;
@@ -231,6 +235,13 @@
       border-left: 4px solid var(--color-accent);
       display: flex;
       align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .schedule-item-content {
+      display: flex;
+      align-items: flex-start;
+      flex: 1;
     }
 
     .schedule-number {
@@ -264,6 +275,29 @@
       font-weight: 500;
     }
 
+    .schedule-download {
+      margin-left: 1rem;
+      flex-shrink: 0;
+    }
+
+    .btn-download {
+      background-color: var(--color-accent);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .btn-download:hover {
+      background-color: var(--color-primary);
+      transform: scale(1.1);
+    }
+
     .btn-schedule {
       background: linear-gradient(135deg, var(--color-primary), #5a32a8);
       color: white;
@@ -288,6 +322,7 @@
       .modal-body { max-height: 60vh; }
       .schedule-item { flex-direction: column; }
       .schedule-number { margin-bottom: 0.5rem; }
+      .schedule-download { margin-left: 0; margin-top: 0.5rem; align-self: flex-end; }
     }
   </style>
 </head>
@@ -298,7 +333,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-8">
           <div class="confirmation-card">
-            <img src="img/cropped-logo-sol-7.webp" alt="Logo Gnosis" style="height: 60px;">
+            <img src="img/2343637.png" alt="Logo Gnosis" style="height: 60px;">
             <h1 class="title-main">Cronograma Completo</h1>
             <div class="divider"></div>
             <h2 class="subtitle">Curso Gnosis | 1ª Câmara | Turma 1 | 2025</h2>
@@ -396,13 +431,13 @@
             </div>
 
             <div class="chamber-section">
-              <h5 class="chamber-title">Câmara Básica</h5>
+              <h5 class="chamber-title">Câmara Básica | 16 Lições</h5>
               <div id="basicChamberDates">
                 </div>
             </div>
 
             <div class="chamber-section">
-              <h5 class="chamber-title">Câmara Avançada</h5>
+              <h5 class="chamber-title">Câmara Avançada | 07 Lições</h5>
               <div id="advancedChamberDates">
                 </div>
             </div>
@@ -511,6 +546,77 @@
       return scheduleDates;
     }
 
+    // Função para gerar PDF do tema
+    function generatePDF(topic, date, number) {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      
+      // Configurações do PDF
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const margin = 20;
+      const contentWidth = pageWidth - (margin * 2);
+      
+      // Adicionar cabeçalho
+      doc.setFillColor(0, 91, 210); // Cor primária
+      doc.rect(0, 0, pageWidth, 40, 'F');
+      
+      // Logo (texto por enquanto)
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(16);
+      doc.setFont('helvetica', 'bold');
+      doc.text('GNOSIS BRASIL', margin, 25);
+      
+      // Título do curso
+      doc.setFontSize(12);
+      doc.text('Curso Gnosis | 1ª Câmara | Turma 1 | 2025', margin, 35);
+      
+      // Informações do tema
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(20);
+      doc.setFont('helvetica', 'bold');
+      doc.text(`Aula ${number.toString().padStart(2, '0')}`, margin, 60);
+      
+      doc.setFontSize(16);
+      doc.text(topic, margin, 75);
+      
+      // Data
+      doc.setFontSize(12);
+      doc.setTextColor(68, 142, 160); // Cor de destaque
+      doc.text(`Data: ${date}`, margin, 85);
+      
+      // Linha divisória
+      doc.setDrawColor(0, 91, 210);
+      doc.setLineWidth(0.5);
+      doc.line(margin, 90, pageWidth - margin, 90);
+      
+      // Conteúdo do tema (exemplo)
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(11);
+      doc.setFont('helvetica', 'normal');
+      
+      const content = `Esta é uma descrição do tema "${topic}" que será abordado na aula do dia ${date}.
+      
+      Nesta aula, serão discutidos os principais conceitos relacionados ao tema, com exemplos práticos e exercícios de aplicação.
+
+      Recomenda-se trazer caderno para anotações e manter uma postura atenta durante a explicação.
+
+      Local: Centro Comercial San Michelli
+      Endereço: R. Guilherme Dancker, 161, Sala 15 - Centro, Jaraguá do Sul – SC
+      Horário: 09h às 10h30`;
+      
+      const splitText = doc.splitTextToSize(content, contentWidth);
+      doc.text(splitText, margin, 105);
+      
+      // Rodapé
+      doc.setFontSize(8);
+      doc.setTextColor(150, 150, 150);
+      doc.text('Gnosis Brasil - www.gnosisbrasil.com', margin, doc.internal.pageSize.getHeight() - 10);
+      
+      // Salvar o PDF
+      const fileName = `Aula_${number.toString().padStart(2, '0')}_${topic.replace(/\s+/g, '_')}.pdf`;
+      doc.save(fileName);
+    }
+
     // Função para renderizar o cronograma
     function renderSchedule() {
       const dates = calculateScheduleDates();
@@ -522,10 +628,17 @@
         const scheduleItem = document.createElement('div');
         scheduleItem.className = 'schedule-item';
         scheduleItem.innerHTML = `
-          <div class="schedule-number">${(index + 1).toString().padStart(2, '0')}</div>
-          <div class="schedule-content">
-            <div class="schedule-topic">${topic}</div>
-            <div class="schedule-date">${formatDate(dates[index])}</div>
+          <div class="schedule-item-content">
+            <div class="schedule-number">${(index + 1).toString().padStart(2, '0')}</div>
+            <div class="schedule-content">
+              <div class="schedule-topic">${topic}</div>
+              <div class="schedule-date">${formatDate(dates[index])}</div>
+            </div>
+          </div>
+          <div class="schedule-download">
+            <button class="btn btn-download" onclick="generatePDF('${topic}', '${formatDate(dates[index])}', ${index + 1})">
+              <i class="fas fa-download"></i>
+            </button>
           </div>
         `;
         basicContainer.appendChild(scheduleItem);
@@ -536,10 +649,17 @@
         const scheduleItem = document.createElement('div');
         scheduleItem.className = 'schedule-item';
         scheduleItem.innerHTML = `
-          <div class="schedule-number">${(index + 17).toString().padStart(2, '0')}</div>
-          <div class="schedule-content">
-            <div class="schedule-topic">${topic}</div>
-            <div class="schedule-date">${formatDate(dates[index + 16])}</div>
+          <div class="schedule-item-content">
+            <div class="schedule-number">${(index + 17).toString().padStart(2, '0')}</div>
+            <div class="schedule-content">
+              <div class="schedule-topic">${topic}</div>
+              <div class="schedule-date">${formatDate(dates[index + 16])}</div>
+            </div>
+          </div>
+          <div class="schedule-download">
+            <button class="btn btn-download" onclick="generatePDF('${topic}', '${formatDate(dates[index + 16])}', ${index + 17})">
+              <i class="fas fa-download"></i>
+            </button>
           </div>
         `;
         advancedContainer.appendChild(scheduleItem);
