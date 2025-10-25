@@ -95,7 +95,6 @@
       font-size: 1.25rem;
       color: var(--color-accent);
       transition: color 0.3s ease;
-      
     }
 
     .subtitle:hover {
@@ -137,16 +136,160 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    .hero-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/shutterstock_286782836.jpg');
+      background-size: cover;
+      color: white;
+      padding: 100px 0;
+      text-align: center;
+    }
+    
+    .btn-whatsapp {
+      background-color: #25D366;
+      color: white;
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #6f42c1;
+    }
+    
+    .navbar-brand img {
+      height: 40px; /* Ajuste o tamanho da imagem conforme necessário */
+    }
+    
+    .astral {
+      font-family: 'Amontillados', serif;
+      font-weight: normal !important;
+      font-size: clamp(2rem, 8vw, 10rem);
+    }
+
+    /* AJUSTES DE ESPAÇAMENTO */
+    
+    /* Melhor espaçamento no cabeçalho */
+    .animate-header {
+      margin-bottom: 3rem !important;
+    }
+    
+    .title-main {
+      margin-bottom: 0.5rem;
+    }
+    
+    .subtitle {
+      margin-bottom: 0.75rem;
+    }
+    
+    .divider {
+      margin: 1.5rem auto;
+    }
+    
+    .description {
+      margin-top: 1rem;
+    }
+    
+    /* Melhor espaçamento no formulário */
+    .form-label {
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    
+    .mb-3 {
+      margin-bottom: 1.25rem !important;
+    }
+    
+    .mb-4 {
+      margin-bottom: 1.5rem !important;
+    }
+    
+    .form-check {
+      margin-bottom: 0.5rem;
+    }
+    
+    .form-check-input {
+      margin-top: 0.2rem;
+    }
+    
+    /* Melhor espaçamento nos botões */
+    .d-grid {
+      margin-top: 1.5rem;
+    }
+    
+    /* Melhor espaçamento no rodapé */
+    footer .container {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+    
+    footer .mb-3 {
+      margin-bottom: 1rem !important;
+    }
+    
+    /* Melhor espaçamento na navegação */
+    .navbar-nav .nav-item {
+      margin-left: 0.75rem;
+      margin-right: 0.75rem;
+    }
+    
+    /* Melhor espaçamento geral para seções */
+    section {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+    
+    /* Melhor espaçamento para o card do formulário */
+    .card {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .card-body {
+      padding: 2rem !important;
+    }
+    
+    /* Melhor espaçamento para mensagens de texto */
+    .text-white-50 {
+      margin-top: 1.5rem !important;
+    }
   </style>
 </head>
 
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <!-- Substitua o ícone pela sua imagem (ex: logo.png) -->
+        <img src="img/cropped-logo-sol-7.webp" alt="Logo Gnosis" class="me-2">
+        Gnosis Jaraguá do Sul
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#about">Sobre</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="conograma.html">Cronograma</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#register">Inscrição</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contato</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <section id="register" class="py-5 bg-gnosis-dark text-white" style="min-height: 100vh; display: flex; align-items: center;">
     <div class="container">
-
       <!-- Cabeçalho Modernizado -->
       <div class="text-center mb-5 animate-header">
-        <h1 class="fw-bold title-main"><h2>Curso de</h2> </h1>
+        <h2 class="fw-bold">Curso de</h2>
         <h1 class="fw-bold title-main">Autoconhecimento</h1>
         <h2 class="fw-semibold subtitle">Gnosis — 1ª Câmara · Turma 1 · 2025</h2>
         <div class="divider"></div>
