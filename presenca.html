@@ -366,21 +366,6 @@
       background-color: #0044a3;
     }
 
-    .btn-reset {
-      background-color: #6c757d;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      padding: 0.5rem 1rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-    }
-
-    .btn-reset:hover {
-      background-color: #5a6268;
-    }
-
     .attendance-status {
       margin-top: 0.5rem;
       font-size: 0.85rem;
@@ -388,14 +373,9 @@
       padding: 0.5rem;
       border-radius: 4px;
       text-align: center;
+      color: #495057; /* Corrigido para ser visível em fundo claro */
     }
 
-    .attendance-confirmed {
-      color: #28a745;
-      background-color: #d4edda;
-      border: 1px solid #c3e6cb;
-    }
-    
     /* Estilos para o calendário interativo (Mantidos e funcionais) */
     .calendar-input {
       border-radius: 6px;
@@ -484,7 +464,7 @@
       justify-content: center;
     }
 
-    .calendar-day:hover {
+    .calendar-day:hover:not(.disabled) {
       background-color: #e9ecef;
     }
 
@@ -562,7 +542,7 @@
         padding: 0.2rem 0.4rem;
       }
       
-      .btn-present, .btn-reset {
+      .btn-present {
         flex: 1;
         padding: 0.6rem 0.5rem;
         font-size: 0.85rem;
@@ -593,39 +573,9 @@
         padding: 0.75rem;
       }
     }
-    
-    /* Outros Estilos de Seção (Mantidos) */
-    .hero-section {
-      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/shutterstock_286782836.jpg');
-      background-size: cover;
-      color: white;
-      padding: 100px 0;
-      text-align: center;
-    }
-    
-    .btn-whatsapp {
-      background-color: #25D366;
-      color: white;
-    }
-    
-    .feature-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #6f42c1;
-    }
-    
-    .navbar-brand img {
-      height: 40px;
-    }
-    
-    .astral {
-      font-family: 'Amontillados', serif;
-      font-weight: normal !important;
-      font-size: clamp(2rem, 8vw, 10rem);
-    }
   </style>
   
-  </head>
+</head>
 
 <body>
 
@@ -785,7 +735,11 @@
     // Variáveis Globais para o estado do calendário
     let currentCalendarDate = null;
     let currentLessonNumber = null;
-    let closeCalendarHandler = null; // Adicionado: Variável para rastrear o handler de fechamento
+    let closeCalendarHandler = null; 
+
+    // VARIÁVEIS DE CONFIGURAÇÃO DO FORMSUBMIT
+    const FORMSUBMIT_EMAIL = 'jaraguadosul@gnosisbrasil.com';
+    const REDIRECT_URL = 'https://gnosisbrasil.com'; 
 
     // Links das aulas (Mantidos)
     const lessonLinks = {
@@ -821,14 +775,13 @@
     ];
     
     // Variáveis de data para limites
-    const FIRST_LESSON_DATE = new Date('2025-11-02T09:00:00'); // Data de início real para cálculo
+    const FIRST_LESSON_DATE = new Date('2025-11-02T09:00:00'); // Data de início real para cálculo (Nov 02 é um domingo)
     const MIN_YEAR = 2025;
     const MAX_YEAR = 2030;
 
 
     // Função para formatar data (Mantida)
     function formatDate(date) {
-      // Usar 'pt-BR' e timezone para evitar problemas de fuso horário
       const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
       return date.toLocaleDateString('pt-BR', options);
     }
@@ -838,16 +791,15 @@
       let currentDate = new Date(FIRST_LESSON_DATE); 
       const scheduleDates = [];
 
-      // Calcular datas para as 23 palestras (de domingo em domingo)
       for (let i = 0; i < 23; i++) {
         scheduleDates.push(new Date(currentDate));
-        currentDate.setDate(currentDate.getDate() + 7); // Próxima semana
+        currentDate.setDate(currentDate.getDate() + 7);
       }
 
       return scheduleDates;
     }
 
-    // Função para renderizar o cronograma na página (Mantida)
+    // Função para renderizar o cronograma na página (Corrigida a lógica do formulário FormSubmit)
     function renderSchedule() {
       const dates = calculateScheduleDates();
       const allLessons = [...basicChamber, ...advancedChamber];
@@ -857,6 +809,7 @@
       basicContainer.innerHTML = '';
       advancedContainer.innerHTML = '';
       
+      // Lógica de localStorage removida, mas mantemos o objeto para compatibilidade
       const attendanceData = JSON.parse(localStorage.getItem('attendanceData') || '{}');
 
       allLessons.forEach((topic, index) => {
@@ -865,9 +818,15 @@
         const formattedDate = formatDate(expectedDate);
         const isBasic = lessonNumber <= 16;
         const container = isBasic ? basicContainer : advancedContainer;
-        const isPast = expectedDate < new Date();
         const hasLink = lessonLinks[lessonNumber] !== undefined;
-        const isConfirmed = attendanceData[lessonNumber] !== undefined;
+
+        // Adiciona campos ocultos para FormSubmit e informações da aula
+        const formSubmitHiddenFields = `
+            <input type="hidden" name="_subject" value="[PRESENÇA] - Aula ${lessonNumber}: ${topic}">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="${REDIRECT_URL}/obrigado.html"> <input type="hidden" name="aula_tema" value="${topic}">
+            <input type="hidden" name="aula_numero" value="${lessonNumber}">
+        `;
 
         const lessonHTML = `
           <div class="schedule-item">
@@ -881,33 +840,31 @@
             
             <div class="row mt-3">
               <div class="col-lg-6 col-12 mb-3 mb-lg-0">
-                <form id="attendance-form-${lessonNumber}" class="attendance-form" onsubmit="handleAttendanceForm(event, ${lessonNumber}, new Date('${expectedDate.toISOString()}'))">
-                  <h6><i class="fas fa-user-check me-2"></i> Confirmar Presença</h6>
-                  <div class="form-row">
-                    <div class="form-group name">
-                      <label for="name-${lessonNumber}">Nome Completo</label>
-                      <input type="text" class="form-control" id="name-${lessonNumber}" name="fname" placeholder="Seu Nome" value="${isConfirmed ? attendanceData[lessonNumber].name : ''}" required ${isConfirmed ? 'disabled' : ''}>
+                <form action="https://formsubmit.co/${FORMSUBMIT_EMAIL}" method="POST" id="attendance-form-${lessonNumber}" class="attendance-form">
+                    ${formSubmitHiddenFields}
+                    <h6><i class="fas fa-user-check me-2"></i> Confirmar Presença</h6>
+                    <div class="form-row">
+                        <div class="form-group name">
+                            <label for="name-${lessonNumber}">Nome Completo</label>
+                            <input type="text" class="form-control" id="name-${lessonNumber}" name="nome_aluno" placeholder="Seu Nome" required>
+                        </div>
+                        <div class="form-group code">
+                            <label for="code-${lessonNumber}">Cód. (4 Nº)</label>
+                            <input type="text" class="form-control" id="code-${lessonNumber}" name="codigo_aluno" placeholder="0000" maxlength="4" pattern="[0-9]{4}" required>
+                        </div>
+                        <div class="form-group date">
+                            <label for="date-${lessonNumber}">Data da Aula</label>
+                            <input type="text" class="calendar-input" id="date-${lessonNumber}" name="data_presenca" value="${formattedDate}" readonly required onclick="showCalendar(${lessonNumber}, new Date('${expectedDate.toISOString()}'))">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-present">
+                                <i class="fas fa-sign-in-alt"></i> Confirmar Presença
+                            </button>
+                        </div>
                     </div>
-                    <div class="form-group code">
-                      <label for="code-${lessonNumber}">Cód. (4 Nº)</label>
-                      <input type="text" class="form-control" id="code-${lessonNumber}" name="lname" placeholder="0000" maxlength="4" pattern="[0-9]{4}" value="${isConfirmed ? attendanceData[lessonNumber].code : ''}" required ${isConfirmed ? 'disabled' : ''}>
+                    <div class="attendance-status">
+                        Preencha os dados e clique em 'Confirmar Presença'.
                     </div>
-                    <div class="form-group date">
-                      <label for="date-${lessonNumber}">Data da Aula</label>
-                      <input type="text" class="calendar-input" id="date-${lessonNumber}" name="date" value="${isConfirmed ? attendanceData[lessonNumber].date : formattedDate}" readonly required onclick="showCalendar(${lessonNumber}, new Date('${expectedDate.toISOString()}'))" ${isConfirmed ? 'disabled' : ''}>
-                    </div>
-                    <div class="form-actions">
-                      <button type="submit" class="btn btn-present" ${isConfirmed ? 'disabled' : ''}>
-                        <i class="fas fa-sign-in-alt"></i> ${isConfirmed ? 'Confirmado' : 'Presente'}
-                      </button>
-                      <button type="button" class="btn btn-reset" onclick="resetAttendanceForm(${lessonNumber})" ${isConfirmed ? '' : 'disabled'}>
-                          <i class="fas fa-undo-alt"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="attendance-status ${isConfirmed ? 'attendance-confirmed' : ''}">
-                    ${isConfirmed ? `Presença confirmada para ${attendanceData[lessonNumber].name}` : 'Aguardando confirmação...'}
-                  </div>
                 </form>
               </div>
               
@@ -967,7 +924,7 @@
       }
     }
     
-    // Função para fechar o calendário de forma limpa
+    // FUNÇÃO DE FECHAMENTO LIMPO (CORRIGIDA)
     function closeCalendarPopup() {
         const existingCalendar = document.querySelector('.calendar-popup');
         if (existingCalendar) {
@@ -975,15 +932,13 @@
             currentCalendarDate = null;
             currentLessonNumber = null;
         }
-        // Remove o listener de fechamento
         if (closeCalendarHandler) {
-            // O argumento 'true' (useCapture) é necessário para remover o listener adicionado com capture: true
             document.removeEventListener('click', closeCalendarHandler, true); 
             closeCalendarHandler = null;
         }
     }
 
-    // Função para criar um calendário interativo (Corrigida para usar variáveis globais)
+    // FUNÇÃO DE CRIAÇÃO DO CALENDÁRIO (CORRIGIDA LÓGICA DE SELEÇÃO DE DOMINGO)
     function createCalendar(date) {
         const calendarPopup = document.createElement('div');
         calendarPopup.className = 'calendar-popup';
@@ -991,14 +946,12 @@
         const year = date.getFullYear();
         const month = date.getMonth();
         
-        // CORREÇÃO: Usar MIN_YEAR e MAX_YEAR
-        const minDate = new Date(MIN_YEAR, 9, 1); 
+        const minDate = new Date(MIN_YEAR, 10, 1); 
         const maxDate = new Date(MAX_YEAR, 11, 31); 
         
         const firstDay = new Date(year, month, 1);
         const lastDay = new Date(year, month + 1, 0);
         const daysInMonth = lastDay.getDate();
-        // getDay() retorna 0 para Domingo, 1 para Segunda, etc.
         const startingDay = firstDay.getDay(); 
         
         const monthNames = [
@@ -1021,30 +974,26 @@
           <div class="calendar-weekdays">
         `;
         
-        // Adicionar dias da semana
         weekdays.forEach(day => {
           calendarHTML += `<div class="calendar-weekday">${day}</div>`;
         });
         
         calendarHTML += `</div><div class="calendar-days">`;
         
-        // Dias vazios no início
         for (let i = 0; i < startingDay; i++) {
           calendarHTML += `<div class="calendar-day other-month"></div>`;
         }
         
-        // Dias do mês
         for (let day = 1; day <= daysInMonth; day++) {
           const dayDate = new Date(year, month, day);
           const isSelected = formatDate(dayDate) === formatDate(currentCalendarDate);
           
-          // Apenas domingos entre 2025-2030, a partir de Nov/2025.
-          // Adicionado: ajuste de hora para evitar problemas de fuso horário na comparação.
           dayDate.setHours(9, 0, 0, 0); 
           minDate.setHours(9, 0, 0, 0);
           maxDate.setHours(9, 0, 0, 0);
           
-          const isDisabled = dayDate < minDate || dayDate > maxDate || dayDate.getDay() !== 0; 
+          // CRÍTICO: Permite selecionar APENAS domingos dentro do período
+          const isDisabled = dayDate.getDay() !== 0 || dayDate < minDate || dayDate > maxDate; 
           
           calendarHTML += `
             <div class="calendar-day ${isSelected ? 'selected' : ''} ${isDisabled ? 'disabled' : ''}" 
@@ -1060,50 +1009,41 @@
         return calendarPopup;
     }
     
-    // Função auxiliar para navegação
+    // FUNÇÃO DE NAVEGAÇÃO ENTRE MESES (MANTIDA/OTIMIZADA)
     function changeCalendarMonth(offset) {
         if (!currentCalendarDate) return;
         
-        // Clona a data para manipular sem afetar o estado original imediatamente
         let newDate = new Date(currentCalendarDate);
         newDate.setMonth(newDate.getMonth() + offset);
         
-        // Remoção da lógica de limite para o ano/mês
-        const minDate = new Date(MIN_YEAR, 10, 1); // Novembro (mês 10) de 2025
-        const maxDate = new Date(MAX_YEAR, 11, 31); // Dezembro (mês 11) de 2030
-
+        // Verifica limites
+        const minDate = new Date(MIN_YEAR, 10, 1); 
+        const maxDate = new Date(MAX_YEAR, 11, 31); 
+        
         if (newDate < minDate || newDate > maxDate) {
-            // Se o novo mês estiver fora dos limites, volta para o mês anterior/próximo
-            // E desabilita o botão
             return; 
         }
 
         currentCalendarDate = newDate;
         
-        // Remover calendário existente
         closeCalendarPopup();
         
-        // Renderizar novo calendário
         showCalendar(currentLessonNumber, currentCalendarDate);
     }
 
-    // Função para selecionar uma data no calendário (Ajustada)
+    // FUNÇÃO DE SELEÇÃO DE DATA (CORRIGIDA)
     function selectDate(lessonNumber, selectedDate) {
       const dateInput = document.getElementById(`date-${lessonNumber}`);
       dateInput.value = formatDate(selectedDate);
       
-      // Fecha o calendário após a seleção
       closeCalendarPopup(); 
     }
 
-    // Função para mostrar o calendário (Corrigida e Otimizada)
+    // FUNÇÃO PARA MOSTRAR O CALENDÁRIO (CORRIGIDA COM CAPTURE: TRUE)
     function showCalendar(lessonNumber, initialDate) {
-      // Fecha qualquer calendário aberto antes de abrir um novo
       closeCalendarPopup();
       
-      // Definir o estado global
       currentLessonNumber = lessonNumber;
-      // Cria uma nova data para evitar modificação do objeto Date inicial
       currentCalendarDate = new Date(initialDate); 
 
       const dateInput = document.getElementById(`date-${lessonNumber}`);
@@ -1111,89 +1051,20 @@
       
       document.body.appendChild(calendar);
       
-      // CORREÇÃO CRÍTICA: Lógica de fechamento ajustada com 'capture: true'
-      // Isso garante que este listener seja executado ANTES do listener do dia
+      // CRÍTICO: Usa 'capture: true' para fechar o calendário ANTES que o clique no dia seja processado
       closeCalendarHandler = function(e) {
-          // Se o clique não estiver dentro do calendário E não for no input que o abriu
           if (calendar && !calendar.contains(e.target) && e.target !== dateInput && !e.target.closest('.calendar-nav')) {
               closeCalendarPopup();
           }
       };
       
-      // Adiciona o listener para fechar ao clicar fora, usando o modo de captura (true)
       document.addEventListener('click', closeCalendarHandler, true);
     }
 
-
-    // Função para lidar com o envio do formulário de presença (Otimizada e Corrigida)
-    function handleAttendanceForm(event, lessonNumber, expectedDate) {
-      event.preventDefault();
-      
-      const form = event.target;
-      const name = form.querySelector('input[name="fname"]').value.trim();
-      const code = form.querySelector('input[name="lname"]').value.trim();
-      const date = form.querySelector('input[name="date"]').value.trim();
-      
-      // Validação aprimorada
-      if (!name || name.length < 3) {
-        alert('Por favor, preencha o nome completo (mínimo 3 caracteres).');
-        return;
-      }
-      
-      if (!/^\d{4}$/.test(code)) {
-        alert('O código deve conter exatamente 4 números.');
-        return;
-      }
-      
-      const formattedExpectedDate = formatDate(expectedDate);
-      if (date !== formattedExpectedDate) {
-        alert(`A data informada não corresponde à data da palestra (${formattedExpectedDate}). Por favor, verifique ou use a data correta.`);
-        return;
-      }
-      
-      // Simulação de envio
-      console.log(`Presença confirmada para a aula ${lessonNumber}:`, { name, code, date });
-      
-      // Mostrar mensagem de confirmação
-      const statusElement = form.querySelector('.attendance-status');
-      statusElement.textContent = `Presença confirmada para ${name}`;
-      statusElement.className = 'attendance-status attendance-confirmed';
-      
-      // Desabilitar o formulário após envio
-      const inputs = form.querySelectorAll('input');
-      inputs.forEach(input => input.disabled = true);
-      const submitButton = form.querySelector('.btn-present');
-      submitButton.textContent = 'Confirmado';
-      submitButton.disabled = true;
-
-      const resetButton = form.querySelector('.btn-reset');
-      resetButton.disabled = false; // Habilitar reset após confirmação
-      
-      // Salvar no localStorage (simulação de banco de dados)
-      const attendanceData = JSON.parse(localStorage.getItem('attendanceData') || '{}');
-      attendanceData[lessonNumber] = {
-        name: name,
-        code: code,
-        date: date,
-        timestamp: new Date().toISOString()
-      };
-      localStorage.setItem('attendanceData', JSON.stringify(attendanceData));
-    }
-
-    // Função para resetar o formulário (Corrigida e Completa)
-    function resetAttendanceForm(lessonNumber) {
-      // Remover do localStorage
-      const attendanceData = JSON.parse(localStorage.getItem('attendanceData') || '{}');
-      delete attendanceData[lessonNumber];
-      localStorage.setItem('attendanceData', JSON.stringify(attendanceData));
-      
-      // Re-renderizar o cronograma para resetar o formulário dessa aula
-      renderSchedule(); 
-    }
+    // Funções de formulário (removidas/não mais necessárias)
     
     // MELHORIA: Função para adicionar evento ao Google Calendar (Mantida)
     function addToCalendar(title, dateStr, startTime, endTime, location) {
-      // Converte data (DD/MM/AAAA) para formato YYYYMMDD
       const parts = dateStr.split('/');
       const dateForUrl = parts[2] + parts[1] + parts[0];
       
@@ -1211,12 +1082,9 @@
     window.onload = renderSchedule;
     
     // Funções globais necessárias para serem chamadas pelo HTML (onclick)
-    window.renderCalendar = renderSchedule; // Mantido por precaução
     window.changeCalendarMonth = changeCalendarMonth;
     window.selectDate = selectDate;
     window.showCalendar = showCalendar;
-    window.handleAttendanceForm = handleAttendanceForm;
-    window.resetAttendanceForm = resetAttendanceForm;
     window.openLessonLink = openLessonLink;
     window.copyLessonLink = copyLessonLink;
     window.addToCalendar = addToCalendar;
