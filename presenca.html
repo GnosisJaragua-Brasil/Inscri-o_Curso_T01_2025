@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +7,14 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
-    rel="stylesheet">
-  <link rel="icon" href="https://gnosisbrasil.com/wp-content/uploads/2020/07/cropped-logo-sol-7-32x32.webp"
-    type="image/webp">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://gnosisbrasil.com/wp-content/uploads/2020/07/cropped-logo-sol-7-32x32.webp" type="image/webp">
+  
+  <!-- Flatpickr CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
   <style>
-    /* Variáveis e Estilos Globais (Mantidos) */
+    /* Variáveis e Estilos Globais */
     :root {
       --color-primary: #005bd2;
       --color-dark-bg: #1e3a8a;
@@ -38,7 +37,7 @@
       border-radius: 1rem;
       color: #212529;
       padding: 2rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       text-align: center;
       animation: fadeIn 1s ease-in-out;
       margin-bottom: 2rem;
@@ -46,15 +45,8 @@
 
     /* Animação fade-in */
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h1.title-main {
@@ -119,10 +111,9 @@
       background: white;
       border-radius: 8px;
       padding: 1rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       border-left: 4px solid var(--color-primary);
-      /* Otimização: Garantir que o conteúdo não quebre o layout */
-      word-wrap: break-word;
+      word-wrap: break-word; 
     }
 
     .info-card h6 {
@@ -165,7 +156,7 @@
       transform: scale(1.05);
     }
 
-    /* Estilos do Cronograma (Corrigidos/Otimizados) */
+    /* Estilos do Cronograma */
     .schedule-section {
       margin-bottom: 2.5rem;
     }
@@ -209,8 +200,7 @@
       padding: 1rem;
       margin-bottom: 0.75rem;
       border-left: 4px solid var(--color-accent);
-      /* Adicionado: Consistência de cor para o texto */
-      color: #212529;
+      color: #212529; 
     }
 
     .schedule-header-row {
@@ -218,8 +208,7 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 0.75rem;
-      /* Correção: Garantir alinhamento em telas pequenas */
-      flex-wrap: wrap;
+      flex-wrap: wrap; 
     }
 
     .schedule-topic-container {
@@ -248,8 +237,7 @@
       color: #495057;
       font-weight: 600;
       font-size: 1.1rem;
-      /* Otimização: Evitar quebra de linha desnecessária */
-      line-height: 1.2;
+      line-height: 1.2; 
     }
 
     .schedule-date {
@@ -260,16 +248,14 @@
       background: #e9ecef;
       padding: 0.25rem 0.5rem;
       border-radius: 4px;
-      /* Adicionado: Consistência */
-      flex-shrink: 0;
+      flex-shrink: 0; 
     }
 
     .schedule-actions {
       display: flex;
       gap: 0.5rem;
       margin-left: 1rem;
-      /* Correção: Em telas pequenas, garantir que fique à direita */
-      margin-top: 0;
+      margin-top: 0; 
     }
 
     .btn-link {
@@ -283,8 +269,7 @@
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
-      /* Correção: Remover o sublinhado do link */
-      text-decoration: none;
+      text-decoration: none; 
     }
 
     .btn-link:hover {
@@ -299,8 +284,7 @@
       padding: 1rem;
       border-top: 1px solid #dee2e6;
     }
-
-    /* Demais estilos de formulário e calendário (Mantidos e funcionais) */
+    
     .attendance-form h6 {
       color: var(--color-primary);
       margin-bottom: 0.75rem;
@@ -356,6 +340,12 @@
       box-shadow: 0 0 0 0.2rem rgba(0, 91, 210, 0.25);
     }
 
+    /* Estilo para inputs com Flatpickr */
+    .flatpickr-input {
+      background-color: white;
+      cursor: pointer;
+    }
+
     .form-actions {
       display: flex;
       gap: 0.5rem;
@@ -385,7 +375,6 @@
       border-radius: 4px;
       text-align: center;
       color: #495057;
-      /* Corrigido para ser visível em fundo claro */
     }
 
     .date-format-hint {
@@ -395,62 +384,62 @@
       font-style: italic;
     }
 
-    /* Responsividade (Ajustada) */
+    /* Responsividade */
     @media (max-width: 768px) {
-      .confirmation-card {
-        padding: 1.5rem;
+      .confirmation-card { 
+        padding: 1.5rem; 
         margin-bottom: 1rem;
       }
-
-      h1.title-main {
-        font-size: 1.7rem;
+      
+      h1.title-main { 
+        font-size: 1.7rem; 
       }
-
-      h2.subtitle {
-        font-size: 1.1rem;
+      
+      h2.subtitle { 
+        font-size: 1.1rem; 
       }
-
-      .info-grid {
-        grid-template-columns: 1fr;
+      
+      .info-grid { 
+        grid-template-columns: 1fr; 
       }
-
-      .schedule-header-row {
-        flex-direction: column;
-        align-items: flex-start;
+      
+      .schedule-header-row { 
+        flex-direction: column; 
+        align-items: flex-start; 
         gap: 0.5rem;
       }
-
-      .schedule-topic-container {
-        margin-bottom: 0.5rem;
+      
+      .schedule-topic-container { 
+        margin-bottom: 0.5rem; 
         width: 100%;
       }
-
-      .schedule-actions {
-        margin-left: 0;
-        margin-top: 0.5rem;
+      
+      .schedule-actions { 
+        margin-left: 0; 
+        margin-top: 0.5rem; 
         align-self: flex-end;
       }
-
-      .form-row {
-        flex-direction: column;
+      
+      .form-row { 
+        flex-direction: column; 
       }
-
-      .form-group {
-        min-width: 100%;
-        max-width: 100%;
+      
+      .form-group { 
+        min-width: 100%; 
+        max-width: 100%; 
       }
-
-      .form-actions {
-        width: 100%;
-        justify-content: space-between;
+      
+      .form-actions { 
+        width: 100%; 
+        justify-content: space-between; 
         margin-top: 0.5rem;
       }
-
+      
       .schedule-date {
         font-size: 0.85rem;
         padding: 0.2rem 0.4rem;
       }
-
+      
       .btn-present {
         flex: 1;
         padding: 0.6rem 0.5rem;
@@ -462,28 +451,28 @@
       .confirmation-card {
         padding: 1rem;
       }
-
+      
       .schedule-topic {
         font-size: 1rem;
       }
-
+      
       .schedule-number {
         width: 25px;
         height: 25px;
         font-size: 0.8rem;
       }
-
+      
       .btn-link {
         width: 32px;
         height: 32px;
       }
-
+      
       .attendance-form {
         padding: 0.75rem;
       }
     }
   </style>
-
+  
 </head>
 
 <body>
@@ -491,7 +480,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="img/cropped-logo-sol-7.webp" alt="Logo Gnosis" class="me-2" style="height: 32px; width: 32px;">
+        <img src="img/cropped-logo-sol-7.webp" alt="Logo Gnosis" class="me-2" style="height: 32px; width: 32px;"> 
         Gnosis Jaraguá do Sul
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -521,68 +510,75 @@
       <div class="row justify-content-center">
         <div class="col-lg-10">
           <div class="confirmation-card">
-
+            
             <h1 class="title-main">Formulário para <br> Confirmação de Presença</h1>
             <div class="divider"></div>
             <h2 class="subtitle">Curso Gnosis | 1ª Câmara | T01/2025 </h2>
-            <p class="lead"></p>
-            
-            <div class="confirmation-card">
-              <div class="schedule-section">
-                <div class="schedule-header">
-                  <h4 class="schedule-title"></h4>
-                  <div class="schedule-subtitle">
-                    <div><strong></strong></div> <!--falta texto aqui-->
-                    <div><strong></strong></div> <!--falta texto aqui-->
-                  </div>
-                </div>
+            <p class="lead"></p>        
+               
+               
+              
+        
+          
 
-                <div class="chamber-section">
-                  <h5 class="chamber-title">Câmara Básica | 16 Lições</h5>
-                  <div id="basicChamberDates">
-                  </div>
+          <div class="confirmation-card">
+            <div class="schedule-section">
+              <div class="schedule-header">
+                <h4 class="schedule-title"></h4>
+                <div class="schedule-subtitle">
+                  <div><strong></strong></div>
+                  <div><strong></strong></div>
                 </div>
+              </div>
 
-                <div class="chamber-section">
-                  <h5 class="chamber-title">Câmara Avançada | 07 Lições</h5>
-                  <div id="advancedChamberDates">
+              <div class="chamber-section">
+                <h5 class="chamber-title">Câmara Básica | 16 Lições</h5>
+                <div id="basicChamberDates">
                   </div>
-                </div>
+              </div>
 
-                <div class="alert alert-info mt-4">
-                  <i class="fas fa-info-circle me-2"></i>
-                  <strong>Observação:</strong> As datas podem sofrer ajustes conforme necessidades do grupo.
-                  Todas as alterações serão comunicadas com antecedência.
-                </div>
+              <div class="chamber-section">
+                <h5 class="chamber-title">Câmara Avançada | 07 Lições</h5>
+                <div id="advancedChamberDates">
+                  </div>
+              </div>
+
+              <div class="alert alert-info mt-4">
+                <i class="fas fa-info-circle me-2"></i>
+                <strong>Observação:</strong> As datas podem sofrer ajustes conforme necessidades do grupo. 
+                Todas as alterações serão comunicadas com antecedência.
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
   </section>
 
   <footer class="py-4 bg-dark text-white text-center">
     <div class="container">
       <div class="mb-3">
-        <img src="img\cropped-logo-sol-7.webp" alt="Logo Gnosis" style="height: 60px;">
+        <img src="img\cropped-logo-sol-7.webp" alt="Logo Gnosis" style="height: 60px;"> 
       </div>
       <p>&copy; 2025 Gnosis Brasil. Todos os direitos reservados.</p>
       <p class="mb-0">
-        <a href="https://gnosisbrasil.com/politica-de-privacidade/"
-          class="text-white text-decoration-none me-3">Política de Privacidade</a>
+        <a href="https://gnosisbrasil.com/politica-de-privacidade/" class="text-white text-decoration-none me-3">Política de Privacidade</a>
         <a href="https://gnosisbrasil.com/termos-de-uso/" class="text-white text-decoration-none">Termos de Uso</a>
       </p>
     </div>
   </footer>
 
+  <!-- Flatpickr JS -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/pt.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
     // VARIÁVEIS DE CONFIGURAÇÃO DO FORMSUBMIT
     const FORMSUBMIT_EMAIL = 'jaraguadosul@gnosisbrasil.com';
-    const REDIRECT_URL = 'https://gnosisbrasil.com';
+    const REDIRECT_URL = 'https://gnosisbrasil.com'; 
 
-    // Links das aulas (Mantidos)
+    // Links das aulas
     const lessonLinks = {
       1: "https://drive.google.com/file/d/0ByuJiBLnCPXgX3R0SW15bGJUS1E/view?usp=drive_link&resourcekey=0-G43iiHrkTm22Lox8mPh49g",
       2: "https://drive.google.com/file/d/12jpkWf6m2ST069drWA86rpSrSO8f5Yuc/view?usp=drive_link",
@@ -602,7 +598,7 @@
       16: "https://drive.google.com/file/d/0ByuJiBLnCPXgTDd1S2s4aDNiaEU/view?usp=drive_link&resourcekey=0-IhRyZn4I1G2ElLG2An_dFw"
     };
 
-    // Conteúdo das palestras (Mantidos)
+    // Conteúdo das palestras
     const basicChamber = [
       "O que é Gnosis", "Personalidade, Essência e Ego", "O Despertar da Consciência", "O Eu Psicológico",
       "Luz, Calor e Som", "A Máquina Humana", "O Mundo das Relações", "O Caminho e a Vida", "O Nível de Ser",
@@ -614,19 +610,18 @@
       "Os Quatro Caminhos", "O Diagrama Interno do Homem", "Transformação da Energia", "Os Elementais",
       "Os Quatro Estados de Consciência", "A Iniciação", "Apresentação da 2ª Câmara"
     ];
+    
+    const FIRST_LESSON_DATE = new Date('2025-11-02T09:00:00');
 
-    // Variáveis de data para limites
-    const FIRST_LESSON_DATE = new Date('2025-11-02T09:00:00'); // Data de início real para cálculo (Nov 02 é um domingo)
-
-    // Função para formatar data (Mantida)
-    function formatDate(date) {
+    // Função para formatar data no formato brasileiro
+    function formatDateForDisplay(date) {
       const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
       return date.toLocaleDateString('pt-BR', options);
     }
 
-    // Função para calcular as datas das palestras (Otimizada)
+    // Função para calcular as datas das palestras
     function calculateScheduleDates() {
-      let currentDate = new Date(FIRST_LESSON_DATE);
+      let currentDate = new Date(FIRST_LESSON_DATE); 
       const scheduleDates = [];
 
       for (let i = 0; i < 23; i++) {
@@ -637,26 +632,52 @@
       return scheduleDates;
     }
 
-    // Função para renderizar o cronograma na página (COM reCAPTCHA DESATIVADO)
+    // Configuração do Flatpickr em português - PERMITINDO QUALQUER DATA
+    const flatpickrConfig = {
+      locale: "pt",
+      dateFormat: "d/m/Y",
+      altFormat: "d/m/Y",
+      altInput: true,
+      altInputClass: "form-control flatpickr-input",
+      allowInput: true,
+      clickOpens: true,
+      monthSelectorType: "static",
+      prevArrow: '<i class="fas fa-chevron-left"></i>',
+      nextArrow: '<i class="fas fa-chevron-right"></i>',
+      // REMOVIDAS as restrições de minDate e maxDate para permitir qualquer data
+      // minDate: "2025-01-01", // REMOVIDO
+      // maxDate: "2030-12-31", // REMOVIDO
+      // Adicionando mais flexibilidade
+      enableTime: false,
+      static: true
+    };
+
+    // Função para inicializar Flatpickr nos inputs
+    function initializeDatePickers() {
+      const dateInputs = document.querySelectorAll('.date-input');
+      dateInputs.forEach(input => {
+        flatpickr(input, flatpickrConfig);
+      });
+    }
+
+    // Função para renderizar o cronograma
     function renderSchedule() {
       const dates = calculateScheduleDates();
       const allLessons = [...basicChamber, ...advancedChamber];
       const basicContainer = document.getElementById('basicChamberDates');
       const advancedContainer = document.getElementById('advancedChamberDates');
-
+      
       basicContainer.innerHTML = '';
       advancedContainer.innerHTML = '';
 
       allLessons.forEach((topic, index) => {
         const lessonNumber = index + 1;
         const expectedDate = dates[index];
-        const formattedDate = formatDate(expectedDate);
+        const formattedDateForDisplay = formatDateForDisplay(expectedDate);
         const isBasic = lessonNumber <= 16;
         const container = isBasic ? basicContainer : advancedContainer;
         const hasLink = lessonLinks[lessonNumber] !== undefined;
 
-        // Adiciona campos ocultos para FormSubmit e informações da aula
-        // INCLUINDO A DESATIVAÇÃO DO reCAPTCHA
         const formSubmitHiddenFields = `
             <input type="hidden" name="_subject" value="[PRESENÇA] - Aula ${lessonNumber}: ${topic}">
             <input type="hidden" name="_template" value="table">
@@ -673,7 +694,7 @@
                 <div class="schedule-number">${lessonNumber}</div>
                 <span class="schedule-topic">${topic}</span>
               </div>
-              <span class="schedule-date">${formattedDate}</span>
+              <span class="schedule-date">${formattedDateForDisplay}</span>
             </div>
             
             <div class="row mt-3">
@@ -692,8 +713,8 @@
                         </div>
                         <div class="form-group date">
                             <label for="date-${lessonNumber}">Data da Aula</label>
-                            <input type="text" class="form-control" id="date-${lessonNumber}" name="data_presenca" placeholder="DD/MM/AAAA" required>
-                            <div class="date-format-hint">Formato: DD/MM/AAAA</div>
+                            <input type="text" class="form-control date-input" id="date-${lessonNumber}" name="data_presenca" value="${formattedDateForDisplay}" required readonly>
+                            <div class="date-format-hint">Clique para selecionar qualquer data</div>
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-present">
@@ -715,7 +736,7 @@
                   <button type="button" class="btn btn-link ${hasLink ? '' : 'disabled'}" title="Copiar link" onclick="${hasLink ? `copyLessonLink(${lessonNumber})` : `alert('Material não disponível')`}" data-lesson="${lessonNumber}">
                     <i class="fas fa-copy"></i>
                   </button>
-                  <a href="#" class="btn btn-link" title="Adicionar ao Google Calendar" onclick="addToCalendar('${topic}', '${formattedDate}', '09:00', '10:30', 'Gnosis Jaraguá - Sala 15'); return false;">
+                  <a href="#" class="btn btn-link" title="Adicionar ao Google Calendar" onclick="addToCalendar('${topic}', '${formattedDateForDisplay}', '09:00', '10:30', 'Gnosis Jaraguá - Sala 15'); return false;">
                       <i class="fas fa-calendar-plus"></i>
                   </a>
                 </div>
@@ -723,12 +744,15 @@
             </div>
           </div>
         `;
-
+        
         container.insertAdjacentHTML('beforeend', lessonHTML);
       });
+
+      // Inicializar os date pickers após renderizar o HTML
+      setTimeout(initializeDatePickers, 100);
     }
 
-    // Função para abrir link da aula (Mantida)
+    // Função para abrir link da aula
     function openLessonLink(lessonNumber) {
       const link = lessonLinks[lessonNumber];
       if (link) {
@@ -738,7 +762,7 @@
       }
     }
 
-    // Função para copiar link da aula (Mantida)
+    // Função para copiar link da aula
     function copyLessonLink(lessonNumber) {
       const link = lessonLinks[lessonNumber];
       if (link) {
@@ -748,7 +772,7 @@
             const originalHTML = button.innerHTML;
             button.innerHTML = '<i class="fas fa-check"></i>';
             button.style.backgroundColor = '#28a745';
-
+            
             setTimeout(() => {
               button.innerHTML = originalHTML;
               button.style.backgroundColor = '';
@@ -763,30 +787,29 @@
       }
     }
 
-    // MELHORIA: Função para adicionar evento ao Google Calendar (Mantida)
+    // Função para adicionar evento ao Google Calendar
     function addToCalendar(title, dateStr, startTime, endTime, location) {
       const parts = dateStr.split('/');
       const dateForUrl = parts[2] + parts[1] + parts[0];
-
+      
       const startDateTime = dateForUrl + 'T' + startTime.replace(':', '') + '00';
       const endDateTime = dateForUrl + 'T' + endTime.replace(':', '') + '00';
-
+      
       const details = `Conteúdo: ${title}. Duração: ${startTime} - ${endTime}.`;
-
+      
       const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Gnosis 1ª Câmara - ' + title)}&dates=${startDateTime}/${endDateTime}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}&sf=true&output=xml`;
-
+      
       window.open(calendarUrl, '_blank');
     }
 
     // Chamada inicial para renderizar o cronograma
     window.onload = renderSchedule;
-
-    // Funções globais necessárias para serem chamadas pelo HTML (onclick)
+    
+    // Funções globais
     window.openLessonLink = openLessonLink;
     window.copyLessonLink = copyLessonLink;
     window.addToCalendar = addToCalendar;
 
   </script>
 </body>
-
 </html>
