@@ -376,114 +376,11 @@
       color: #495057; /* Corrigido para ser visível em fundo claro */
     }
 
-    /* Estilos para o calendário interativo (Mantidos e funcionais) */
-    .calendar-input {
-      border-radius: 6px;
-      border: 1px solid #ced4da;
-      padding: 0.5rem 0.75rem;
-      font-size: 0.9rem;
-      width: 100%;
-      cursor: pointer;
-      background-color: white;
-    }
-
-    .calendar-input:focus {
-      border-color: var(--color-primary);
-      box-shadow: 0 0 0 0.2rem rgba(0, 91, 210, 0.25);
-    }
-
-    .calendar-popup {
-      position: fixed;
-      background: white;
-      border: 1px solid #ced4da;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      padding: 1rem;
-      z-index: 1050;
-      width: 280px;
-      max-width: 90vw;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .calendar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.75rem;
-    }
-
-    .calendar-nav {
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      color: var(--color-primary);
-      padding: 0.25rem 0.5rem;
-    }
-
-    .calendar-month {
-      font-weight: 600;
-      color: #495057;
-      text-align: center;
-      flex: 1;
-    }
-
-    .calendar-weekdays {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 2px;
-      margin-bottom: 0.5rem;
-    }
-
-    .calendar-weekday {
-      text-align: center;
-      font-weight: 600;
+    .date-format-hint {
       font-size: 0.75rem;
       color: #6c757d;
-      padding: 0.25rem;
-    }
-
-    .calendar-days {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 2px;
-    }
-
-    .calendar-day {
-      text-align: center;
-      padding: 0.5rem 0.25rem;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: all 0.2s ease;
-      min-height: 35px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .calendar-day:hover:not(.disabled) {
-      background-color: #e9ecef;
-    }
-
-    .calendar-day.selected {
-      background-color: var(--color-primary);
-      color: white;
-    }
-
-    .calendar-day.other-month {
-      color: #adb5bd;
-    }
-
-    .calendar-day.disabled {
-      color: #dee2e6;
-      cursor: not-allowed;
-    }
-
-    .calendar-day.disabled:hover {
-      background-color: transparent;
+      margin-top: 0.25rem;
+      font-style: italic;
     }
 
     /* Responsividade (Ajustada) */
@@ -582,7 +479,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="https://gnosisbrasil.com/wp-content/uploads/2020/07/cropped-logo-sol-7-32x32.webp" alt="Logo Gnosis" class="me-2" style="height: 32px; width: 32px;"> 
+        <img src="img/cropped-logo-sol-7.webp" alt="Logo Gnosis" class="me-2" style="height: 32px; width: 32px;"> 
         Gnosis Jaraguá do Sul
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -612,83 +509,24 @@
       <div class="row justify-content-center">
         <div class="col-lg-10">
           <div class="confirmation-card">
-            <div class="mb-4">
-              <img src="img\2343637.png" alt="Logo Gnosis" style="height: 60px;"> 
-            </div>
-            <h1 class="title-main">Cronograma Completo</h1>
+            
+            <h1 class="title-main">Formulário para <br> Confirmação de Presença</h1>
             <div class="divider"></div>
             <h2 class="subtitle">Curso Gnosis | 1ª Câmara | T01/2025 </h2>
-            <p class="lead">Confira abaixo o cronograma completo do Curso <strong>Gnosis 1ª Câmara</strong> da Gnosis Brasil.</p>
-
-            <div class="details-box">
-              <h5><i class="fas fa-info-circle me-2"></i>Informações Importantes:</h5>
+            <p class="lead"></p>        
+               
+               
               
-              <div class="info-grid">
-                <div class="info-card">
-                  <h6><i class="fas fa-calendar-alt info-icon"></i>Data e Horário</h6>
-                  <p><strong>Primeira Aula:</strong> 02 de Novembro de 2025<br>
-                  <strong>Horário:</strong> 09h às 10h30<br>
-                  <strong>Duração do Curso:</strong> 6 meses<br>
-                  <strong>Total de Encontros:</strong> 23 aulas</p>
-                </div>
-                
-                <div class="info-card">
-                  <h6><i class="fas fa-map-marker-alt info-icon"></i>Localização</h6>
-                  <p><strong>Centro Comercial San Michelli</strong><br>
-                  R. Guilherme Dancker, 161, Sala 15<br>
-                  Centro, Jaraguá do Sul – SC</p>
-                </div>
-                
-                <div class="info-card">
-                  <h6><i class="fas fa-clock info-icon"></i>Duração das Aulas</h6>
-                  <p><strong>1h30min</strong> por encontro<br>
-                  <strong>Material:</strong> Caderno para anotações<br>
-                  <strong>Frequência:</strong> Semanal</p>
-                </div>
-                
-                <div class="info-card">
-                  <h6><i class="fas fa-book info-icon"></i>Conteúdo do Curso</h6>
-                  <p>Autoconhecimento prático<br>
-                  Técnicas de meditação<br>
-                  Desenvolvimento da Consciência<br>
-                  Regeneração da Máquina Humana<br>
-                  Alquimia Sexual - Kundalini<br>
-                  Desenvolvimento dos Chakras<br>
-                  Estudo da psicologia gnóstica<br>
-                  Desenvolvimento interior</p>
-                </div>
-              </div>
-              
-              <div class="mt-3 p-3 bg-light rounded">
-                <h6 class="text-primary mb-2"><i class="fas fa-lightbulb info-icon"></i>Recomendações</h6>
-                <p class="mb-1"><i class="fas fa-check text-success me-1"></i> Chegar com 15 minutos de antecedência</p>
-                <p class="mb-1"><i class="fas fa-check text-success me-1"></i> Trazer caderno para anotações</p>
-                <p class="mb-1"><i class="fas fa-check text-success me-1"></i> Usar roupas confortáveis</p>
-                <p class="mb-0"><i class="fas fa-check text-success me-1"></i> Manter celular no modo silencioso</p>
-              </div>
-            </div>
-
-            <div class="social-media mb-4">
-              <h5 class="text-primary mb-3">Siga a Gnosis Brasil</h5>
-              <a href="https://www.facebook.com/gnosisbrasil/" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
-              <a href="https://www.youtube.com/gnosisbrasilcanal" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
-              <a href="https://www.instagram.com/gnosisbrasil" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
-            </div>
-
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-              <a href="https://gnosisbrasil.com" class="btn btn-gnosis btn-lg px-4"><i class="fas fa-globe me-2"></i> Visite nosso Site</a>
-              <a href="index.html" class="btn btn-light btn-lg px-4"><i class="fas fa-home me-2"></i> Voltar ao Início</a>
-            </div>
-
-          </div>
+        
+          
 
           <div class="confirmation-card">
             <div class="schedule-section">
               <div class="schedule-header">
-                <h4 class="schedule-title">CRONOGRAMA – 1ª CÂMARA</h4>
+                <h4 class="schedule-title"></h4>
                 <div class="schedule-subtitle">
-                  <div><strong>DIAS: DOMINGOS</strong></div>
-                  <div><strong>HORÁRIOS: 09H ÀS 10H30</strong></div>
+                  <div><strong></strong></div> <!--falta texto aqui-->
+                  <div><strong></strong></div> <!--falta texto aqui-->
                 </div>
               </div>
 
@@ -732,14 +570,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    // Variáveis Globais para o estado do calendário
-    let currentCalendarDate = null;
-    let currentLessonNumber = null;
-    let closeCalendarHandler = null; 
-
     // VARIÁVEIS DE CONFIGURAÇÃO DO FORMSUBMIT
     const FORMSUBMIT_EMAIL = 'jaraguadosul@gnosisbrasil.com';
-    const REDIRECT_URL = 'https://gnosisbrasil.com'; 
+    const REDIRECT_URL = 'conograma.html'; 
 
     // Links das aulas (Mantidos)
     const lessonLinks = {
@@ -776,9 +609,6 @@
     
     // Variáveis de data para limites
     const FIRST_LESSON_DATE = new Date('2025-11-02T09:00:00'); // Data de início real para cálculo (Nov 02 é um domingo)
-    const MIN_YEAR = 2025;
-    const MAX_YEAR = 2030;
-
 
     // Função para formatar data (Mantida)
     function formatDate(date) {
@@ -799,7 +629,7 @@
       return scheduleDates;
     }
 
-    // Função para renderizar o cronograma na página (Corrigida a lógica do formulário FormSubmit)
+    // Função para renderizar o cronograma na página (SIMPLIFICADA - sem calendário)
     function renderSchedule() {
       const dates = calculateScheduleDates();
       const allLessons = [...basicChamber, ...advancedChamber];
@@ -808,9 +638,6 @@
       
       basicContainer.innerHTML = '';
       advancedContainer.innerHTML = '';
-      
-      // Lógica de localStorage removida, mas mantemos o objeto para compatibilidade
-      const attendanceData = JSON.parse(localStorage.getItem('attendanceData') || '{}');
 
       allLessons.forEach((topic, index) => {
         const lessonNumber = index + 1;
@@ -824,7 +651,8 @@
         const formSubmitHiddenFields = `
             <input type="hidden" name="_subject" value="[PRESENÇA] - Aula ${lessonNumber}: ${topic}">
             <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="${REDIRECT_URL}/obrigado.html"> <input type="hidden" name="aula_tema" value="${topic}">
+            <input type="hidden" name="_next" value="${REDIRECT_URL}/obrigado.html"> 
+            <input type="hidden" name="aula_tema" value="${topic}">
             <input type="hidden" name="aula_numero" value="${lessonNumber}">
         `;
 
@@ -854,7 +682,8 @@
                         </div>
                         <div class="form-group date">
                             <label for="date-${lessonNumber}">Data da Aula</label>
-                            <input type="text" class="calendar-input" id="date-${lessonNumber}" name="data_presenca" value="${formattedDate}" readonly required onclick="showCalendar(${lessonNumber}, new Date('${expectedDate.toISOString()}'))">
+                            <input type="text" class="form-control" id="date-${lessonNumber}" name="data_presenca" placeholder="DD/MM/AAAA" required>
+                            <div class="date-format-hint">Formato: DD/MM/AAAA</div>
                         </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-present">
@@ -923,146 +752,7 @@
         alert('Link da aula não disponível');
       }
     }
-    
-    // FUNÇÃO DE FECHAMENTO LIMPO (CORRIGIDA)
-    function closeCalendarPopup() {
-        const existingCalendar = document.querySelector('.calendar-popup');
-        if (existingCalendar) {
-            existingCalendar.remove();
-            currentCalendarDate = null;
-            currentLessonNumber = null;
-        }
-        if (closeCalendarHandler) {
-            document.removeEventListener('click', closeCalendarHandler, true); 
-            closeCalendarHandler = null;
-        }
-    }
 
-    // FUNÇÃO DE CRIAÇÃO DO CALENDÁRIO (CORRIGIDA LÓGICA DE SELEÇÃO DE DOMINGO)
-    function createCalendar(date) {
-        const calendarPopup = document.createElement('div');
-        calendarPopup.className = 'calendar-popup';
-        
-        const year = date.getFullYear();
-        const month = date.getMonth();
-        
-        const minDate = new Date(MIN_YEAR, 10, 1); 
-        const maxDate = new Date(MAX_YEAR, 11, 31); 
-        
-        const firstDay = new Date(year, month, 1);
-        const lastDay = new Date(year, month + 1, 0);
-        const daysInMonth = lastDay.getDate();
-        const startingDay = firstDay.getDay(); 
-        
-        const monthNames = [
-          'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
-          'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
-        ];
-        
-        const weekdays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-        
-        let calendarHTML = `
-          <div class="calendar-header">
-            <button class="calendar-nav" ${year <= MIN_YEAR && month <= 10 ? 'disabled style="opacity:0.3; cursor:not-allowed;"' : ''} onclick="changeCalendarMonth(-1)">
-              <i class="fas fa-chevron-left"></i>
-            </button>
-            <div class="calendar-month">${monthNames[month]} ${year}</div>
-            <button class="calendar-nav" ${year >= MAX_YEAR && month >= 11 ? 'disabled style="opacity:0.3; cursor:not-allowed;"' : ''} onclick="changeCalendarMonth(1)">
-              <i class="fas fa-chevron-right"></i>
-            </button>
-          </div>
-          <div class="calendar-weekdays">
-        `;
-        
-        weekdays.forEach(day => {
-          calendarHTML += `<div class="calendar-weekday">${day}</div>`;
-        });
-        
-        calendarHTML += `</div><div class="calendar-days">`;
-        
-        for (let i = 0; i < startingDay; i++) {
-          calendarHTML += `<div class="calendar-day other-month"></div>`;
-        }
-        
-        for (let day = 1; day <= daysInMonth; day++) {
-          const dayDate = new Date(year, month, day);
-          const isSelected = formatDate(dayDate) === formatDate(currentCalendarDate);
-          
-          dayDate.setHours(9, 0, 0, 0); 
-          minDate.setHours(9, 0, 0, 0);
-          maxDate.setHours(9, 0, 0, 0);
-          
-          // CRÍTICO: Permite selecionar APENAS domingos dentro do período
-          const isDisabled = dayDate.getDay() !== 0 || dayDate < minDate || dayDate > maxDate; 
-          
-          calendarHTML += `
-            <div class="calendar-day ${isSelected ? 'selected' : ''} ${isDisabled ? 'disabled' : ''}" 
-                  ${!isDisabled ? `onclick="selectDate(${currentLessonNumber}, new Date('${dayDate.toISOString()}'))"` : ''}>
-              ${day}
-            </div>
-          `;
-        }
-        
-        calendarHTML += `</div>`;
-        
-        calendarPopup.innerHTML = calendarHTML;
-        return calendarPopup;
-    }
-    
-    // FUNÇÃO DE NAVEGAÇÃO ENTRE MESES (MANTIDA/OTIMIZADA)
-    function changeCalendarMonth(offset) {
-        if (!currentCalendarDate) return;
-        
-        let newDate = new Date(currentCalendarDate);
-        newDate.setMonth(newDate.getMonth() + offset);
-        
-        // Verifica limites
-        const minDate = new Date(MIN_YEAR, 10, 1); 
-        const maxDate = new Date(MAX_YEAR, 11, 31); 
-        
-        if (newDate < minDate || newDate > maxDate) {
-            return; 
-        }
-
-        currentCalendarDate = newDate;
-        
-        closeCalendarPopup();
-        
-        showCalendar(currentLessonNumber, currentCalendarDate);
-    }
-
-    // FUNÇÃO DE SELEÇÃO DE DATA (CORRIGIDA)
-    function selectDate(lessonNumber, selectedDate) {
-      const dateInput = document.getElementById(`date-${lessonNumber}`);
-      dateInput.value = formatDate(selectedDate);
-      
-      closeCalendarPopup(); 
-    }
-
-    // FUNÇÃO PARA MOSTRAR O CALENDÁRIO (CORRIGIDA COM CAPTURE: TRUE)
-    function showCalendar(lessonNumber, initialDate) {
-      closeCalendarPopup();
-      
-      currentLessonNumber = lessonNumber;
-      currentCalendarDate = new Date(initialDate); 
-
-      const dateInput = document.getElementById(`date-${lessonNumber}`);
-      const calendar = createCalendar(currentCalendarDate);
-      
-      document.body.appendChild(calendar);
-      
-      // CRÍTICO: Usa 'capture: true' para fechar o calendário ANTES que o clique no dia seja processado
-      closeCalendarHandler = function(e) {
-          if (calendar && !calendar.contains(e.target) && e.target !== dateInput && !e.target.closest('.calendar-nav')) {
-              closeCalendarPopup();
-          }
-      };
-      
-      document.addEventListener('click', closeCalendarHandler, true);
-    }
-
-    // Funções de formulário (removidas/não mais necessárias)
-    
     // MELHORIA: Função para adicionar evento ao Google Calendar (Mantida)
     function addToCalendar(title, dateStr, startTime, endTime, location) {
       const parts = dateStr.split('/');
@@ -1082,9 +772,6 @@
     window.onload = renderSchedule;
     
     // Funções globais necessárias para serem chamadas pelo HTML (onclick)
-    window.changeCalendarMonth = changeCalendarMonth;
-    window.selectDate = selectDate;
-    window.showCalendar = showCalendar;
     window.openLessonLink = openLessonLink;
     window.copyLessonLink = copyLessonLink;
     window.addToCalendar = addToCalendar;
