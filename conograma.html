@@ -16,6 +16,7 @@
       --color-dark-bg: #1e3a8a;
       --color-text-light: #ffffff;
       --color-accent: #448ea0;
+      --color-success: #198754;
       --font-base: 'Inter', sans-serif;
       --font-heading: 'Poppins', sans-serif;
     }
@@ -56,7 +57,7 @@
     h2.subtitle {
       font-family: var(--font-base);
       font-size: 1.00rem;
-      color: rgb(0, 139, 63);
+      color: var(--color-success);
       margin-bottom: 1rem;
       border-style: solid;
       border-radius: 7px;
@@ -354,6 +355,38 @@
       min-width: 200px;
     }
 
+    /* Estilos para seções informativas */
+    .info-section {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background-color: #f8f9fa;
+      border-radius: 0.75rem;
+      text-align: left;
+    }
+
+    .info-section h3 {
+      color: var(--color-primary);
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--color-primary);
+      padding-bottom: 0.5rem;
+    }
+
+    .info-section p {
+      color: #495057;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .info-section ul {
+      padding-left: 1.5rem;
+      color: #495057;
+    }
+
+    .info-section li {
+      margin-bottom: 0.5rem;
+    }
+
     /* Melhorias para dispositivos móveis */
     @media (max-width: 768px) {
       .confirmation-card { 
@@ -416,7 +449,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container">
     <a class="navbar-brand" href="#">
-      <img src="img\cropped-logo-sol-7.webp" alt="Logo Gnosis" class="me-2">
+      <img src="img/cropped-logo-sol-7.webp" alt="Logo Gnosis" class="me-2">
       Gnosis Jaraguá do Sul
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -447,13 +480,12 @@
       <div class="col-lg-10">
         <div class="confirmation-card">
           <div class="mb-4">
-            <img src="img\2343637.png" alt="Logo Gnosis" style="height: 80px;">
+            <img src="img/2343637.png" alt="Logo Gnosis" style="height: 80px;">
           </div>
           <h1 class="title-main">Cronograma Completo</h1>
           <div class="divider"></div>
           <h2 class="subtitle">Curso Gnosis | 1ª Câmara | T01/2025</h2>
-          <p class="lead">Confira abaixo o cronograma completo do Curso <strong>Gnosis 1ª Câmara</strong> da Gnosis Brasil.</p>
-
+          
           <!-- Barra de progresso do curso -->
           <div class="progress-container">
             <div class="progress-label">
@@ -464,42 +496,47 @@
               <div id="course-progress" class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
+          
+          <!-- Seções informativas reorganizadas -->
+          <div class="info-section">
+            <h3>CURSO DE GNOSIS – 1ª CÂMARA</h3>
+            <p>Criado a fim de transmitir uma mensagem transformadora da vida prática e destinada a qualquer pessoa, o Curso de Gnosis (Autoconhecimento) é um verdadeiro chamado à consciência da humanidade. Também denominado de 1ª Câmara, consiste em 23 aulas teóricas e práticas introdutórias ao autêntico autoconhecimento.</p>
+            <a target="_blank" href="tryit.asp?filename=trycss_text" class="btn btn-outline-primary">Ler portifólio completo</a>
+          </div>
 
-          <div class="details-box">
-            <h5><i class="fas fa-info-circle me-2"></i>Informações Importantes:</h5>
-            
-            <!-- Layout horizontal para informações -->
-            <div class="horizontal-info">
-              <div class="info-card">
-                <h6><i class="fas fa-calendar-alt info-icon"></i>Data e Horário</h6>
-                <p><strong>Primeira Aula:</strong> 02 de Novembro de 2025<br>
-                  <strong>Horário:</strong> 09h às 10h30<br>
-                  <strong>Duração do Curso:</strong> 6 meses<br>
-                  <strong>Total de Encontros:</strong> 23 aulas</p>
-              </div>
+          <div class="info-section">
+            <h3>OBJETIVOS</h3>
+            <p>O curso tem como objetivo principal proporcionar aos participantes uma compreensão profunda de si mesmos, através do estudo e prática dos ensinamentos gnósticos, permitindo uma transformação positiva em suas vidas.</p>
+          </div>
 
-              <div class="info-card">
-                <h6><i class="fas fa-map-marker-alt info-icon"></i>Localização</h6>
-                <p><strong>Centro Comercial San Michelli</strong><br>
-                  R. Guilherme Dancker, 161, Sala 15<br>
-                  Centro, Jaraguá do Sul – SC</p>
-              </div>
+          <div class="info-section">
+            <h3>CARACTERÍSTICAS DO CURSO</h3>
+            <p>O curso é sem fins lucrativos, o que significa que não possui custos financeiros. Entretanto, para poder permanecer na turma, há necessidade de assiduidade e pontualidade. Para melhor aproveitamento do conteúdo, o número máximo de faltas é 4, portanto busque se organizar para não perder os temas. Possui três divisões: Câmara Pública (tema de abertura, introdutório e motivacional), Câmara Básica (temas 01 ao 16) e Câmara Avançada (temas 17 ao 23).</p>
+          </div>
 
-              <div class="info-card">
-                <h6><i class="fas fa-clock info-icon"></i>Duração das Aulas</h6>
-                <p><strong>1h30min</strong> por encontro<br>
-                  <strong>Material:</strong> Caderno para anotações<br>
-                  <strong>Frequência:</strong> Semanal</p>
-              </div>
-            </div>
+          <div class="info-section">
+            <h3>MATERIAL DIDÁTICO</h3>
+            <p>Cada conferência possui um resumo dos principais tópicos que será enviado por e-mail. Também haverá a opção de adquiri-lo impresso no próprio local do curso.</p>
+          </div>
 
-            <div class="mt-4 p-3 rounded" style="background-color: #e3f2fd; border: 1px solid #c2e0f2;">
-              <h6 class="text-primary mb-2"><i class="fas fa-lightbulb info-icon" style="font-size: 1.1rem;"></i>Recomendações</h6>
-              <p class="mb-1 text-dark"><i class="fas fa-check text-success me-1"></i> Chegar com 15 minutos de antecedência</p>
-              <p class="mb-1 text-dark"><i class="fas fa-check text-success me-1"></i> Trazer caderno para anotações</p>
-              <p class="mb-1 text-dark"><i class="fas fa-check text-success me-1"></i> Usar roupas confortáveis</p>
-              <p class="mb-0 text-dark"><i class="fas fa-check text-success me-1"></i> Manter celular no modo silencioso</p>
-            </div>
+          <div class="info-section">
+            <h3>2ª CÂMARA</h3>
+            <p>Ao finalizar esta etapa, o aluno terá a oportunidade de continuar nestes estudos e fazer parte da 2ª Câmara, que corresponde ao aprofundamento na prática da Gnosis.</p>
+          </div>
+
+          <div class="info-section">
+            <h3>LIVROS SUGERIDOS</h3>
+            <p>Para uma maior compreensão dos ensinamentos gnósticos, sugerimos o estudo dos livros abaixo, todos de autoria de Samael Aun Weor: Tratado de Psicologia Revolucionária, Matrimônio Perfeito, A Grande Rebelião, O Mistério do Áureo Florescer, As Três Montanhas, Educação Fundamental. Todos estão disponíveis para download em www.gnosisbrasil.com/livrosgnosticos</p>
+            <a target="_blank" href="https://gnosisbrasil.com/livros/" class="btn btn-outline-primary">Biblioteca Virtual</a>
+          </div>
+
+          <div class="info-section">
+            <h3>RECOMENDAÇÕES</h3>
+            <ul>
+              <li>Leve um caderno para realizar suas próprias anotações.</li>
+              <li>Busque chegar no horário para não perder práticas e conteúdo do tema.</li>
+              <li>As reposições poderão ser feitas em outras turmas ou horários alternativos. Verifique com o instrutor.</li>
+            </ul>
           </div>
         </div>
 
@@ -557,7 +594,7 @@
 <footer class="py-4 bg-dark text-white text-center">
   <div class="container">
     <div class="mb-3">
-      <img src="img\cropped-logo-sol-7.webp" alt="Logo Gnosis" style="height: 60px;">
+      <img src="img/cropped-logo-sol-7.webp" alt="Logo Gnosis" style="height: 60px;">
     </div>
     <p>&copy; 2025 Gnosis Brasil. Todos os direitos reservados.</p>
     <p class="mb-0">
@@ -590,7 +627,7 @@
     16: "https://drive.google.com/file/d/0ByuJiBLnCPXgTDd1S2s4aDNiaEU/view?usp=drive_link&resourcekey=0-IhRyZn4I1G2ElLG2An_dFw"
   };
 
-  // Descrições das aulas (no código)
+  // Descrições das aulas
   const lessonDescriptions = {
     1: "Nesta aula introdutória, exploraremos o conceito fundamental da Gnosis como conhecimento superior que permite ao ser humano compreender sua verdadeira natureza e propósito existencial.",
     2: "Aprofundaremos na compreensão da tríade psicológica humana: Personalidade (máscara social), Essência (chispa divina) e Ego (conjunto de defeitos psicológicos).",
@@ -644,18 +681,6 @@
     23: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
   };
 
-  // Lista de feriados e datas festivas que devem ser puladas (2025-2026)
-  const holidays = [
-    '2025-11-15', // Proclamação da República
-    '2025-12-25', // Natal
-    '2026-01-01', // Ano Novo
-    '2026-02-16', // Carnaval
-    '2026-02-17', // Carnaval
-    '2026-04-03', // Sexta-feira Santa
-    '2026-04-21', // Tiradentes
-    '2026-05-01', // Dia do Trabalho
-  ];
-
   // Conteúdo das palestras
   const basicChamber = [
     "O que é Gnosis",
@@ -686,32 +711,38 @@
     "Apresentação da 2ª Câmara"
   ];
 
-  // Função para formatar data
-  function formatDate(date) {
+  // DATAS ATUALIZADAS CONFORME SOLICITADO
+  const FIRST_LESSON_DATE = new Date('2025-11-02T09:00:00'); // Primeira aula 02/11/2025
+  const LAST_LESSON_2025 = new Date('2025-12-21T09:00:00'); // Última aula de 2025
+  const FIRST_LESSON_2026 = new Date('2026-01-11T09:00:00'); // Primeira aula de 2026
+
+  // Função para formatar data no formato brasileiro
+  function formatDateForDisplay(date) {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
     return date.toLocaleDateString('pt-BR', options);
   }
 
-  // Função para verificar se é feriado
-  function isHoliday(date) {
-    const dateString = date.toISOString().split('T')[0];
-    return holidays.includes(dateString);
-  }
-
-  // Função para calcular as datas das palestras
+  // Função para calcular as datas das palestras COM RECESSO
   function calculateScheduleDates() {
-    let currentDate = new Date('2025-11-02'); // Data da primeira aula
+    let currentDate = new Date(FIRST_LESSON_DATE); 
     const scheduleDates = [];
+    let lessonCount = 0;
 
-    // Calcular datas para as 23 palestras
-    for (let i = 0; i < 23; i++) {
-      // Encontrar próximo domingo que não seja feriado
-      while (isHoliday(currentDate)) {
-        currentDate.setDate(currentDate.getDate() + 1);
-      }
-      
+    // Aulas de 2025 (até 21/12)
+    while (currentDate <= LAST_LESSON_2025 && lessonCount < 23) {
       scheduleDates.push(new Date(currentDate));
-      currentDate.setDate(currentDate.getDate() + 7); // Próxima semana
+      currentDate.setDate(currentDate.getDate() + 7);
+      lessonCount++;
+    }
+
+    // Pular para 2026 (11/01)
+    currentDate = new Date(FIRST_LESSON_2026);
+
+    // Continuar as aulas de 2026
+    while (lessonCount < 23) {
+      scheduleDates.push(new Date(currentDate));
+      currentDate.setDate(currentDate.getDate() + 7);
+      lessonCount++;
     }
 
     return scheduleDates;
@@ -720,7 +751,7 @@
   // Função para atualizar a barra de progresso
   function updateProgressBar() {
     const today = new Date();
-    const startDate = new Date('2025-11-02');
+    const startDate = new Date(FIRST_LESSON_DATE);
     const endDate = calculateScheduleDates()[22]; // Data da última aula
     
     // Calcular progresso baseado na data atual
@@ -768,7 +799,7 @@
           </div>
           <div class="schedule-description">${lessonDescriptions[lessonNumber]}</div>
           <div class="schedule-footer">
-            <div class="schedule-date">${formatDate(dates[index])}</div>
+            <div class="schedule-date">${formatDateForDisplay(dates[index])}</div>
             ${lessonLinks[lessonNumber] ? 
               `<a href="${lessonLinks[lessonNumber]}" target="_blank" class="btn-material">
                 <i class="fas fa-external-link-alt me-1"></i>Acessar material da aula
@@ -795,7 +826,7 @@
           </div>
           <div class="schedule-description">${lessonDescriptions[lessonNumber]}</div>
           <div class="schedule-footer">
-            <div class="schedule-date">${formatDate(dates[index + 16])}</div>
+            <div class="schedule-date">${formatDateForDisplay(dates[index + 16])}</div>
             <button class="btn-material" disabled>
               <i class="fas fa-clock me-1"></i>Material em breve
             </button>

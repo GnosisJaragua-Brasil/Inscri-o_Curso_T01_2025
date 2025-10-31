@@ -611,7 +611,10 @@
       "Os Quatro Estados de Consciência", "A Iniciação", "Apresentação da 2ª Câmara"
     ];
     
-    const FIRST_LESSON_DATE = new Date('2025-11-02T09:00:00');
+    // DATAS ATUALIZADAS CONFORME SOLICITADO
+    const FIRST_LESSON_DATE = new Date('2025-11-02T09:00:00'); // Primeira aula 02/11/2025
+    const LAST_LESSON_2025 = new Date('2025-12-21T09:00:00'); // Última aula de 2025
+    const FIRST_LESSON_2026 = new Date('2026-01-11T09:00:00'); // Primeira aula de 2026
 
     // Função para formatar data no formato brasileiro
     function formatDateForDisplay(date) {
@@ -619,14 +622,27 @@
       return date.toLocaleDateString('pt-BR', options);
     }
 
-    // Função para calcular as datas das palestras
+    // Função para calcular as datas das palestras COM RECESSO
     function calculateScheduleDates() {
       let currentDate = new Date(FIRST_LESSON_DATE); 
       const scheduleDates = [];
+      let lessonCount = 0;
 
-      for (let i = 0; i < 23; i++) {
+      // Aulas de 2025 (até 21/12)
+      while (currentDate <= LAST_LESSON_2025 && lessonCount < 23) {
         scheduleDates.push(new Date(currentDate));
         currentDate.setDate(currentDate.getDate() + 7);
+        lessonCount++;
+      }
+
+      // Pular para 2026 (11/01)
+      currentDate = new Date(FIRST_LESSON_2026);
+
+      // Continuar as aulas de 2026
+      while (lessonCount < 23) {
+        scheduleDates.push(new Date(currentDate));
+        currentDate.setDate(currentDate.getDate() + 7);
+        lessonCount++;
       }
 
       return scheduleDates;
@@ -644,10 +660,6 @@
       monthSelectorType: "static",
       prevArrow: '<i class="fas fa-chevron-left"></i>',
       nextArrow: '<i class="fas fa-chevron-right"></i>',
-      // REMOVIDAS as restrições de minDate e maxDate para permitir qualquer data
-      // minDate: "2025-01-01", // REMOVIDO
-      // maxDate: "2030-12-31", // REMOVIDO
-      // Adicionando mais flexibilidade
       enableTime: false,
       static: true
     };
