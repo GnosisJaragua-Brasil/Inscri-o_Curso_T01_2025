@@ -775,12 +775,14 @@
         const hasLink = lessonLinks[lessonNumber] !== undefined;
 
         // CONFIGURAÇÕES GOOGLE APPS SCRIPT
-        const formSubmitHiddenFields = `
-            <!-- Dados para a planilha Google -->
-            <input type="hidden" name="aulaNumero" value="${lessonNumber}">
-            <input type="hidden" name="aulaTema" value="${topic}">
-            <input type="hidden" name="dataPrevista" value="${formattedDateForDisplay}">
-        `;
+       // CONFIGURAÇÕES GOOGLE APPS SCRIPT
+const formSubmitHiddenFields = `
+    <!-- Dados para a planilha Google -->
+    <input type="hidden" name="tipoFormulario" value="presenca">
+    <input type="hidden" name="aulaNumero" value="${lessonNumber}">
+    <input type="hidden" name="aulaTema" value="${topic}">
+    <input type="hidden" name="dataPrevista" value="${formattedDateForDisplay}">
+`;
 
         const lessonHTML = `
           <div class="schedule-item">
