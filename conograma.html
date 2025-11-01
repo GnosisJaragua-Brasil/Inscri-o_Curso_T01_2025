@@ -240,26 +240,12 @@
       flex: 1;
     }
 
-    .schedule-number {
-      background: var(--color-primary);
-      color: white;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      font-size: 1rem;
-      margin-left: 1rem;
-      flex-shrink: 0;
-    }
-
     .schedule-description {
       color: #6c757d;
       margin-bottom: 1rem;
       line-height: 1.5;
       font-size: 0.95rem;
+      text-align: left; /* Alinhamento à esquerda adicionado */
     }
 
     .schedule-footer {
@@ -413,10 +399,6 @@
       }
       .schedule-header-row {
         flex-direction: column;
-      }
-      .schedule-number {
-        margin-left: 0;
-        margin-top: 0.5rem;
       }
       .schedule-footer {
         flex-direction: column;
@@ -794,8 +776,7 @@
         <img src="${lessonImages[lessonNumber]}" alt="${topic}" class="schedule-image">
         <div class="schedule-content">
           <div class="schedule-header-row">
-            <div class="schedule-topic">${topic} | Lição ${lessonNumber}</div>
-            <div class="schedule-number">${lessonNumber.toString().padStart(2, '0')}</div>
+            <div class="schedule-topic">${topic}</div>
           </div>
           <div class="schedule-description">${lessonDescriptions[lessonNumber]}</div>
           <div class="schedule-footer">
@@ -821,8 +802,7 @@
         <img src="${lessonImages[lessonNumber]}" alt="${topic}" class="schedule-image">
         <div class="schedule-content">
           <div class="schedule-header-row">
-            <div class="schedule-topic">${topic} | Lição ${lessonNumber}</div>
-            <div class="schedule-number">${lessonNumber.toString().padStart(2, '0')}</div>
+            <div class="schedule-topic">${topic}</div>
           </div>
           <div class="schedule-description">${lessonDescriptions[lessonNumber]}</div>
           <div class="schedule-footer">
