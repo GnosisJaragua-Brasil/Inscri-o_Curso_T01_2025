@@ -627,19 +627,63 @@
         margin-right: 0;
       }
       
-      /* Ajustes para a tela flutuante em dispositivos móveis */
+      /* CORREÇÃO PARA A TELA FLUTUANTE EM DISPOSITIVOS MÓVEIS */
       .floating-social-container {
-        bottom: 20px;
-        right: 20px;
+        bottom: 15px;
+        right: 15px;
       }
       
       .social-panel {
-        width: 280px;
+        width: calc(100vw - 30px);
+        max-width: 320px;
         right: 0;
       }
       
       .social-icons-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      
+      .social-icon-item {
+        padding: 10px 5px;
+        min-height: 80px;
+        justify-content: center;
+      }
+      
+      .social-icon-label {
+        font-size: 0.75rem;
+        line-height: 1.2;
+      }
+    }
+
+    /* Ajustes para telas muito pequenas (menos de 400px) */
+    @media (max-width: 400px) {
+      .social-panel {
+        width: calc(100vw - 20px);
+        padding: 15px;
+      }
+      
+      .social-icons-grid {
         grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      
+      .social-icon-item {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 10px 15px;
+        min-height: auto;
+      }
+      
+      .social-icon-item i {
+        margin-bottom: 0;
+        margin-right: 10px;
+        font-size: 1.5rem;
+      }
+      
+      .social-icon-label {
+        font-size: 0.8rem;
+        text-align: left;
       }
     }
 
@@ -836,7 +880,7 @@
         <i class="fab fa-instagram"></i>
         <span class="social-icon-label">Instagram Nacional</span>
       </a>
-      <a href="https://www.instagram.com/gnosis_jaragua?igsh=czhrbGV4b2toMGZ2" target="_blank" class="social-icon-item instagram">
+      <a href="https://www.instagram.com/gnosisjaraguadosul" target="_blank" class="social-icon-item instagram">
         <i class="fab fa-instagram"></i>
         <span class="social-icon-label">Instagram da Cidade</span>
       </a>
