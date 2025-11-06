@@ -405,6 +405,181 @@
       margin-bottom: 0.5rem;
     }
 
+    /* ===== ESTILOS MELHORADOS PARA A TELA FLUTUANTE ===== */
+    .floating-social-container {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .floating-toggle-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      color: white;
+      border: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      z-index: 10;
+    }
+
+    .floating-toggle-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .floating-toggle-btn i {
+      font-size: 1.5rem;
+      transition: transform 0.4s ease;
+    }
+
+    .floating-toggle-btn.active i {
+      transform: rotate(135deg);
+    }
+
+    .social-panel {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      margin-bottom: 15px;
+      transform: translateY(20px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      width: 300px;
+      max-height: 0;
+      overflow: hidden;
+    }
+
+    .social-panel.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      max-height: 500px;
+    }
+
+    .social-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .social-panel-title {
+      font-weight: 600;
+      color: var(--color-primary);
+      font-size: 1.1rem;
+    }
+
+    .social-panel-close {
+      background: none;
+      border: none;
+      color: #6c757d;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .social-panel-close:hover {
+      color: var(--color-primary);
+    }
+
+    .social-icons-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .social-icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #495057;
+      padding: 12px 8px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .social-icon-item:hover {
+      background: white;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      color: var(--color-primary);
+    }
+
+    .social-icon-item i {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icon-item:hover i {
+      transform: scale(1.2);
+    }
+
+    .social-icon-item.facebook:hover i {
+      color: #3b5998;
+    }
+
+    .social-icon-item.instagram:hover i {
+      color: #e1306c;
+    }
+
+    .social-icon-item.youtube:hover i {
+      color: #ff0000;
+    }
+
+    .social-icon-item.website:hover i {
+      color: var(--color-primary);
+    }
+
+    .social-icon-label {
+      font-size: 0.8rem;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    /* Indicador de notificação */
+    .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #ff4757;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: bold;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
     /* Melhorias para dispositivos móveis */
     @media (max-width: 768px) {
       .confirmation-card { 
@@ -451,11 +626,26 @@
         width: 100%;
         margin-right: 0;
       }
+      
+      /* Ajustes para a tela flutuante em dispositivos móveis */
+      .floating-social-container {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .social-panel {
+        width: 280px;
+        right: 0;
+      }
+      
+      .social-icons-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* Melhorias para impressão */
     @media print {
-      .navbar, .btn-material, .btn-material-secondary, .social-media, footer {
+      .navbar, .btn-material, .btn-material-secondary, .social-media, footer, .floating-social-container {
         display: none !important;
       }
       .confirmation-card {
@@ -627,6 +817,45 @@
     </p>
   </div>
 </footer>
+
+<!-- Tela Flutuante Melhorada -->
+<div class="floating-social-container">
+  <div class="social-panel" id="socialPanel">
+    <div class="social-panel-header">
+      <div class="social-panel-title">Nossas Redes Sociais</div>
+      <button class="social-panel-close" id="socialPanelClose">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="social-icons-grid">
+      <a href="https://www.facebook.com/gnosisbrasil/" target="_blank" class="social-icon-item facebook">
+        <i class="fab fa-facebook"></i>
+        <span class="social-icon-label">Facebook</span>
+      </a>
+      <a href="https://www.instagram.com/gnosisbrasil" target="_blank" class="social-icon-item instagram">
+        <i class="fab fa-instagram"></i>
+        <span class="social-icon-label">Instagram Nacional</span>
+      </a>
+      <a href="https://www.instagram.com/gnosisjaraguadosul" target="_blank" class="social-icon-item instagram">
+        <i class="fab fa-instagram"></i>
+        <span class="social-icon-label">Instagram da Cidade</span>
+      </a>
+      <a href="https://www.youtube.com/gnosisbrasilcanal" target="_blank" class="social-icon-item youtube">
+        <i class="fab fa-youtube"></i>
+        <span class="social-icon-label">YouTube</span>
+      </a>
+      <a href="https://gnosisbrasil.com" target="_blank" class="social-icon-item website">
+        <i class="fas fa-globe"></i>
+        <span class="social-icon-label">Página Nacional</span>
+      </a>
+    </div>
+  </div>
+  
+  <button class="floating-toggle-btn" id="floatingToggleBtn">
+    <i class="fas fa-share-alt"></i>
+    <span class="notification-badge">5</span>
+  </button>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -891,10 +1120,83 @@
     });
   }
 
+  // Função para controlar a tela flutuante melhorada
+  function initFloatingPanel() {
+    const floatingToggleBtn = document.getElementById('floatingToggleBtn');
+    const socialPanel = document.getElementById('socialPanel');
+    const socialPanelClose = document.getElementById('socialPanelClose');
+    let isPanelOpen = false;
+    
+    // Abrir/fechar ao clicar no botão flutuante
+    floatingToggleBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      togglePanel();
+    });
+    
+    // Fechar ao clicar no botão X
+    socialPanelClose.addEventListener('click', function(e) {
+      e.stopPropagation();
+      closePanel();
+    });
+    
+    // Fechar ao clicar fora do painel
+    document.addEventListener('click', function(e) {
+      if (isPanelOpen && !socialPanel.contains(e.target) && !floatingToggleBtn.contains(e.target)) {
+        closePanel();
+      }
+    });
+    
+    // Fechar ao pressionar a tecla Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && isPanelOpen) {
+        closePanel();
+      }
+    });
+    
+    function togglePanel() {
+      if (isPanelOpen) {
+        closePanel();
+      } else {
+        openPanel();
+      }
+    }
+    
+    function openPanel() {
+      socialPanel.classList.add('active');
+      floatingToggleBtn.classList.add('active');
+      isPanelOpen = true;
+      
+      // Remover badge de notificação após abrir
+      const badge = document.querySelector('.notification-badge');
+      if (badge) {
+        badge.style.display = 'none';
+      }
+    }
+    
+    function closePanel() {
+      socialPanel.classList.remove('active');
+      floatingToggleBtn.classList.remove('active');
+      isPanelOpen = false;
+    }
+    
+    // Efeito de hover nos ícones sociais
+    const socialIcons = document.querySelectorAll('.social-icon-item');
+    socialIcons.forEach(icon => {
+      icon.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px)';
+      });
+      
+      icon.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+  }
+
   // Executar quando a página carregar
   document.addEventListener('DOMContentLoaded', function() {
     renderSchedule();
     updateProgressBar();
+    initFloatingPanel();
     
     // Atualizar a barra de progresso a cada minuto
     setInterval(updateProgressBar, 60000);
