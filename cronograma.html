@@ -245,7 +245,7 @@
       margin-bottom: 1rem;
       line-height: 1.5;
       font-size: 0.95rem;
-      text-align: left;
+      text-align: left; /* Alinhamento à esquerda adicionado */
     }
 
     .schedule-footer {
@@ -403,178 +403,6 @@
 
     .info-section li {
       margin-bottom: 0.5rem;
-    }
-
-    /* ===== ESTILOS MELHORADOS PARA O MODAL DE DOWNLOAD ===== */
-    .modal-content {
-      border-radius: 20px;
-      overflow: hidden;
-      border: none;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-      background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
-      color: #212529;
-    }
-
-    .modal-header {
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-      color: white;
-      border-bottom: none;
-      padding: 1.5rem 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .modal-header::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
-      background-size: cover;
-    }
-
-    .modal-title {
-      font-weight: 700;
-      font-size: 1.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .modal-title i {
-      font-size: 1.6rem;
-    }
-
-    .btn-close {
-      filter: invert(1);
-      opacity: 0.8;
-      transition: all 0.3s ease;
-      position: relative;
-      z-index: 1;
-    }
-
-    .btn-close:hover {
-      opacity: 1;
-      transform: rotate(90deg);
-    }
-
-    .modal-body {
-      padding: 2rem;
-      text-align: center;
-    }
-
-    .modal-body p {
-      color: #495057;
-      font-size: 1.05rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-    }
-
-    .modal-icon {
-      font-size: 3rem;
-      color: var(--color-primary);
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .form-label {
-      font-weight: 600;
-      color: var(--color-primary);
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .form-control {
-      border: 2px solid #e9ecef;
-      border-radius: 12px;
-      padding: 0.75rem 1rem;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      background-color: #f8f9fa;
-    }
-
-    .form-control:focus {
-      border-color: var(--color-primary);
-      box-shadow: 0 0 0 0.25rem rgba(0, 91, 210, 0.15);
-      background-color: white;
-    }
-
-    .modal-footer {
-      border-top: 1px solid #e9ecef;
-      padding: 1.5rem 2rem;
-      display: flex;
-      gap: 1rem;
-    }
-
-    .btn-download {
-      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      padding: 0.875rem 1.5rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      box-shadow: 0 4px 15px rgba(0, 91, 210, 0.3);
-    }
-
-    .btn-download:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 91, 210, 0.4);
-      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);
-    }
-
-    .btn-cancel {
-      background: #6c757d;
-      color: white;
-      border: none;
-      border-radius: 12px;
-      padding: 0.875rem 1.5rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      flex: 1;
-    }
-
-    .btn-cancel:hover {
-      background: #5a6268;
-      transform: translateY(-2px);
-    }
-
-    /* Efeito de loading no botão de download */
-    .btn-download.loading {
-      pointer-events: none;
-      opacity: 0.8;
-    }
-
-    .btn-download.loading i {
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Animações para o modal */
-    .modal.fade .modal-content {
-      transform: translateY(-50px) scale(0.9);
-      opacity: 0;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .modal.show .modal-content {
-      transform: translateY(0) scale(1);
-      opacity: 1;
     }
 
     /* ===== ESTILOS MELHORADOS PARA A TELA FLUTUANTE ===== */
@@ -826,21 +654,6 @@
         font-size: 0.75rem;
         line-height: 1.2;
       }
-
-      /* Responsividade para o modal */
-      .modal-dialog {
-        margin: 1rem;
-      }
-      
-      .modal-header,
-      .modal-body,
-      .modal-footer {
-        padding: 1.25rem;
-      }
-      
-      .modal-footer {
-        flex-direction: column;
-      }
     }
 
     /* Ajustes para telas muito pequenas (menos de 400px) */
@@ -1049,47 +862,6 @@
   </div>
 </footer>
 
-<!-- Modal para solicitar nome antes do download - VERSÃO MELHORADA -->
-<div class="modal fade" id="downloadModal" tabindex="-1" aria-labelledby="downloadModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form id="downloadForm" method="POST" action="https://formsubmit.co/jaraguadosul@gnosisbrasil.com">
-        <input type="hidden" name="_subject" value="Download de Material - Gnosis Jaraguá">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="aula" id="formAula">
-        <input type="hidden" name="pdf_url" id="formPdfUrl">
-
-        <div class="modal-header">
-          <h5 class="modal-title" id="downloadModalLabel">
-            <i class="fas fa-file-download"></i>
-            Baixar Material
-          </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-        </div>
-        <div class="modal-body">
-          <i class="fas fa-cloud-download-alt modal-icon"></i>
-          <p>Para baixar o material, por favor, informe seu nome completo:</p>
-          <div class="mb-3">
-            <label for="studentName" class="form-label">
-              <i class="fas fa-user"></i>
-              Nome completo
-            </label>
-            <input type="text" class="form-control" id="studentName" name="nome" required placeholder="Ex: Maria Silva">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn-cancel" data-bs-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn-download">
-            <i class="fas fa-download"></i>
-            Baixar PDF
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
 <!-- Tela Flutuante Melhorada -->
 <div class="floating-social-container">
   <div class="social-panel" id="socialPanel">
@@ -1195,7 +967,7 @@
     19: "Tema sobre Alquimia, a Ciência das transmutações. Ensina os fundamentos da transmutação sexual, canalizando sabia e positivamente os diversos tipos de energia fabricados pelo nosso organismo para uma melhor saúde, vitalidade e para nosso desenvolvimento físico, anímico e espiritual.",
     20: "Busca da saúde e da harmonia física, mental, emocional e psicológica através da integração com os elementos da Natureza (Fogo, Ar, Água e Terra).",
     21: "Mostra os diversos estados psicológicos do ser humano (adormecimento profundo, conceitos e crenças, recordação de si e consciência desperta).",
-    22: "Ensina a importância de se iniciar verdadeiramente uma transformação interior, baseada no autoconhecimento e no trabalho psicológico individual sobre si mesmo. Busca que cada um desenvolva a filosofia, que faz ver a life como uma escola, onde independente das circunstâncias, sempre se tem algo a aprender. A Iniciação é a Gnosis aplicada à vida.",
+    22: "Ensina a importância de se iniciar verdadeiramente uma transformação interior, baseada no autoconhecimento e no trabalho psicológico individual sobre si mesmo. Busca que cada um desenvolva a filosofia, que faz ver a vida como uma escola, onde independente das circunstâncias, sempre se tem algo a aprender. A Iniciação é a Gnosis aplicada à vida.",
     23: "Explica o funcionamento da 2ª Câmara."
 };
   // Imagens para cada aula
@@ -1323,14 +1095,6 @@
     progressPercentageText.textContent = `${Math.round(progressPercentage)}%`;
   }
 
-  // Função para preparar o download (abre o modal)
-  function prepararDownload(aula, pdfUrl, pdfType) {
-    document.getElementById("formAula").value = `${aula} - ${pdfType}`;
-    document.getElementById("formPdfUrl").value = pdfUrl;
-    const modal = new bootstrap.Modal(document.getElementById('downloadModal'));
-    modal.show();
-  }
-
   // Função para renderizar o cronograma
   function renderSchedule() {
     const dates = calculateScheduleDates();
@@ -1353,15 +1117,15 @@
             <div class="schedule-date">${formatDateForDisplay(dates[index])}</div>
             <div class="material-buttons">
               ${lessonLinks[lessonNumber] ? 
-                `<button class="btn-material" onclick="prepararDownload('Aula ${lessonNumber}', '${lessonLinks[lessonNumber]}', 'PDF 1')">
+                `<a href="${lessonLinks[lessonNumber]}" target="_blank" class="btn-material">
                   <i class="fas fa-file-pdf me-1"></i>PDF 1
-                </button>` : 
+                </a>` : 
                 '<button class="btn-material" disabled><i class="fas fa-clock me-1"></i>PDF 1 em breve</button>'
               }
               ${lessonLinksSecondary[lessonNumber] ? 
-                `<button class="btn-material-secondary" onclick="prepararDownload('Aula ${lessonNumber}', '${lessonLinksSecondary[lessonNumber]}', 'PDF 2')">
+                `<a href="${lessonLinksSecondary[lessonNumber]}" target="_blank" class="btn-material-secondary">
                   <i class="fas fa-file-pdf me-1"></i>PDF 2
-                </button>` : 
+                </a>` : 
                 '<button class="btn-material-secondary" disabled><i class="fas fa-clock me-1"></i>PDF 2 em breve</button>'
               }
             </div>
@@ -1472,62 +1236,11 @@
     });
   }
 
-  // Configurar o envio do formulário de download
-  function initDownloadForm() {
-    document.getElementById("downloadForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      
-      const downloadBtn = this.querySelector('.btn-download');
-      const originalText = downloadBtn.innerHTML;
-      
-      // Adicionar efeito de loading
-      downloadBtn.classList.add('loading');
-      downloadBtn.innerHTML = '<i class="fas fa-spinner"></i> Processando...';
-      
-      const pdfUrl = document.getElementById("formPdfUrl").value;
-      const form = e.target;
-
-      // Enviar dados para o FormSubmit
-      fetch(form.action, { method: "POST", body: new FormData(form) })
-        .then(() => {
-          // Restaurar botão
-          downloadBtn.classList.remove('loading');
-          downloadBtn.innerHTML = originalText;
-          
-          // Fechar o modal
-          const modal = bootstrap.Modal.getInstance(document.getElementById('downloadModal'));
-          modal.hide();
-
-          // Abrir o PDF em uma nova aba
-          if (pdfUrl) {
-            window.open(pdfUrl, "_blank");
-            
-            // Mostrar mensagem de sucesso
-            setTimeout(() => {
-              alert("Download iniciado! Verifique sua pasta de downloads.");
-            }, 500);
-          } else {
-            alert("O link do PDF ainda não foi adicionado.");
-          }
-
-          // Limpar o formulário
-          form.reset();
-        })
-        .catch(error => {
-          console.error('Erro:', error);
-          downloadBtn.classList.remove('loading');
-          downloadBtn.innerHTML = originalText;
-          alert("Ocorreu um erro. Tente novamente.");
-        });
-    });
-  }
-
   // Executar quando a página carregar
   document.addEventListener('DOMContentLoaded', function() {
     renderSchedule();
     updateProgressBar();
     initFloatingPanel();
-    initDownloadForm();
     
     // Atualizar a barra de progresso a cada minuto
     setInterval(updateProgressBar, 60000);
