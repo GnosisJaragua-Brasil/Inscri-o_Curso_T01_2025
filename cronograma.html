@@ -580,6 +580,43 @@
       100% { transform: scale(1); }
     }
 
+    /* Modal para solicitar nome antes do download */
+    .modal-content {
+      border-radius: 15px;
+      overflow: hidden;
+      color: #002952;
+
+      background: #3498db url('img/shutterstock_1533723971.jpg') no-repeat center center / cover;
+    }
+    /* Adicione esta parte para mudar a cor do texto */
+.modal-body p {
+  color: #002952; /* Ou qualquer cor que você preferir */
+}
+    
+    .modal-header {
+      background-color: var(--color-primary);
+      color: white;
+    }
+    
+    .modal-title {
+      font-weight: 600;
+    }
+    
+    .btn-download {
+      background-color: var(--color-primary);
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 10px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-download:hover {
+      background-color: var(--color-accent);
+      transform: scale(1.02);
+    }
+
     /* Melhorias para dispositivos móveis */
     @media (max-width: 768px) {
       .confirmation-card { 
@@ -862,6 +899,34 @@
   </div>
 </footer>
 
+<!-- Modal para solicitar nome antes do download -->
+<div class="modal fade" id="downloadModal" tabindex="-1" aria-labelledby="downloadModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="downloadForm" method="POST" action="https://formsubmit.co/jaraguadosul@gnosisbrasil.com">
+        <input type="hidden" name="_subject" value="Download de Material - Gnosis Jaraguá">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="aula" id="formAula">
+        <input type="hidden" name="pdf_url" id="formPdfUrl">
+
+        <div class="modal-header">
+          <h5 class="modal-title" id="downloadModalLabel">Identificação para download</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-3">Para baixar o material, por favor, informe seu nome completo:</p>
+          <label for="studentName" class="form-label">Nome completo</label>
+          <input type="text" class="form-control" id="studentName" name="nome" required placeholder="Ex: Maria Silva">
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-download">Baixar PDF</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <!-- Tela Flutuante Melhorada -->
 <div class="floating-social-container">
   <div class="social-panel" id="socialPanel">
@@ -1095,6 +1160,14 @@
     progressPercentageText.textContent = `${Math.round(progressPercentage)}%`;
   }
 
+  // Função para preparar o download (abre o modal)
+  function prepararDownload(aula, pdfUrl, pdfType) {
+    document.getElementById("formAula").value = `${aula} - ${pdfType}`;
+    document.getElementById("formPdfUrl").value = pdfUrl;
+    const modal = new bootstrap.Modal(document.getElementById('downloadModal'));
+    modal.show();
+  }
+
   // Função para renderizar o cronograma
   function renderSchedule() {
     const dates = calculateScheduleDates();
@@ -1117,15 +1190,15 @@
             <div class="schedule-date">${formatDateForDisplay(dates[index])}</div>
             <div class="material-buttons">
               ${lessonLinks[lessonNumber] ? 
-                `<a href="${lessonLinks[lessonNumber]}" target="_blank" class="btn-material">
+                `<button class="btn-material" onclick="prepararDownload('Aula ${lessonNumber}', '${lessonLinks[lessonNumber]}', 'PDF 1')">
                   <i class="fas fa-file-pdf me-1"></i>PDF 1
-                </a>` : 
+                </button>` : 
                 '<button class="btn-material" disabled><i class="fas fa-clock me-1"></i>PDF 1 em breve</button>'
               }
               ${lessonLinksSecondary[lessonNumber] ? 
-                `<a href="${lessonLinksSecondary[lessonNumber]}" target="_blank" class="btn-material-secondary">
+                `<button class="btn-material-secondary" onclick="prepararDownload('Aula ${lessonNumber}', '${lessonLinksSecondary[lessonNumber]}', 'PDF 2')">
                   <i class="fas fa-file-pdf me-1"></i>PDF 2
-                </a>` : 
+                </button>` : 
                 '<button class="btn-material-secondary" disabled><i class="fas fa-clock me-1"></i>PDF 2 em breve</button>'
               }
             </div>
@@ -1241,6 +1314,30 @@
     renderSchedule();
     updateProgressBar();
     initFloatingPanel();
+    
+    // Configurar o envio do formulário de download
+    document.getElementById("downloadForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const pdfUrl = document.getElementById("formPdfUrl").value;
+      const form = e.target;
+
+      // Enviar dados para o FormSubmit
+      fetch(form.action, { method: "POST", body: new FormData(form) });
+
+      // Fechar o modal
+      const modal = bootstrap.Modal.getInstance(document.getElementById('downloadModal'));
+      modal.hide();
+
+      // Abrir o PDF em uma nova aba
+      if (pdfUrl) {
+        window.open(pdfUrl, "_blank");
+      } else {
+        alert("O link do PDF ainda não foi adicionado.");
+      }
+
+      // Limpar o formulário
+      form.reset();
+    });
     
     // Atualizar a barra de progresso a cada minuto
     setInterval(updateProgressBar, 60000);
