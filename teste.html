@@ -5,9 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cronograma Completo – Gnosis Jaraguá do Sul</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
   <link rel="icon" href="https://gnosisbrasil.com/wp-content/uploads/2020/07/cropped-logo-sol-7-32x32.webp" type="image/webp">
 
   <style>
@@ -73,6 +81,11 @@
       background-color: var(--color-primary);
       margin: 0 auto 1rem auto;
       border-radius: 3px;
+    }
+
+    .lead {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     .details-box {
@@ -310,6 +323,35 @@
       gap: 0.5rem;
     }
 
+    .hero-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://gnosisbrasil.com/wp-content/uploads/2020/07/gnosis-brasil-banner.jpg');
+      background-size: cover;
+      color: white;
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .btn-whatsapp {
+      background-color: #25D366;
+      color: white;
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #6f42c1;
+    }
+
+    .navbar-brand img {
+      height: 40px;
+    }
+
+    .astral {
+      font-family: 'Amontillados', serif;
+      font-weight: normal !important;
+      font-size: clamp(2rem, 8vw, 10rem);
+    }
+
     /* Estilos para a barra de progresso */
     .progress-container {
       margin: 2rem 0;
@@ -371,39 +413,179 @@
       margin-bottom: 0.5rem;
     }
 
-    /* Modal personalizado para download */
-    .download-modal .modal-content {
-      border-radius: 15px;
-      border: none;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    /* ===== ESTILOS MELHORADOS PARA A TELA FLUTUANTE ===== */
+    .floating-social-container {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
     }
 
-    .download-modal .modal-header {
-      background-color: var(--color-primary);
+    .floating-toggle-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
       color: white;
-      border-radius: 15px 15px 0 0;
-      border-bottom: none;
+      border: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      z-index: 10;
     }
 
-    .download-modal .modal-body {
-      padding: 2rem;
+    .floating-toggle-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
     }
 
-    .download-modal .form-label {
+    .floating-toggle-btn i {
+      font-size: 1.5rem;
+      transition: transform 0.4s ease;
+    }
+
+    .floating-toggle-btn.active i {
+      transform: rotate(135deg);
+    }
+
+    .social-panel {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      margin-bottom: 15px;
+      transform: translateY(20px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      width: 300px;
+      max-height: 0;
+      overflow: hidden;
+    }
+
+    .social-panel.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      max-height: 500px;
+    }
+
+    .social-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .social-panel-title {
       font-weight: 600;
+      color: var(--color-primary);
+      font-size: 1.1rem;
+    }
+
+    .social-panel-close {
+      background: none;
+      border: none;
+      color: #6c757d;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .social-panel-close:hover {
       color: var(--color-primary);
     }
 
-    .download-modal .form-control {
-      border-radius: 8px;
-      border: 2px solid #e9ecef;
-      padding: 0.75rem;
-      transition: all 0.3s ease;
+    .social-icons-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
     }
 
-    .download-modal .form-control:focus {
-      border-color: var(--color-primary);
-      box-shadow: 0 0 0 0.2rem rgba(0, 91, 210, 0.25);
+    .social-icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #495057;
+      padding: 12px 8px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .social-icon-item:hover {
+      background: white;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      color: var(--color-primary);
+    }
+
+    .social-icon-item i {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .social-icon-item:hover i {
+      transform: scale(1.2);
+    }
+
+    .social-icon-item.facebook:hover i {
+      color: #3b5998;
+    }
+
+    .social-icon-item.instagram:hover i {
+      color: #e1306c;
+    }
+
+    .social-icon-item.youtube:hover i {
+      color: #ff0000;
+    }
+
+    .social-icon-item.website:hover i {
+      color: var(--color-primary);
+    }
+
+    .social-icon-label {
+      font-size: 0.8rem;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    /* Indicador de notificação */
+    .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #ff4757;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: bold;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
 
     /* Melhorias para dispositivos móveis */
@@ -438,6 +620,9 @@
         align-items: flex-start;
         gap: 1rem;
       }
+      .navbar-brand {
+        font-size: 0.9rem;
+      }
       .horizontal-info .info-card {
         min-width: 100%;
       }
@@ -448,6 +633,65 @@
       .btn-material, .btn-material-secondary {
         width: 100%;
         margin-right: 0;
+      }
+      
+      /* CORREÇÃO PARA A TELA FLUTUANTE EM DISPOSITIVOS MÓVEIS */
+      .floating-social-container {
+        bottom: 15px;
+        right: 15px;
+      }
+      
+      .social-panel {
+        width: calc(100vw - 30px);
+        max-width: 320px;
+        right: 0;
+      }
+      
+      .social-icons-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      
+      .social-icon-item {
+        padding: 10px 5px;
+        min-height: 80px;
+        justify-content: center;
+      }
+      
+      .social-icon-label {
+        font-size: 0.75rem;
+        line-height: 1.2;
+      }
+    }
+
+    /* Ajustes para telas muito pequenas (menos de 400px) */
+    @media (max-width: 400px) {
+      .social-panel {
+        width: calc(100vw - 20px);
+        padding: 15px;
+      }
+      
+      .social-icons-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      
+      .social-icon-item {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: 10px 15px;
+        min-height: auto;
+      }
+      
+      .social-icon-item i {
+        margin-bottom: 0;
+        margin-right: 10px;
+        font-size: 1.5rem;
+      }
+      
+      .social-icon-label {
+        font-size: 0.8rem;
+        text-align: left;
       }
     }
 
@@ -460,6 +704,55 @@
         box-shadow: none;
         border: 1px solid #ddd;
       }
+    }
+    
+    /* Estilos para o carousel */
+    .carousel-item img {
+      height: 400px;
+      object-fit: cover;
+    }
+    
+    .carousel-caption {
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    
+    /* Estilos para o contador de aulas */
+    .lesson-counter {
+      background-color: var(--color-primary);
+      color: white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    
+    /* Estilos para filtros */
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .filter-btn {
+      background-color: #f8f9fa;
+      border: 2px solid var(--color-primary);
+      color: var(--color-primary);
+      border-radius: 20px;
+      padding: 8px 16px;
+      transition: all 0.3s ease;
+    }
+    
+    .filter-btn.active, .filter-btn:hover {
+      background-color: var(--color-primary);
+      color: white;
     }
   </style>
 </head>
@@ -494,6 +787,50 @@
   </div>
 </nav>
 
+<!-- Carousel -->
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+  <!-- Indicators/dots -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+  </div>
+  
+  <!-- The slideshow/carousel -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="img/480976443_947154990863735_2058714844147124166_n.jpg" alt="Gnosis Brasil" class="d-block w-100">
+      <div class="carousel-caption d-none d-md-block">
+        <h3>Curso de Gnosis - 1ª Câmara</h3>
+        <p>Uma jornada de autoconhecimento e transformação interior</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="img/1º Câmara.jpg" alt="Estudo" class="d-block w-100">
+      <div class="carousel-caption d-none d-md-block">
+        <h3>23 Aulas Teóricas e Práticas</h3>
+        <p>Conhecimento milenar aplicado à vida moderna</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Meditação" class="d-block w-100">
+      <div class="carousel-caption d-none d-md-block">
+        <h3>Práticas de Meditação e Autoconhecimento</h3>
+        <p>Desenvolva sua consciência e transforme sua vida</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Left and right controls/icons -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+
 <section class="py-5">
   <div class="container">
     <div class="row justify-content-center">
@@ -517,20 +854,54 @@
             </div>
           </div>
           
-          <!-- Seções informativas -->
+          <!-- Filtros para o cronograma -->
+          <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Todas as Aulas</button>
+            <button class="filter-btn" data-filter="basic">Câmara Básica</button>
+            <button class="filter-btn" data-filter="advanced">Câmara Avançada</button>
+            <button class="filter-btn" data-filter="available">Com Material Disponível</button>
+          </div>
+          
+          <!-- Seções informativas reorganizadas -->
           <div class="info-section">
             <h3>CURSO DE GNOSIS – 1ª CÂMARA</h3>
-            <p>Criado a fim de transmitir uma mensagem transformadora da vida prática e destinada a qualquer pessoa, o Curso de Gnosis (Autoconhecimento) é um verdadeiro chamado à consciência da humanidade.</p>
+            <p>Criado a fim de transmitir uma mensagem transformadora da vida prática e destinada a qualquer pessoa, o Curso de Gnosis (Autoconhecimento) é um verdadeiro chamado à consciência da humanidade. Também denominado de 1ª Câmara, consiste em 23 aulas teóricas e práticas introdutórias ao autêntico autoconhecimento.</p>
+            <a target="_blank" href="https://gnosisbrasil.com/quem-somos/" class="btn btn-outline-primary">Ler portifólio completo</a>
           </div>
 
           <div class="info-section">
             <h3>OBJETIVOS</h3>
-            <p>O curso tem como objetivo principal proporcionar aos participantes uma compreensão profunda de si mesmos, através do estudo e prática dos ensinamentos gnósticos.</p>
+            <p>O curso tem como objetivo principal proporcionar aos participantes uma compreensão profunda de si mesmos, através do estudo e prática dos ensinamentos gnósticos, permitindo uma transformação positiva em suas vidas.</p>
           </div>
 
           <div class="info-section">
             <h3>CARACTERÍSTICAS DO CURSO</h3>
-            <p>O curso é sem fins lucrativos, o que significa que não possui custos financeiros. Entretanto, para poder permanecer na turma, há necessidade de assiduidade e pontualidade.</p>
+            <p>O curso é sem fins lucrativos, o que significa que não possui custos financeiros. Entretanto, para poder permanecer na turma, há necessidade de assiduidade e pontualidade. Para melhor aproveitamento do conteúdo, o número máximo de faltas é 4, portanto busque se organizar para não perder os temas. Possui três divisões: Câmara Pública (tema de abertura, introdutório e motivacional), Câmara Básica (temas 01 ao 16) e Câmara Avançada (temas 17 ao 23).</p>
+          </div>
+
+          <div class="info-section">
+            <h3>MATERIAL DIDÁTICO</h3>
+            <p>Cada conferência possui um resumo dos principais tópicos que será enviado por e-mail. Também haverá a opção de adquiri-lo impresso no próprio local do curso.</p>
+          </div>
+
+          <div class="info-section">
+            <h3>2ª CÂMARA</h3>
+            <p>Ao finalizar esta etapa, o aluno terá a oportunidade de continuar nestes estudos e fazer parte da 2ª Câmara, que corresponde ao aprofundamento na prática da Gnosis.</p>
+          </div>
+
+          <div class="info-section">
+            <h3>LIVROS SUGERIDOS</h3>
+            <p>Para uma maior compreensão dos ensinamentos gnósticos, sugerimos o estudo dos livros abaixo, todos de autoria de Samael Aun Weor: Tratado de Psicologia Revolucionária, Matrimônio Perfeito, A Grande Rebelião, O Mistério do Áureo Florescer, As Três Montanhas, Educação Fundamental. Todos estão disponíveis para download em www.gnosisbrasil.com/livrosgnosticos</p>
+            <a target="_blank" href="https://gnosisbrasil.com/livros/" class="btn btn-outline-primary">Biblioteca Virtual</a>
+          </div>
+
+          <div class="info-section">
+            <h3>RECOMENDAÇÕES</h3>
+            <ul>
+              <li>Leve um caderno para realizar suas próprias anotações.</li>
+              <li>Busque chegar no horário para não perder práticas e conteúdo do tema.</li>
+              <li>As reposições poderão ser feitas em outras turmas ou horários alternativos. Verifique com o instrutor.</li>
+            </ul>
           </div>
         </div>
 
@@ -562,6 +933,7 @@
             <div class="alert alert-info mt-4">
               <i class="fas fa-info-circle me-2"></i>
               <strong>Observação:</strong> As datas podem sofrer ajustes conforme necessidades do grupo. 
+              Todas as alterações serão comunicadas com antecedência.
             </div>
           </div>
         </div>
@@ -590,50 +962,59 @@
       <img src="img/cropped-logo-sol-7.webp" alt="Logo Gnosis" style="height: 60px;">
     </div>
     <p>&copy; 2025 Gnosis Brasil. Todos os direitos reservados.</p>
+    <p class="mb-0">
+      <a href="https://gnosisbrasil.com/politica-de-privacidade/" class="text-white text-decoration-none me-3">Política de Privacidade</a>
+      <a href="https://gnosisbrasil.com/termos-de-uso/" class="text-white text-decoration-none">Termos de Uso</a>
+    </p>
   </div>
 </footer>
 
-<!-- Modal com o Formulário (Seguindo o padrão que funciona) -->
-<div class="modal fade download-modal" id="formModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content border-0">
-      <div class="modal-header">
-        <h5 class="modal-title">Identifique-se para fazer o download</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
-      </div>
-      <div class="modal-body">
-        <form id="downloadForm" method="POST" action="https://formsubmit.co/jaraguadosul@gnosisbrasil.com">
-          <input type="hidden" name="_subject" value="Download de Material - Gnosis Jaraguá">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-
-          <input type="hidden" name="aula" id="formAula">
-          <input type="hidden" name="pdf_url" id="formPdfUrl">
-
-          <div class="mb-3">
-            <label for="studentName" class="form-label">Nome Completo</label>
-            <input type="text" class="form-control" id="studentName" name="nome" required
-              placeholder="Digite seu nome completo">
-          </div>
-
-          <div class="d-grid">
-            <button type="submit" class="btn btn-gnosis">
-              <i class="fas fa-download me-2"></i>Fazer Download
-            </button>
-          </div>
-        </form>
-      </div>
+<!-- Tela Flutuante Melhorada -->
+<div class="floating-social-container">
+  <div class="social-panel" id="socialPanel">
+    <div class="social-panel-header">
+      <div class="social-panel-title">Nossas Redes Sociais</div>
+      <button class="social-panel-close" id="socialPanelClose">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="social-icons-grid">
+      <a href="https://www.facebook.com/gnosisbrasil/" target="_blank" class="social-icon-item facebook">
+        <i class="fab fa-facebook"></i>
+        <span class="social-icon-label">Facebook</span>
+      </a>
+      <a href="https://www.instagram.com/gnosisbrasil" target="_blank" class="social-icon-item instagram">
+        <i class="fab fa-instagram"></i>
+        <span class="social-icon-label">Instagram Nacional</span>
+      </a>
+      <a href="https://www.instagram.com/gnosis_jaragua?igsh=czhrbGV4b2toMGZ2" target="_blank" class="social-icon-item instagram">
+        <i class="fab fa-instagram"></i>
+        <span class="social-icon-label">Instagram Jaraguá</span>
+      </a>
+      <a href="https://www.youtube.com/gnosisbrasilcanal" target="_blank" class="social-icon-item youtube">
+        <i class="fab fa-youtube"></i>
+        <span class="social-icon-label">YouTube</span>
+      </a>
+      <a href="https://gnosisbrasil.com" target="_blank" class="social-icon-item website">
+        <i class="fas fa-globe"></i>
+        <span class="social-icon-label">Página Nacional</span>
+      </a>
     </div>
   </div>
+  
+  <button class="floating-toggle-btn" id="floatingToggleBtn">
+    <i class="fas fa-share-alt"></i>
+    <span class="notification-badge">5</span>
+  </button>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-  // Links das aulas (mantenha seus links originais)
+  // Links das aulas
   const lessonLinks = {
     1: "https://drive.google.com/file/d/1CE-69pxxZUmYurqp6-C7KplNfW9ewtXP/view?usp=drive_link",
-    2: "",
+    2: "https://drive.google.com/file/d/1CJ8LfneXsEO9tXS4wocR8JcyDUAI_E7B/view?usp=drive_link",
     3: "",
     4: "",
     5: "",
@@ -650,9 +1031,10 @@
     16: ""
   };
 
+  // Links para o segundo PDF de cada aula
   const lessonLinksSecondary = {
     1: "https://drive.google.com/file/d/0ByuJiBLnCPXgX3R0SW15bGJUS1E/view?usp=drive_link&resourcekey=0-G43iiHrkTm22Lox8mPh49g",
-    2: "",
+    2: "https://drive.google.com/file/d/12jpkWf6m2ST069drWA86rpSrSO8f5Yuc/view?usp=drive_link",
     3: "",
     4: "",
     5: "",
@@ -669,16 +1051,58 @@
     16: ""
   };
 
-  // Descrições das aulas (mantenha suas descrições originais)
+  // Descrições das aulas
   const lessonDescriptions = {
     1: "Apresenta uma visão geral sobre as origens, bases e objetivos da Gnosis como conhecimento universal.",
-    // ... (suas outras descrições)
+    2: "Mostra os 3 principais componentes da psicologia humana, suas características e como trabalhá-los à nosso favor.",
+    3: "Estuda a consciência e inconsciência, causas do adormecimento da consciência no ser humano e como despertá-la.",
+    4: "Estudo sobre o ego, sua origem, formas de expressão e suas ramificações na mente, emoções, atitudes e na psique humana.",
+    5: "As influências físicas e metafísicas desses três princípios universais, principalmente o som, dentro e fora do homem.",
+    6: "Os centros que governam nosso organismo: Intelectual, emocional, motor, instintivo e sexual, como utilizá-los de maneira sábia para uma melhor saúde e qualidade de vida.",
+    7: "Reflexão sobre o ser humano e seus diversos mundos ou esferas de relacionamento, seja com a família, sociedade, com o planeta e consigo mesmo. Como o conhecimento de si mesmo nos ajuda a melhorar todo tipo de relações.",
+    8: "Reflexões sobre a necessidade de se traçar metas e objetivos na vida, tanto materiais como espirituais.",
+    9: "A necessidade de conhecer a si mesmo, como base ou fundamento para uma mudança interior e individual.",
+    10: "Níveis de interpretação das sagradas escrituras: Letra Viva e Letra Morta. O esoterismo dos 10 Mandamentos.",
+    11: "As diferentes fases do desenvolvimento humano e como aproveitar ao máximo cada uma delas, extraindo saúde, sucesso e sabedoria. Mostra as bases da psicologia transformativa que começa por mudar a forma de pensar, de sentir e de atuar.",
+    12: "Estudo comparativo sobre várias das grandes religiões e culturas que passaram sobre a terra, mostra uma visão de seu objetivo: a Revolução da Consciência.",
+    13: "Estudo metafísico destas duas leis da natureza e a necessidade de uma revolução psicológica para chegarmos a uma verdadeira liberdade.",
+    14: "Estudo cultural, científico e metafísico sobre os processos post-mortem, baseados no Livro dos Mortos dos Egípcios e dos Tibetanos.",
+    15: "Estudo científico e metafísico sobre essas 3 leis da Natureza.",
+    16: "Reflexões sobre questões como destino, Karma (castigo) e Dharma (recompensa).",
+    17: "Reflexões sobre a busca do homem pelo equilíbrio interior, através dessa jornada que busca o domínio do corpo físico, das emoções e da mente.",
+    18: "A estrutura física e interna do ser humano, dimensões ou corpos: físico, vital, astral ou emocional, mental, vontade, consciência e íntimo.",
+    19: "Tema sobre Alquimia, a Ciência das transmutações. Ensina os fundamentos da transmutação sexual, canalizando sabia e positivamente os diversos tipos de energia fabricados pelo nosso organismo para uma melhor saúde, vitalidade e para nosso desenvolvimento físico, anímico e espiritual.",
+    20: "Busca da saúde e da harmonia física, mental, emocional e psicológica através da integração com os elementos da Natureza (Fogo, Ar, Água e Terra).",
+    21: "Mostra os diversos estados psicológicos do ser humano (adormecimento profundo, conceitos e crenças, recordação de si e consciência desperta).",
+    22: "Ensina a importância de se iniciar verdadeiramente uma transformação interior, baseada no autoconhecimento e no trabalho psicológico individual sobre si mesmo. Busca que cada um desenvolva a filosofia, que faz ver a vida como uma escola, onde independente das circunstâncias, sempre se tem algo a aprender. A Iniciação é a Gnosis aplicada à vida.",
+    23: "Explica o funcionamento da 2ª Câmara."
   };
 
-  // Imagens para cada aula (mantenha suas imagens originais)
+  // Imagens para cada aula
   const lessonImages = {
     1: "img/Curso de Gnosis 04.jpg",
-    // ... (suas outras imagens)
+    2: "img/Personalidade, Essência e Ego 03.jpg",
+    3: "img/O Despertar da Consciência 02.jpg",
+    4: "img/O Eu Psicológico 02.jpg",
+    5: "img/05. Luz, Calor e Som.jpg",
+    6: "img/shutterstock_1336371356.jpg",
+    7: "img/licao07.jpg",
+    8: "img/licao8.jpg",
+    9: "img/1f6dabc7e410fd988a3764d04f50aa8f.jpg",
+    10: "img/moises_michelangelo 01.jpg",
+    11: "img/eea26514a339878a92c6b7f1cd789608.jpg",
+    12: "img/jesus cristo.jpg",
+    13: "img/Representação budista da Roda do Samsara.jpg",
+    14: "img/karma-saude.jpg",
+    15: "img/retorno.jpg",
+    16: "img/libra_Johfra.jpg",
+    17: "img/faquir.jpg",
+    18: "img/Post para Instagram Limites Saudáveis.jpg",
+    19: "img/transmutacao.jpg",
+    20: "img/196d8450312a3d74f29b654b60efaed5.jpg",
+    21: "img/81ef50d66f9651d2112bb379e942fbda.jpg",
+    22: "img/Post paraj Instagram Limites Saudáveis.jpg",
+    23: "img/Post para Instagrammn Limites Saudáveis.jpg"
   };
 
   // Conteúdo das palestras
@@ -711,57 +1135,34 @@
     "Apresentação da 2ª Câmara"
   ];
 
-  // DATAS (mantenha suas datas originais)
-  const FIRST_LESSON_DATE = new Date('2025-11-02T09:00:00');
-  const LAST_LESSON_2025 = new Date('2025-12-21T09:00:00');
-  const FIRST_LESSON_2026 = new Date('2026-01-11T09:00:00');
+  // DATAS ATUALIZADAS CONFORME SOLICITADO
+  const FIRST_LESSON_DATE = new Date('2025-11-02T09:00:00'); // Primeira aula 02/11/2025
+  const LAST_LESSON_2025 = new Date('2025-12-21T09:00:00'); // Última aula de 2025
+  const FIRST_LESSON_2026 = new Date('2026-01-11T09:00:00'); // Primeira aula de 2026
 
-  // Modal (seguindo o padrão que funciona)
-  const modal = new bootstrap.Modal(document.getElementById("formModal"));
-
-  // Abre o modal com o formulário, preenchendo os dados da aula e do PDF
-  function abrirFormulario(aula, pdfUrl) {
-    document.getElementById("formAula").value = aula;
-    document.getElementById("formPdfUrl").value = pdfUrl;
-    modal.show();
-  }
-
-  // Envia os dados e abre o PDF (seguindo o padrão que funciona)
-  document.getElementById("downloadForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const form = e.target;
-    const pdfUrl = document.getElementById("formPdfUrl").value;
-
-    fetch(form.action, {
-      method: "POST",
-      body: new FormData(form)
-    });
-
-    modal.hide();
-    window.open(pdfUrl, "_blank");
-    form.reset();
-  });
-
-  // Funções auxiliares do seu código original
+  // Função para formatar data no formato brasileiro
   function formatDateForDisplay(date) {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
     return date.toLocaleDateString('pt-BR', options);
   }
 
+  // Função para calcular as datas das palestras COM RECESSO
   function calculateScheduleDates() {
     let currentDate = new Date(FIRST_LESSON_DATE); 
     const scheduleDates = [];
     let lessonCount = 0;
 
+    // Aulas de 2025 (até 21/12)
     while (currentDate <= LAST_LESSON_2025 && lessonCount < 23) {
       scheduleDates.push(new Date(currentDate));
       currentDate.setDate(currentDate.getDate() + 7);
       lessonCount++;
     }
 
+    // Pular para 2026 (11/01)
     currentDate = new Date(FIRST_LESSON_2026);
 
+    // Continuar as aulas de 2026
     while (lessonCount < 23) {
       scheduleDates.push(new Date(currentDate));
       currentDate.setDate(currentDate.getDate() + 7);
@@ -771,19 +1172,29 @@
     return scheduleDates;
   }
 
+  // Função para atualizar a barra de progresso
   function updateProgressBar() {
     const today = new Date();
     const startDate = new Date(FIRST_LESSON_DATE);
-    const endDate = calculateScheduleDates()[22];
+    const endDate = calculateScheduleDates()[22]; // Data da última aula
     
+    // Calcular progresso baseado na data atual
     const totalDuration = endDate - startDate;
     const elapsed = today - startDate;
     
     let progressPercentage = Math.min(Math.max((elapsed / totalDuration) * 100, 0), 100);
     
-    if (today < startDate) progressPercentage = 0;
-    if (today > endDate) progressPercentage = 100;
+    // Se o curso ainda não começou
+    if (today < startDate) {
+      progressPercentage = 0;
+    }
     
+    // Se o curso já terminou
+    if (today > endDate) {
+      progressPercentage = 100;
+    }
+    
+    // Atualizar a barra de progresso
     const progressBar = document.getElementById('course-progress');
     const progressPercentageText = document.getElementById('progress-percentage');
     
@@ -792,32 +1203,25 @@
     progressPercentageText.textContent = `${Math.round(progressPercentage)}%`;
   }
 
-  // Função para renderizar o cronograma (adaptada para usar o novo sistema)
+  // Função para renderizar o cronograma
   function renderSchedule() {
     const dates = calculateScheduleDates();
     const basicContainer = document.getElementById('basicChamberDates');
     const advancedContainer = document.getElementById('advancedChamberDates');
 
-    // Renderizar Câmara Básica
+    // Renderizar Câmara Básica (16 primeiras aulas)
     basicChamber.forEach((topic, index) => {
       const lessonNumber = index + 1;
       const scheduleItem = document.createElement('div');
       scheduleItem.className = 'schedule-item';
-      
-      // Usando a mesma função do exemplo que funciona
-      const pdf1Button = lessonLinks[lessonNumber] ? 
-        `<button class="btn-material" onclick="abrirFormulario('Aula ${lessonNumber}: ${topic}', '${lessonLinks[lessonNumber]}')">
-          <i class="fas fa-file-pdf me-1"></i>PDF 1
-        </button>` : 
-        '<button class="btn-material" disabled><i class="fas fa-clock me-1"></i>PDF 1 em breve</button>';
-      
-      const pdf2Button = lessonLinksSecondary[lessonNumber] ? 
-        `<button class="btn-material-secondary" onclick="abrirFormulario('Aula ${lessonNumber}: ${topic}', '${lessonLinksSecondary[lessonNumber]}')">
-          <i class="fas fa-file-pdf me-1"></i>PDF 2
-        </button>` : 
-        '<button class="btn-material-secondary" disabled><i class="fas fa-clock me-1"></i>PDF 2 em breve</button>';
+      scheduleItem.setAttribute('data-chamber', 'basic');
+      scheduleItem.setAttribute('data-lesson', lessonNumber);
+      if (lessonLinks[lessonNumber] || lessonLinksSecondary[lessonNumber]) {
+        scheduleItem.setAttribute('data-available', 'true');
+      }
       
       scheduleItem.innerHTML = `
+        <div class="lesson-counter">${lessonNumber}</div>
         <img src="${lessonImages[lessonNumber]}" alt="${topic}" class="schedule-image">
         <div class="schedule-content">
           <div class="schedule-header-row">
@@ -827,8 +1231,18 @@
           <div class="schedule-footer">
             <div class="schedule-date">${formatDateForDisplay(dates[index])}</div>
             <div class="material-buttons">
-              ${pdf1Button}
-              ${pdf2Button}
+              ${lessonLinks[lessonNumber] ? 
+                `<a href="${lessonLinks[lessonNumber]}" target="_blank" class="btn-material">
+                  <i class="fas fa-file-pdf me-1"></i>PDF 1
+                </a>` : 
+                '<button class="btn-material" disabled><i class="fas fa-clock me-1"></i>PDF 1 em breve</button>'
+              }
+              ${lessonLinksSecondary[lessonNumber] ? 
+                `<a href="${lessonLinksSecondary[lessonNumber]}" target="_blank" class="btn-material-secondary">
+                  <i class="fas fa-file-pdf me-1"></i>PDF 2
+                </a>` : 
+                '<button class="btn-material-secondary" disabled><i class="fas fa-clock me-1"></i>PDF 2 em breve</button>'
+              }
             </div>
           </div>
         </div>
@@ -836,12 +1250,16 @@
       basicContainer.appendChild(scheduleItem);
     });
 
-    // Renderizar Câmara Avançada
+    // Renderizar Câmara Avançada (7 últimas aulas)
     advancedChamber.forEach((topic, index) => {
       const lessonNumber = index + 17;
       const scheduleItem = document.createElement('div');
       scheduleItem.className = 'schedule-item';
+      scheduleItem.setAttribute('data-chamber', 'advanced');
+      scheduleItem.setAttribute('data-lesson', lessonNumber);
+      
       scheduleItem.innerHTML = `
+        <div class="lesson-counter">${lessonNumber}</div>
         <img src="${lessonImages[lessonNumber]}" alt="${topic}" class="schedule-image">
         <div class="schedule-content">
           <div class="schedule-header-row">
@@ -865,10 +1283,138 @@
     });
   }
 
-  // Inicializar quando a página carregar
+  // Função para controlar a tela flutuante melhorada
+  function initFloatingPanel() {
+    const floatingToggleBtn = document.getElementById('floatingToggleBtn');
+    const socialPanel = document.getElementById('socialPanel');
+    const socialPanelClose = document.getElementById('socialPanelClose');
+    let isPanelOpen = false;
+    
+    // Abrir/fechar ao clicar no botão flutuante
+    floatingToggleBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      togglePanel();
+    });
+    
+    // Fechar ao clicar no botão X
+    socialPanelClose.addEventListener('click', function(e) {
+      e.stopPropagation();
+      closePanel();
+    });
+    
+    // Fechar ao clicar fora do painel
+    document.addEventListener('click', function(e) {
+      if (isPanelOpen && !socialPanel.contains(e.target) && !floatingToggleBtn.contains(e.target)) {
+        closePanel();
+      }
+    });
+    
+    // Fechar ao pressionar a tecla Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && isPanelOpen) {
+        closePanel();
+      }
+    });
+    
+    function togglePanel() {
+      if (isPanelOpen) {
+        closePanel();
+      } else {
+        openPanel();
+      }
+    }
+    
+    function openPanel() {
+      socialPanel.classList.add('active');
+      floatingToggleBtn.classList.add('active');
+      isPanelOpen = true;
+      
+      // Remover badge de notificação após abrir
+      const badge = document.querySelector('.notification-badge');
+      if (badge) {
+        badge.style.display = 'none';
+      }
+    }
+    
+    function closePanel() {
+      socialPanel.classList.remove('active');
+      floatingToggleBtn.classList.remove('active');
+      isPanelOpen = false;
+    }
+    
+    // Efeito de hover nos ícones sociais
+    const socialIcons = document.querySelectorAll('.social-icon-item');
+    socialIcons.forEach(icon => {
+      icon.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px)';
+      });
+      
+      icon.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+  }
+
+  // Função para implementar filtros
+  function initFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        // Remover classe active de todos os botões
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Adicionar classe active ao botão clicado
+        this.classList.add('active');
+        
+        const filter = this.getAttribute('data-filter');
+        filterScheduleItems(filter);
+      });
+    });
+  }
+  
+  // Função para filtrar itens do cronograma
+  function filterScheduleItems(filter) {
+    const allItems = document.querySelectorAll('.schedule-item');
+    
+    allItems.forEach(item => {
+      switch(filter) {
+        case 'all':
+          item.style.display = 'flex';
+          break;
+        case 'basic':
+          if (item.getAttribute('data-chamber') === 'basic') {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+          break;
+        case 'advanced':
+          if (item.getAttribute('data-chamber') === 'advanced') {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+          break;
+        case 'available':
+          if (item.getAttribute('data-available') === 'true') {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+          break;
+      }
+    });
+  }
+
+  // Executar quando a página carregar
   document.addEventListener('DOMContentLoaded', function() {
     renderSchedule();
     updateProgressBar();
+    initFloatingPanel();
+    initFilters();
+    
+    // Atualizar a barra de progresso a cada minuto
     setInterval(updateProgressBar, 60000);
   });
 </script>
