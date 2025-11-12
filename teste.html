@@ -323,6 +323,86 @@
       gap: 0.5rem;
     }
 
+    /* CAROUSEL MELHORADO */
+    .gnosis-carousel {
+      margin-bottom: 2rem;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .carousel-item {
+      height: 60vh;
+      min-height: 400px;
+      max-height: 600px;
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .carousel-caption {
+      background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-radius: 0;
+    }
+
+    .carousel-caption h3 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .carousel-caption p {
+      font-size: 1.1rem;
+      margin-bottom: 0;
+      color: #f8f9fa;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 50px;
+      height: 50px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+      margin: 0 15px;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      width: 25px;
+      height: 25px;
+    }
+
+    .carousel-indicators {
+      margin-bottom: 1rem;
+    }
+
+    .carousel-indicators button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin: 0 5px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border: none;
+    }
+
+    .carousel-indicators button.active {
+      background-color: var(--color-primary);
+    }
+
     .hero-section {
       background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://gnosisbrasil.com/wp-content/uploads/2020/07/gnosis-brasil-banner.jpg');
       background-size: cover;
@@ -635,6 +715,37 @@
         margin-right: 0;
       }
       
+      /* CAROUSEL RESPONSIVO */
+      .carousel-item {
+        height: 50vh;
+        min-height: 300px;
+      }
+      
+      .carousel-caption {
+        padding: 1.5rem 1rem;
+      }
+      
+      .carousel-caption h3 {
+        font-size: 1.4rem;
+      }
+      
+      .carousel-caption p {
+        font-size: 1rem;
+      }
+      
+      .carousel-control-prev,
+      .carousel-control-next {
+        width: 40px;
+        height: 40px;
+        margin: 0 10px;
+      }
+      
+      .carousel-control-prev-icon,
+      .carousel-control-next-icon {
+        width: 20px;
+        height: 20px;
+      }
+      
       /* CORREÇÃO PARA A TELA FLUTUANTE EM DISPOSITIVOS MÓVEIS */
       .floating-social-container {
         bottom: 15px;
@@ -692,6 +803,20 @@
       .social-icon-label {
         font-size: 0.8rem;
         text-align: left;
+      }
+      
+      /* CAROUSEL PARA TELAS MUITO PEQUENAS */
+      .carousel-item {
+        height: 40vh;
+        min-height: 250px;
+      }
+      
+      .carousel-caption h3 {
+        font-size: 1.2rem;
+      }
+      
+      .carousel-caption p {
+        font-size: 0.9rem;
       }
     }
 
@@ -787,35 +912,35 @@
   </div>
 </nav>
 
-<!-- Carousel -->
-<div id="demo" class="carousel slide" data-bs-ride="carousel">
+<!-- Carousel Melhorado -->
+<div id="gnosisCarousel" class="carousel slide gnosis-carousel" data-bs-ride="carousel">
 
   <!-- Indicators/dots -->
   <div class="carousel-indicators">
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+    <button type="button" data-bs-target="#gnosisCarousel" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#gnosisCarousel" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#gnosisCarousel" data-bs-slide-to="2"></button>
   </div>
   
   <!-- The slideshow/carousel -->
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="img/480976443_947154990863735_2058714844147124166_n.jpg" alt="Gnosis Brasil" class="d-block w-100">
-      <div class="carousel-caption d-none d-md-block">
+      <div class="carousel-caption">
         <h3>Curso de Gnosis - 1ª Câmara</h3>
         <p>Uma jornada de autoconhecimento e transformação interior</p>
       </div>
     </div>
     <div class="carousel-item">
       <img src="img/1º Câmara.jpg" alt="Estudo" class="d-block w-100">
-      <div class="carousel-caption d-none d-md-block">
+      <div class="carousel-caption">
         <h3>23 Aulas Teóricas e Práticas</h3>
         <p>Conhecimento milenar aplicado à vida moderna</p>
       </div>
     </div>
     <div class="carousel-item">
       <img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Meditação" class="d-block w-100">
-      <div class="carousel-caption d-none d-md-block">
+      <div class="carousel-caption">
         <h3>Práticas de Meditação e Autoconhecimento</h3>
         <p>Desenvolva sua consciência e transforme sua vida</p>
       </div>
@@ -823,10 +948,10 @@
   </div>
   
   <!-- Left and right controls/icons -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#gnosisCarousel" data-bs-slide="prev">
     <span class="carousel-control-prev-icon"></span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" data-bs-target="#gnosisCarousel" data-bs-slide="next">
     <span class="carousel-control-next-icon"></span>
   </button>
 </div>
