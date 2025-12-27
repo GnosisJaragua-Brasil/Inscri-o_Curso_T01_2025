@@ -5,338 +5,619 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cronograma Completo – Gnosis Jaraguá do Sul</title>
 
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Cronograma completo do Curso Gnosis 1ª Câmara em Jaraguá do Sul. Datas, horários, materiais e confirmação de presença.">
+  <meta name="keywords" content="Gnosis, autoconhecimento, meditação, Jaraguá do Sul, curso espiritual, desenvolvimento interior">
+  <meta property="og:title" content="Cronograma Gnosis Jaraguá do Sul">
+  <meta property="og:description" content="Confira o cronograma completo do curso Gnosis 1ª Câmara">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://gnosisbrasil.com/wp-content/uploads/2020/07/cropped-logo-sol-7-32x32.webp">
+  
+  <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Favicon -->
   <link rel="icon" href="https://gnosisbrasil.com/wp-content/uploads/2020/07/cropped-logo-sol-7-32x32.webp" type="image/webp">
 
   <style>
-    /* Variáveis e Estilos Globais (Mantidos) */
+    /* Variáveis CSS */
     :root {
       --color-primary: #005bd2;
+      --color-primary-dark: #0044a3;
+      --color-secondary: #448ea0;
+      --color-success: #28a745;
+      --color-warning: #ffc107;
+      --color-danger: #dc3545;
       --color-dark-bg: #1e3a8a;
+      --color-light-bg: #f8f9fa;
       --color-text-light: #ffffff;
-      --color-accent: #448ea0;
+      --color-text-dark: #212529;
+      --color-text-muted: #6c757d;
       --font-base: 'Inter', sans-serif;
       --font-heading: 'Poppins', sans-serif;
+      --border-radius: 0.75rem;
+      --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    /* Reset e Estilos Globais */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
       font-family: var(--font-base);
-      background-color: var(--color-dark-bg);
+      background: linear-gradient(135deg, var(--color-dark-bg) 0%, #0f2c5a 100%);
       color: var(--color-text-light);
       line-height: 1.6;
+      min-height: 100vh;
+      background-attachment: fixed;
     }
 
-    /* Card central */
+    /* Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-dark-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .loading-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--color-primary);
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Toast Notifications */
+    .toast-message {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--color-success);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      z-index: 10000;
+      animation: slideIn 0.3s ease;
+      max-width: 350px;
+    }
+
+    .toast-message.error {
+      background: var(--color-danger);
+    }
+
+    .toast-message.warning {
+      background: var(--color-warning);
+      color: var(--color-text-dark);
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(0, 0, 0, 0.9) !important;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      color: var(--color-text-light) !important;
+    }
+
+    .navbar-brand img {
+      height: 32px;
+      width: 32px;
+      object-fit: contain;
+    }
+
+    .nav-link {
+      color: rgba(255, 255, 255, 0.8) !important;
+      font-weight: 500;
+      transition: var(--transition);
+      margin: 0 0.25rem;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--color-primary) !important;
+    }
+
+    /* Card Principal */
     .confirmation-card {
-      background-color: #fff;
-      border-radius: 1rem;
-      color: #212529;
-      padding: 2rem;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      text-align: center;
-      animation: fadeIn 1s ease-in-out;
-      margin-bottom: 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: var(--border-radius);
+      color: var(--color-text-dark);
+      padding: 2.5rem;
+      box-shadow: var(--box-shadow);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: fadeInUp 0.8s ease-out;
     }
 
-    /* Animação fade-in */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     h1.title-main {
       font-family: var(--font-heading);
-      font-size: 2rem;
+      font-size: 2.2rem;
+      font-weight: 700;
       text-transform: uppercase;
       color: var(--color-primary);
       margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     h2.subtitle {
       font-family: var(--font-base);
-      font-size: 1.00rem;
-      color: rgb(0, 139, 63);
-      margin-bottom: 1rem;
-      border-style: solid;
-      border-radius: 7px;
-      padding: 2px;
-      border-color: rgba(0, 64, 106, 0.094);
+      font-size: 1.1rem;
+      color: var(--color-success);
+      margin-bottom: 1.5rem;
+      border: 2px solid var(--color-primary);
+      border-radius: 50px;
+      padding: 0.5rem 1.5rem;
       display: inline-block;
-      padding: 8px 16px;
+      font-weight: 600;
     }
 
     .divider {
-      width: 80px;
-      height: 3px;
-      background-color: var(--color-primary);
-      margin: 0 auto 1rem auto;
-      border-radius: 3px;
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+      margin: 0 auto 1.5rem auto;
+      border-radius: 2px;
     }
 
     .lead {
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: var(--color-text-muted);
     }
 
+    /* Details Box */
     .details-box {
-      padding: 1.5rem;
-      border-radius: 0.75rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .details-box {
-      background-color: #f8f9fa;
-      text-align: left;
-      color: #212529;
+      background: var(--color-light-bg);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-left: 5px solid var(--color-primary);
     }
 
     .details-box h5 {
       color: var(--color-primary);
-      margin-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
+    /* Grid de Informações */
     .info-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
+      gap: 1.5rem;
       margin-top: 1rem;
     }
 
     .info-card {
       background: white;
-      border-radius: 8px;
-      padding: 1rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
       border-left: 4px solid var(--color-primary);
-      /* Otimização: Garantir que o conteúdo não quebre o layout */
-      word-wrap: break-word; 
+      transition: var(--transition);
+      height: 100%;
+    }
+
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
     }
 
     .info-card h6 {
       color: var(--color-primary);
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .info-card p {
-      margin-bottom: 0;
-      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      color: var(--color-text-dark);
+    }
+
+    .info-card p strong {
+      color: var(--color-primary);
     }
 
     .info-icon {
       color: var(--color-primary);
-      margin-right: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    /* Recomendações */
+    .recommendations-box {
+      background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      border: 1px solid rgba(0, 91, 210, 0.1);
+    }
+
+    .recommendations-box h6 {
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .recommendation-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      color: var(--color-text-dark);
+    }
+
+    .recommendation-item i {
+      color: var(--color-success);
+      margin-right: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    /* Social Media */
+    .social-media {
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .social-media h5 {
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      font-weight: 600;
     }
 
     .social-icon {
-      font-size: 1.5rem;
-      margin: 0 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: var(--color-light-bg);
+      border-radius: 50%;
+      margin: 0 0.5rem;
       color: var(--color-primary);
-      transition: all 0.3s ease;
+      font-size: 1.2rem;
+      transition: var(--transition);
+      text-decoration: none;
     }
 
     .social-icon:hover {
+      background: var(--color-primary);
+      color: white;
       transform: translateY(-3px);
-      color: #5a32a8;
     }
 
+    /* Botões */
     .btn-gnosis {
-      background-color: var(--color-primary);
-      color: #fff;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+      color: white;
       border: none;
-      transition: all 0.3s ease;
+      border-radius: 50px;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
     }
 
     .btn-gnosis:hover {
-      background-color: #323aa8;
-      transform: scale(1.05);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 91, 210, 0.3);
+      color: white;
     }
 
-    /* Estilos do Cronograma (Corrigidos/Otimizados) */
+    .btn-light {
+      background: white;
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+      border-radius: 50px;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .btn-light:hover {
+      background: var(--color-light-bg);
+      color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    /* Seção do Cronograma */
     .schedule-section {
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
     }
 
     .schedule-header {
       text-align: center;
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
       border-bottom: 2px solid var(--color-primary);
     }
 
     .schedule-title {
       color: var(--color-primary);
       font-weight: 700;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       margin-bottom: 0.5rem;
     }
 
     .schedule-subtitle {
-      color: var(--color-accent);
+      color: var(--color-secondary);
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
     }
 
+    /* Câmaras */
     .chamber-section {
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      box-shadow: var(--box-shadow);
     }
 
     .chamber-title {
       color: var(--color-primary);
-      font-weight: 600;
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid #dee2e6;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--color-light-bg);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
 
+    .chamber-title i {
+      color: var(--color-secondary);
+    }
+
+    /* Search Box */
+    .search-box {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-text-muted);
+    }
+
+    .search-box input {
+      padding-left: 3rem;
+      border-radius: 50px;
+      border: 2px solid #dee2e6;
+      transition: var(--transition);
+    }
+
+    .search-box input:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 0.2rem rgba(0, 91, 210, 0.25);
+    }
+
+    /* Itens do Cronograma */
     .schedule-item {
-      background: #f8f9fa;
-      border-radius: 8px;
-      padding: 1rem;
-      margin-bottom: 0.75rem;
-      border-left: 4px solid var(--color-accent);
-      /* Adicionado: Consistência de cor para o texto */
-      color: #212529; 
+      background: var(--color-light-bg);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      border-left: 5px solid var(--color-secondary);
+      transition: var(--transition);
+      border: 1px solid #dee2e6;
+    }
+
+    .schedule-item:hover {
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .schedule-item.past {
+      opacity: 0.9;
+      border-left-color: var(--color-text-muted);
+    }
+
+    .schedule-item.current {
+      border-left-color: var(--color-success);
+      box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
     }
 
     .schedule-header-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 0.75rem;
-      /* Correção: Garantir alinhamento em telas pequenas */
-      flex-wrap: wrap; 
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
     .schedule-topic-container {
       display: flex;
       align-items: center;
       flex: 1;
+      gap: 1rem;
       flex-wrap: wrap;
-      gap: 0.5rem;
     }
 
     .schedule-number {
-      background: var(--color-primary);
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
       color: white;
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 600;
-      font-size: 0.9rem;
+      font-weight: 700;
+      font-size: 1.1rem;
       flex-shrink: 0;
+      box-shadow: 0 3px 10px rgba(0, 91, 210, 0.2);
     }
 
     .schedule-topic {
-      color: #495057;
+      color: var(--color-text-dark);
       font-weight: 600;
-      font-size: 1.1rem;
-      /* Otimização: Evitar quebra de linha desnecessária */
-      line-height: 1.2; 
+      font-size: 1.2rem;
+      line-height: 1.4;
     }
 
     .schedule-date {
-      color: var(--color-accent);
+      background: linear-gradient(135deg, var(--color-secondary) 0%, #5ab1d0 100%);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-weight: 600;
       font-size: 0.95rem;
-      font-weight: 500;
       white-space: nowrap;
-      background: #e9ecef;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      /* Adicionado: Consistência */
-      flex-shrink: 0; 
+      box-shadow: 0 3px 10px rgba(68, 142, 160, 0.2);
     }
 
+    /* Ações do Cronograma */
     .schedule-actions {
       display: flex;
-      gap: 0.5rem;
-      margin-left: 1rem;
-      /* Correção: Em telas pequenas, garantir que fique à direita */
-      margin-top: 0; 
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .btn-link {
-      background-color: var(--color-accent);
-      color: white;
-      border: none;
+      width: 45px;
+      height: 45px;
       border-radius: 50%;
-      width: 36px;
-      height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.3s ease;
-      /* Correção: Remover o sublinhado do link */
-      text-decoration: none; 
+      background: var(--color-light-bg);
+      color: var(--color-primary);
+      border: 2px solid var(--color-primary);
+      transition: var(--transition);
+      text-decoration: none;
+      flex-shrink: 0;
     }
 
     .btn-link:hover {
-      background-color: var(--color-primary);
-      transform: scale(1.1);
+      background: var(--color-primary);
+      color: white;
+      transform: translateY(-2px) scale(1.1);
     }
 
-    /* Estilos para o formulário de presença */
-    .attendance-form {
-      background: #f8f9fa;
-      border-radius: 8px;
-      padding: 1rem;
-      border-top: 1px solid #dee2e6;
+    .btn-link.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      border-color: var(--color-text-muted);
+      color: var(--color-text-muted);
     }
-    
-    /* Demais estilos de formulário e calendário (Mantidos e funcionais) */
+
+    .btn-link.disabled:hover {
+      background: var(--color-light-bg);
+      color: var(--color-text-muted);
+      transform: none;
+    }
+
+    /* Formulário de Presença */
+    .attendance-form {
+      background: white;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      border-top: 3px solid var(--color-primary);
+      margin-top: 1.5rem;
+    }
+
     .attendance-form h6 {
       color: var(--color-primary);
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .form-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-      align-items: flex-end;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
     }
 
     .form-group {
-      text-align: left;
-    }
-
-    .form-group.name {
-      flex: 2;
-      min-width: 200px;
-    }
-
-    .form-group.code {
-      flex: 1;
-      min-width: 100px;
-      max-width: 120px;
-    }
-
-    .form-group.date {
-      flex: 1;
-      min-width: 140px;
-      max-width: 160px;
+      margin-bottom: 0;
     }
 
     .form-group label {
-      font-weight: 500;
-      margin-bottom: 0.25rem;
-      color: #495057;
-      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--color-text-dark);
+      font-size: 0.9rem;
+      display: block;
     }
 
     .form-control {
-      border-radius: 6px;
-      border: 1px solid #ced4da;
-      padding: 0.5rem 0.75rem;
-      font-size: 0.9rem;
+      border-radius: 8px;
+      border: 2px solid #dee2e6;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      transition: var(--transition);
       width: 100%;
     }
 
@@ -345,152 +626,209 @@
       box-shadow: 0 0 0 0.2rem rgba(0, 91, 210, 0.25);
     }
 
-    .form-actions {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
+    .form-control:disabled {
+      background-color: #f8f9fa;
+      cursor: not-allowed;
     }
 
-    .btn-present {
-      background-color: var(--color-primary);
-      color: white;
-      border: none;
-      border-radius: 6px;
-      padding: 0.5rem 1rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-    }
-
-    .btn-present:hover {
-      background-color: #0044a3;
-    }
-
-    .btn-reset {
-      background-color: #6c757d;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      padding: 0.5rem 1rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-    }
-
-    .btn-reset:hover {
-      background-color: #5a6268;
-    }
-
-    .attendance-status {
-      margin-top: 0.5rem;
-      font-size: 0.85rem;
-      font-weight: 500;
-      padding: 0.5rem;
-      border-radius: 4px;
-      text-align: center;
-    }
-
-    .attendance-confirmed {
-      color: #28a745;
-      background-color: #d4edda;
-      border: 1px solid #c3e6cb;
-    }
-    
-    /* Estilos para o calendário interativo (Mantidos e funcionais) */
     .calendar-input {
-      border-radius: 6px;
-      border: 1px solid #ced4da;
-      padding: 0.5rem 0.75rem;
-      font-size: 0.9rem;
-      width: 100%;
       cursor: pointer;
       background-color: white;
     }
 
-    .calendar-input:focus {
-      border-color: var(--color-primary);
-      box-shadow: 0 0 0 0.2rem rgba(0, 91, 210, 0.25);
+    .form-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
+    .btn-present {
+      background: linear-gradient(135deg, var(--color-success) 0%, #218838 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .btn-present:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+    }
+
+    .btn-present:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .btn-reset {
+      background: linear-gradient(135deg, var(--color-danger) 0%, #c82333 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .btn-reset:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+    }
+
+    .btn-reset:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .attendance-status {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-align: center;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .attendance-confirmed {
+      background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .attendance-pending {
+      background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+      color: #856404;
+      border: 1px solid #ffeaa7;
+    }
+
+    /* Calendário */
     .calendar-popup {
       position: fixed;
-      background: white;
-      border: 1px solid #ced4da;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      padding: 1rem;
-      z-index: 1050;
-      width: 280px;
-      max-width: 90vw;
-      left: 50%;
       top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      z-index: 1060;
+      width: 350px;
+      max-width: 90vw;
+      overflow: hidden;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .calendar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1050;
+      backdrop-filter: blur(3px);
+      animation: fadeIn 0.3s ease;
     }
 
     .calendar-header {
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+      color: white;
+      padding: 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0.75rem;
     }
 
     .calendar-nav {
-      background: none;
+      background: rgba(255, 255, 255, 0.2);
       border: none;
-      font-size: 1.2rem;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
       cursor: pointer;
-      color: var(--color-primary);
-      padding: 0.25rem 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .calendar-nav:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    .calendar-nav:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
     }
 
     .calendar-month {
       font-weight: 600;
-      color: #495057;
+      font-size: 1.2rem;
       text-align: center;
       flex: 1;
+    }
+
+    .calendar-body {
+      padding: 1.5rem;
     }
 
     .calendar-weekdays {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 2px;
-      margin-bottom: 0.5rem;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
     }
 
     .calendar-weekday {
       text-align: center;
       font-weight: 600;
-      font-size: 0.75rem;
-      color: #6c757d;
-      padding: 0.25rem;
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      padding: 0.5rem;
     }
 
     .calendar-days {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      gap: 2px;
+      gap: 0.5rem;
     }
 
     .calendar-day {
-      text-align: center;
-      padding: 0.5rem 0.25rem;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      transition: all 0.2s ease;
-      min-height: 35px;
+      aspect-ratio: 1;
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: 500;
+      transition: var(--transition);
+      background: none;
+      border: 2px solid transparent;
     }
 
-    .calendar-day:hover {
-      background-color: #e9ecef;
+    .calendar-day:hover:not(.disabled):not(.selected) {
+      background: var(--color-light-bg);
     }
 
     .calendar-day.selected {
-      background-color: var(--color-primary);
+      background: var(--color-primary);
       color: white;
+      transform: scale(1.1);
+      box-shadow: 0 3px 10px rgba(0, 91, 210, 0.3);
     }
 
     .calendar-day.other-month {
@@ -502,70 +840,180 @@
       cursor: not-allowed;
     }
 
-    .calendar-day.disabled:hover {
-      background-color: transparent;
+    .calendar-day.sunday {
+      color: var(--color-primary);
+      font-weight: 600;
     }
 
-    /* Responsividade (Ajustada) */
-    @media (max-width: 768px) {
-      .confirmation-card { 
-        padding: 1.5rem; 
-        margin-bottom: 1rem;
+    /* Controles de Exportação */
+    .export-controls {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin-top: 2rem;
+      box-shadow: var(--box-shadow);
+    }
+
+    .export-controls h5 {
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .export-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-export {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-export.csv {
+      background: linear-gradient(135deg, var(--color-success) 0%, #218838 100%);
+      color: white;
+      border: none;
+    }
+
+    .btn-export.pdf {
+      background: linear-gradient(135deg, var(--color-danger) 0%, #c82333 100%);
+      color: white;
+      border: none;
+    }
+
+    .btn-export.backup {
+      background: linear-gradient(135deg, var(--color-warning) 0%, #e0a800 100%);
+      color: var(--color-text-dark);
+      border: none;
+    }
+
+    .btn-export:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estatísticas */
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: var(--box-shadow);
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 3rem 0 1.5rem;
+      margin-top: 3rem;
+    }
+
+    footer img {
+      height: 60px;
+      margin-bottom: 1.5rem;
+    }
+
+    footer p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 1rem;
+    }
+
+    footer a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    footer a:hover {
+      color: var(--color-primary);
+    }
+
+    /* Responsividade */
+    @media (max-width: 992px) {
+      .confirmation-card {
+        padding: 2rem;
       }
       
-      h1.title-main { 
-        font-size: 1.7rem; 
+      h1.title-main {
+        font-size: 1.8rem;
       }
       
-      h2.subtitle { 
-        font-size: 1.1rem; 
-      }
-      
-      .info-grid { 
-        grid-template-columns: 1fr; 
-      }
-      
-      .schedule-header-row { 
-        flex-direction: column; 
-        align-items: flex-start; 
+      .schedule-subtitle {
+        flex-direction: column;
         gap: 0.5rem;
       }
-      
-      .schedule-topic-container { 
-        margin-bottom: 0.5rem; 
-        width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .confirmation-card {
+        padding: 1.5rem;
       }
       
-      .schedule-actions { 
-        margin-left: 0; 
-        margin-top: 0.5rem; 
-        align-self: flex-end;
+      h1.title-main {
+        font-size: 1.6rem;
       }
       
-      .form-row { 
-        flex-direction: column; 
+      .info-grid {
+        grid-template-columns: 1fr;
       }
       
-      .form-group { 
-        min-width: 100%; 
-        max-width: 100%; 
-      }
-      
-      .form-actions { 
-        width: 100%; 
-        justify-content: space-between; 
-        margin-top: 0.5rem;
+      .schedule-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
       }
       
       .schedule-date {
-        font-size: 0.85rem;
-        padding: 0.2rem 0.4rem;
+        align-self: flex-start;
       }
       
-      .btn-present, .btn-reset {
-        flex: 1;
-        padding: 0.6rem 0.5rem;
-        font-size: 0.85rem;
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .btn-present,
+      .btn-reset {
+        min-width: 100%;
+      }
+      
+      .export-buttons {
+        flex-direction: column;
+      }
+      
+      .btn-export {
+        min-width: 100%;
       }
     }
 
@@ -579,60 +1027,34 @@
       }
       
       .schedule-number {
-        width: 25px;
-        height: 25px;
-        font-size: 0.8rem;
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
       }
       
       .btn-link {
-        width: 32px;
-        height: 32px;
+        width: 40px;
+        height: 40px;
       }
-      
-      .attendance-form {
-        padding: 0.75rem;
-      }
-    }
-    
-    /* Outros Estilos de Seção (Mantidos) */
-    .hero-section {
-      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/shutterstock_286782836.jpg');
-      background-size: cover;
-      color: white;
-      padding: 100px 0;
-      text-align: center;
-    }
-    
-    .btn-whatsapp {
-      background-color: #25D366;
-      color: white;
-    }
-    
-    .feature-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #6f42c1;
-    }
-    
-    .navbar-brand img {
-      height: 40px;
-    }
-    
-    .astral {
-      font-family: 'Amontillados', serif;
-      font-weight: normal !important;
-      font-size: clamp(2rem, 8vw, 10rem);
     }
   </style>
-  
-  </head>
+</head>
 
 <body>
+  <!-- Loading Overlay -->
+  <div id="loading" class="loading-overlay">
+    <div class="spinner"></div>
+    <p class="mt-3">Carregando Cronograma...</p>
+  </div>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="https://gnosisbrasil.com/wp-content/uploads/2020/07/cropped-logo-sol-7-32x32.webp" alt="Logo Gnosis" class="me-2" style="height: 32px; width: 32px;"> 
+        <img src="https://gnosisbrasil.com/wp-content/uploads/2020/07/cropped-logo-sol-7-32x32.webp" alt="Logo Gnosis" class="me-2">
         Gnosis Jaraguá do Sul
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -641,119 +1063,215 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#about">Sobre</a>
+            <a class="nav-link active" href="#"><i class="fas fa-calendar-alt me-1"></i> Cronograma</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="cronograma.html">Cronograma</a>
+            <a class="nav-link" href="#stats"><i class="fas fa-chart-bar me-1"></i> Estatísticas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inscrição</a>
+            <a class="nav-link" href="#export"><i class="fas fa-download me-1"></i> Exportar</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#contact">Contato</a>
+            <a class="nav-link" href="index.html"><i class="fas fa-home me-1"></i> Início</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <section class="py-5">
+  <!-- Main Content -->
+  <main class="py-5">
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-10">
+      <!-- Card Principal -->
+      <div class="row justify-content-center mb-5">
+        <div class="col-xl-10">
           <div class="confirmation-card">
-            <div class="mb-4">
-              <img src="img\2343637.png" alt="Logo Gnosis" style="height: 60px;"> 
+            <!-- Cabeçalho -->
+            <div class="text-center mb-4">
+              <img src="https://gnosisbrasil.com/wp-content/uploads/2020/07/cropped-logo-sol-7-32x32.webp" alt="Logo Gnosis" style="height: 70px;" class="mb-3">
+              <h1 class="title-main">CRONOGRAMA COMPLETO</h1>
+              <div class="divider"></div>
+              <h2 class="subtitle">Curso Gnosis | 1ª Câmara | T01/2025</h2>
+              <p class="lead">Acompanhe todas as aulas, confirme sua presença e acesse os materiais.</p>
             </div>
-            <h1 class="title-main">Cronograma Completo</h1>
-            <div class="divider"></div>
-            <h2 class="subtitle">Curso Gnosis | 1ª Câmara | T01/2025 </h2>
-            <p class="lead">Confira abaixo o cronograma completo do Curso <strong>Gnosis 1ª Câmara</strong> da Gnosis Brasil.</p>
 
+            <!-- Informações Importantes -->
             <div class="details-box">
-              <h5><i class="fas fa-info-circle me-2"></i>Informações Importantes:</h5>
+              <h5><i class="fas fa-info-circle"></i> Informações Importantes</h5>
               
               <div class="info-grid">
                 <div class="info-card">
-                  <h6><i class="fas fa-calendar-alt info-icon"></i>Data e Horário</h6>
-                  <p><strong>Primeira Aula:</strong> 02 de Novembro de 2025<br>
-                  <strong>Horário:</strong> 09h às 10h30<br>
-                  <strong>Duração do Curso:</strong> 6 meses<br>
-                  <strong>Total de Encontros:</strong> 23 aulas</p>
+                  <h6><i class="fas fa-calendar-alt"></i> Data e Horário</h6>
+                  <p><strong>Primeira Aula:</strong> 02/11/2025</p>
+                  <p><strong>Horário:</strong> 09h às 10h30</p>
+                  <p><strong>Duração:</strong> 6 meses</p>
+                  <p><strong>Total de Aulas:</strong> 23 encontros</p>
                 </div>
                 
                 <div class="info-card">
-                  <h6><i class="fas fa-map-marker-alt info-icon"></i>Localização</h6>
-                  <p><strong>Centro Comercial San Michelli</strong><br>
-                  R. Guilherme Dancker, 161, Sala 15<br>
-                  Centro, Jaraguá do Sul – SC</p>
+                  <h6><i class="fas fa-map-marker-alt"></i> Localização</h6>
+                  <p><strong>Centro Comercial San Michelli</strong></p>
+                  <p>R. Guilherme Dancker, 161, Sala 15</p>
+                  <p>Centro, Jaraguá do Sul – SC</p>
                 </div>
                 
                 <div class="info-card">
-                  <h6><i class="fas fa-clock info-icon"></i>Duração das Aulas</h6>
-                  <p><strong>1h30min</strong> por encontro<br>
-                  <strong>Material:</strong> Caderno para anotações<br>
-                  <strong>Frequência:</strong> Semanal</p>
+                  <h6><i class="fas fa-clock"></i> Duração das Aulas</h6>
+                  <p><strong>1h30min</strong> por encontro</p>
+                  <p><strong>Material:</strong> Caderno para anotações</p>
+                  <p><strong>Frequência:</strong> Semanal</p>
                 </div>
                 
                 <div class="info-card">
-                  <h6><i class="fas fa-book info-icon"></i>Conteúdo do Curso</h6>
-                  <p>Autoconhecimento prático<br>
-                  Técnicas de meditação<br>
-                  Desenvolvimento da Consciência<br>
-                  Regeneração da Máquina Humana<br>
-                  Alquimia Sexual - Kundalini<br>
-                  Desenvolvimento dos Chakras<br>
-                  Estudo da psicologia gnóstica<br>
-                  Desenvolvimento interior</p>
+                  <h6><i class="fas fa-book"></i> Conteúdo do Curso</h6>
+                  <p>Autoconhecimento prático</p>
+                  <p>Técnicas de meditação</p>
+                  <p>Desenvolvimento da Consciência</p>
+                  <p>Alquimia Sexual - Kundalini</p>
                 </div>
               </div>
               
-              <div class="mt-3 p-3 bg-light rounded">
-                <h6 class="text-primary mb-2"><i class="fas fa-lightbulb info-icon"></i>Recomendações</h6>
-                <p class="mb-1"><i class="fas fa-check text-success me-1"></i> Chegar com 15 minutos de antecedência</p>
-                <p class="mb-1"><i class="fas fa-check text-success me-1"></i> Trazer caderno para anotações</p>
-                <p class="mb-1"><i class="fas fa-check text-success me-1"></i> Usar roupas confortáveis</p>
-                <p class="mb-0"><i class="fas fa-check text-success me-1"></i> Manter celular no modo silencioso</p>
+              <!-- Recomendações -->
+              <div class="recommendations-box">
+                <h6><i class="fas fa-lightbulb"></i> Recomendações</h6>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="recommendation-item">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Chegar com 15 minutos de antecedência</span>
+                    </div>
+                    <div class="recommendation-item">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Trazer caderno para anotações</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="recommendation-item">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Usar roupas confortáveis</span>
+                    </div>
+                    <div class="recommendation-item">
+                      <i class="fas fa-check-circle"></i>
+                      <span>Manter celular no modo silencioso</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div class="social-media mb-4">
-              <h5 class="text-primary mb-3">Siga a Gnosis Brasil</h5>
-              <a href="https://www.facebook.com/gnosisbrasil/" target="_blank" class="social-icon"><i class="fab fa-facebook"></i></a>
-              <a href="https://www.youtube.com/gnosisbrasilcanal" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
-              <a href="https://www.instagram.com/gnosisbrasil" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <!-- Redes Sociais -->
+            <div class="social-media">
+              <h5>Siga a Gnosis Brasil</h5>
+              <a href="https://www.facebook.com/gnosisbrasil/" target="_blank" class="social-icon" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://www.youtube.com/gnosisbrasilcanal" target="_blank" class="social-icon" aria-label="YouTube">
+                <i class="fab fa-youtube"></i>
+              </a>
+              <a href="https://www.instagram.com/gnosisbrasil" target="_blank" class="social-icon" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="https://gnosisbrasil.com" target="_blank" class="social-icon" aria-label="Site Oficial">
+                <i class="fas fa-globe"></i>
+              </a>
             </div>
 
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-              <a href="https://gnosisbrasil.com" class="btn btn-gnosis btn-lg px-4"><i class="fas fa-globe me-2"></i> Visite nosso Site</a>
-              <a href="index.html" class="btn btn-light btn-lg px-4"><i class="fas fa-home me-2"></i> Voltar ao Início</a>
+            <!-- Botões de Ação -->
+            <div class="d-grid gap-3 d-md-flex justify-content-md-center mt-4">
+              <a href="https://gnosisbrasil.com" target="_blank" class="btn btn-gnosis">
+                <i class="fas fa-globe me-2"></i> Site Oficial
+              </a>
+              <a href="index.html" class="btn btn-light">
+                <i class="fas fa-home me-2"></i> Voltar ao Início
+              </a>
+              <button class="btn btn-gnosis" onclick="showStats()">
+                <i class="fas fa-chart-bar me-2"></i> Ver Estatísticas
+              </button>
             </div>
-
           </div>
+        </div>
+      </div>
 
+      <!-- Cronograma -->
+      <div class="row justify-content-center">
+        <div class="col-xl-10">
           <div class="confirmation-card">
             <div class="schedule-section">
+              <!-- Cabeçalho do Cronograma -->
               <div class="schedule-header">
                 <h4 class="schedule-title">CRONOGRAMA – 1ª CÂMARA</h4>
                 <div class="schedule-subtitle">
-                  <div><strong>DIAS: DOMINGOS</strong></div>
-                  <div><strong>HORÁRIOS: 09H ÀS 10H30</strong></div>
+                  <div><i class="far fa-calendar-alt me-2"></i><strong>DIAS: DOMINGOS</strong></div>
+                  <div><i class="far fa-clock me-2"></i><strong>HORÁRIO: 09H ÀS 10H30</strong></div>
                 </div>
               </div>
 
+              <!-- Barra de Busca -->
+              <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchLessons" class="form-control" 
+                       placeholder="Buscar por título da aula...">
+              </div>
+
+              <!-- Câmara Básica -->
               <div class="chamber-section">
-                <h5 class="chamber-title">Câmara Básica | 16 Lições</h5>
+                <h5 class="chamber-title">
+                  <i class="fas fa-graduation-cap"></i>
+                  Câmara Básica | 16 Lições
+                </h5>
                 <div id="basicChamberDates">
-                  </div>
+                  <!-- Preenchido via JavaScript -->
+                </div>
               </div>
 
+              <!-- Câmara Avançada -->
               <div class="chamber-section">
-                <h5 class="chamber-title">Câmara Avançada | 07 Lições</h5>
+                <h5 class="chamber-title">
+                  <i class="fas fa-rocket"></i>
+                  Câmara Avançada | 07 Lições
+                </h5>
                 <div id="advancedChamberDates">
-                  </div>
+                  <!-- Preenchido via JavaScript -->
+                </div>
               </div>
 
+              <!-- Estatísticas (Oculto por padrão) -->
+              <div id="stats" class="stats-container" style="display: none;">
+                <div class="stat-card">
+                  <div class="stat-number" id="total-lessons">23</div>
+                  <div class="stat-label">Total de Aulas</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-number" id="confirmed-attendance">0</div>
+                  <div class="stat-label">Presenças Confirmadas</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-number" id="remaining-lessons">23</div>
+                  <div class="stat-label">Aulas Restantes</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-number" id="completion-rate">0%</div>
+                  <div class="stat-label">Taxa de Conclusão</div>
+                </div>
+              </div>
+
+              <!-- Controles de Exportação -->
+              <div id="export" class="export-controls">
+                <h5><i class="fas fa-download me-2"></i> Exportar Dados</h5>
+                <div class="export-buttons">
+                  <button class="btn btn-export csv" onclick="exportToCSV()">
+                    <i class="fas fa-file-csv me-2"></i> Exportar CSV
+                  </button>
+                  <button class="btn btn-export pdf" onclick="exportToPDF()">
+                    <i class="fas fa-file-pdf me-2"></i> Exportar PDF
+                  </button>
+                  <button class="btn btn-export backup" onclick="createBackup()">
+                    <i class="fas fa-save me-2"></i> Criar Backup
+                  </button>
+                </div>
+              </div>
+
+              <!-- Observações -->
               <div class="alert alert-info mt-4">
                 <i class="fas fa-info-circle me-2"></i>
                 <strong>Observação:</strong> As datas podem sofrer ajustes conforme necessidades do grupo. 
@@ -764,242 +1282,282 @@
         </div>
       </div>
     </div>
-  </section>
+  </main>
 
-  <footer class="py-4 bg-dark text-white text-center">
-    <div class="container">
-      <div class="mb-3">
-        <img src="img\cropped-logo-sol-7.webp" alt="Logo Gnosis" style="height: 60px;"> 
-      </div>
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <img src="https://gnosisbrasil.com/wp-content/uploads/2020/07/cropped-logo-sol-7-32x32.webp" alt="Logo Gnosis">
       <p>&copy; 2025 Gnosis Brasil. Todos os direitos reservados.</p>
-      <p class="mb-0">
-        <a href="https://gnosisbrasil.com/politica-de-privacidade/" class="text-white text-decoration-none me-3">Política de Privacidade</a>
-        <a href="https://gnosisbrasil.com/termos-de-uso/" class="text-white text-decoration-none">Termos de Uso</a>
+      <p class="mb-3">
+        <a href="https://gnosisbrasil.com/politica-de-privacidade/" target="_blank" class="me-3">Política de Privacidade</a>
+        <a href="https://gnosisbrasil.com/termos-de-uso/" target="_blank">Termos de Uso</a>
+      </p>
+      <p class="text-muted small">
+        <i class="fas fa-phone-alt me-1"></i> Contato: (47) 99999-9999 | 
+        <i class="fas fa-envelope me-1"></i> jaraguadosul@gnosisbrasil.com
       </p>
     </div>
   </footer>
 
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- jsPDF (para exportação PDF) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- SheetJS (para exportação CSV) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
   <script>
-    // Variáveis Globais para o estado do calendário
-    let currentCalendarDate = null;
-    let currentLessonNumber = null;
-    let closeCalendarHandler = null; // Adicionado: Variável para rastrear o handler de fechamento
-
-    // Links das aulas (Mantidos)
-    const lessonLinks = {
-      1: "https://drive.google.com/file/d/0ByuJiBLnCPXgX3R0SW15bGJUS1E/view?usp=drive_link&resourcekey=0-G43iiHrkTm22Lox8mPh49g",
-      2: "https://drive.google.com/file/d/12jpkWf6m2ST069drWA86rpSrSO8f5Yuc/view?usp=drive_link",
-      3: "https://drive.google.com/file/d/0ByuJiBLnCPXgWWVlT3VNQm5kcVk/view?usp=drive_link&resourcekey=0-QjgW41nYsWeecFXhIAGCvA",
-      4: "https://drive.google.com/file/d/0ByuJiBLnCPXgUlMtcmtCZHdmNTg/view?usp=drive_link&resourcekey=0-8yYpe218jPZhG-buH6lFDA",
-      5: "https://drive.google.com/file/d/0ByuJiBLnCPXgSm9OZlZMSlMzYTA/view?usp=drive_link&resourcekey=0-pXLDZW9_tRWPrlsBiWD-rQ",
-      6: "https://drive.google.com/file/d/0ByuJiBLnCPXgeVdTblJKUFZkNW8/view?usp=drive_link&resourcekey=0-Sgq7TQ5NEqI1k4J0vDfrrA",
-      7: "https://drive.google.com/file/d/12VR3p1VxgX-5szLdhSY5nDK9u-Uh03SO/view?usp=drive_link",
-      8: "https://drive.google.com/file/d/0ByuJiBLnCPXgR0xpa0FqQmdhRHM/view?usp=drive_link&resourcekey=0-kypyl1Q6gy9eHA6th14oOQ",
-      9: "https://drive.google.com/file/d/0ByuJiBLnCPXga3ZZRkxBUDJXdXc/view?usp=drive_link&resourcekey=0-gKG35-riXKyXjJhUcb-LUg",
-      10: "https://drive.google.com/file/d/0ByuJiBLnCPXgc2FUTk1uTzNFMjg/view?usp=drive_link&resourcekey=0-trTrVjwS0DweKpRaTc4-0Q",
-      11: "https://drive.google.com/file/d/0ByuJiBLnCPXgdkhBcHk4M1JMclU/view?usp=drive_link&resourcekey=0-eQhKjBHstCLDUOuU65yj5w",
-      12: "https://drive.google.com/file/d/0ByuJiBLnCPXgTDlRY0ZwRlp4QXM/view?usp=drive_link&resourcekey=0-iH_xNuiVemFplCA8qFw2KQ",
-      13: "https://drive.google.com/file/d/0ByuJiBLnCPXgS1JJWFY0cDBHdEE/view?usp=drive_link&resourcekey=0-9aNc3kOptmpJPmGdqFsN8Q",
-      14: "https://drive.google.com/file/d/0ByuJiBLnCPXgVVNTdDFlNF9Nc0U/view?usp=drive_link&resourcekey=0-zZ7O10pmxChe6X-l4wgYAA",
-      15: "https://drive.google.com/file/d/0ByuJiBLnCPXgZVliUjBVUjkxMlU/view?usp=drive_link&resourcekey=0-StxeibqRwyhrucOkORhwug",
-      16: "https://drive.google.com/file/d/0ByuJiBLnCPXgTDd1S2s4aDNiaEU/view?usp=drive_link&resourcekey=0-IhRyZn4I1G2ElLG2An_dFw"
+    // ==================== CONFIGURAÇÕES GLOBAIS ====================
+    const CONFIG = {
+      FIRST_LESSON_DATE: new Date('2025-11-02T09:00:00'),
+      TOTAL_LESSONS: 23,
+      MIN_YEAR: 2025,
+      MAX_YEAR: 2030,
+      LOCAL_STORAGE_KEY: 'gnosis_attendance_data',
+      BACKUP_PREFIX: 'gnosis_backup_'
     };
 
-    // Conteúdo das palestras (Mantidos)
-    const basicChamber = [
-      "O que é Gnosis", "Personalidade, Essência e Ego", "O Despertar da Consciência", "O Eu Psicológico",
-      "Luz, Calor e Som", "A Máquina Humana", "O Mundo das Relações", "O Caminho e a Vida", "O Nível de Ser",
-      "O Decálogo", "Educação Fundamental", "A Árvore Genealógica das Religiões", "Evolução, Involução e Revolução",
-      "O Raio da Morte", "Reencarnação, Retorno e Recorrência", "A Balança da Justiça"
-    ];
+    // ==================== DADOS DO CURSO ====================
+    const LESSON_DATA = {
+      basicChamber: [
+        "O que é Gnosis", 
+        "Personalidade, Essência e Ego", 
+        "O Despertar da Consciência", 
+        "O Eu Psicológico",
+        "Luz, Calor e Som", 
+        "A Máquina Humana", 
+        "O Mundo das Relações", 
+        "O Caminho e a Vida", 
+        "O Nível de Ser",
+        "O Decálogo", 
+        "Educação Fundamental", 
+        "A Árvore Genealógica das Religiões", 
+        "Evolução, Involução e Revolução",
+        "O Raio da Morte", 
+        "Reencarnação, Retorno e Recorrência", 
+        "A Balança da Justiça"
+      ],
+      
+      advancedChamber: [
+        "Os Quatro Caminhos", 
+        "O Diagrama Interno do Homem", 
+        "Transformação da Energia", 
+        "Os Elementais",
+        "Os Quatro Estados de Consciência", 
+        "A Iniciação", 
+        "Apresentação da 2ª Câmara"
+      ],
+      
+      lessonLinks: {
+        1: "https://drive.google.com/file/d/0ByuJiBLnCPXgX3R0SW15bGJUS1E/view",
+        2: "https://drive.google.com/file/d/12jpkWf6m2ST069drWA86rpSrSO8f5Yuc/view",
+        3: "https://drive.google.com/file/d/0ByuJiBLnCPXgWWVlT3VNQm5kcVk/view",
+        4: "https://drive.google.com/file/d/0ByuJiBLnCPXgUlMtcmtCZHdmNTg/view",
+        5: "https://drive.google.com/file/d/0ByuJiBLnCPXgSm9OZlZMSlMzYTA/view",
+        6: "https://drive.google.com/file/d/0ByuJiBLnCPXgeVdTblJKUFZkNW8/view",
+        7: "https://drive.google.com/file/d/12VR3p1VxgX-5szLdhSY5nDK9u-Uh03SO/view",
+        8: "https://drive.google.com/file/d/0ByuJiBLnCPXgR0xpa0FqQmdhRHM/view",
+        9: "https://drive.google.com/file/d/0ByuJiBLnCPXga3ZZRkxBUDJXdXc/view",
+        10: "https://drive.google.com/file/d/0ByuJiBLnCPXgc2FUTk1uTzNFMjg/view",
+        11: "https://drive.google.com/file/d/0ByuJiBLnCPXgdkhBcHk4M1JMclU/view",
+        12: "https://drive.google.com/file/d/0ByuJiBLnCPXgTDlRY0ZwRlp4QXM/view",
+        13: "https://drive.google.com/file/d/0ByuJiBLnCPXgS1JJWFY0cDBHdEE/view",
+        14: "https://drive.google.com/file/d/0ByuJiBLnCPXgVVNTdDFlNF9Nc0U/view",
+        15: "https://drive.google.com/file/d/0ByuJiBLnCPXgZVliUjBVUjkxMlU/view",
+        16: "https://drive.google.com/file/d/0ByuJiBLnCPXgTDd1S2s4aDNiaEU/view"
+      }
+    };
 
-    const advancedChamber = [
-      "Os Quatro Caminhos", "O Diagrama Interno do Homem", "Transformação da Energia", "Os Elementais",
-      "Os Quatro Estados de Consciência", "A Iniciação", "Apresentação da 2ª Câmara"
-    ];
-    
-    // Variáveis de data para limites
-    const FIRST_LESSON_DATE = new Date('2025-11-02T09:00:00'); // Data de início real para cálculo
-    const MIN_YEAR = 2025;
-    const MAX_YEAR = 2030;
+    // ==================== ESTADO DA APLICAÇÃO ====================
+    let state = {
+      currentCalendarDate: null,
+      currentLessonNumber: null,
+      attendanceData: {},
+      filteredLessons: []
+    };
 
-
-    // Função para formatar data (Mantida)
-    function formatDate(date) {
-      // Usar 'pt-BR' e timezone para evitar problemas de fuso horário
-      const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-      return date.toLocaleDateString('pt-BR', options);
-    }
-
-    // Função para calcular as datas das palestras (Otimizada)
-    function calculateScheduleDates() {
-      let currentDate = new Date(FIRST_LESSON_DATE); 
-      const scheduleDates = [];
-
-      // Calcular datas para as 23 palestras (de domingo em domingo)
-      for (let i = 0; i < 23; i++) {
-        scheduleDates.push(new Date(currentDate));
-        currentDate.setDate(currentDate.getDate() + 7); // Próxima semana
+    // ==================== UTILITÁRIOS ====================
+    class Utils {
+      static formatDate(date) {
+        return date.toLocaleDateString('pt-BR', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        });
       }
 
-      return scheduleDates;
-    }
+      static parseDate(dateStr) {
+        const [day, month, year] = dateStr.split('/');
+        return new Date(year, month - 1, day);
+      }
 
-    // Função para renderizar o cronograma na página (Mantida)
-    function renderSchedule() {
-      const dates = calculateScheduleDates();
-      const allLessons = [...basicChamber, ...advancedChamber];
-      const basicContainer = document.getElementById('basicChamberDates');
-      const advancedContainer = document.getElementById('advancedChamberDates');
-      
-      basicContainer.innerHTML = '';
-      advancedContainer.innerHTML = '';
-      
-      const attendanceData = JSON.parse(localStorage.getItem('attendanceData') || '{}');
-
-      allLessons.forEach((topic, index) => {
-        const lessonNumber = index + 1;
-        const expectedDate = dates[index];
-        const formattedDate = formatDate(expectedDate);
-        const isBasic = lessonNumber <= 16;
-        const container = isBasic ? basicContainer : advancedContainer;
-        const isPast = expectedDate < new Date();
-        const hasLink = lessonLinks[lessonNumber] !== undefined;
-        const isConfirmed = attendanceData[lessonNumber] !== undefined;
-
-        const lessonHTML = `
-          <div class="schedule-item">
-            <div class="schedule-header-row">
-              <div class="schedule-topic-container">
-                <div class="schedule-number">${lessonNumber}</div>
-                <span class="schedule-topic">${topic}</span>
-              </div>
-              <span class="schedule-date">${formattedDate}</span>
-            </div>
-            
-            <div class="row mt-3">
-              <div class="col-lg-6 col-12 mb-3 mb-lg-0">
-                <form id="attendance-form-${lessonNumber}" class="attendance-form" onsubmit="handleAttendanceForm(event, ${lessonNumber}, new Date('${expectedDate.toISOString()}'))">
-                  <h6><i class="fas fa-user-check me-2"></i> Confirmar Presença</h6>
-                  <div class="form-row">
-                    <div class="form-group name">
-                      <label for="name-${lessonNumber}">Nome Completo</label>
-                      <input type="text" class="form-control" id="name-${lessonNumber}" name="fname" placeholder="Seu Nome" value="${isConfirmed ? attendanceData[lessonNumber].name : ''}" required ${isConfirmed ? 'disabled' : ''}>
-                    </div>
-                    <div class="form-group code">
-                      <label for="code-${lessonNumber}">Cód. (4 Nº)</label>
-                      <input type="text" class="form-control" id="code-${lessonNumber}" name="lname" placeholder="0000" maxlength="4" pattern="[0-9]{4}" value="${isConfirmed ? attendanceData[lessonNumber].code : ''}" required ${isConfirmed ? 'disabled' : ''}>
-                    </div>
-                    <div class="form-group date">
-                      <label for="date-${lessonNumber}">Data da Aula</label>
-                      <input type="text" class="calendar-input" id="date-${lessonNumber}" name="date" value="${isConfirmed ? attendanceData[lessonNumber].date : formattedDate}" readonly required onclick="showCalendar(${lessonNumber}, new Date('${expectedDate.toISOString()}'))" ${isConfirmed ? 'disabled' : ''}>
-                    </div>
-                    <div class="form-actions">
-                      <button type="submit" class="btn btn-present" ${isConfirmed ? 'disabled' : ''}>
-                        <i class="fas fa-sign-in-alt"></i> ${isConfirmed ? 'Confirmado' : 'Presente'}
-                      </button>
-                      <button type="button" class="btn btn-reset" onclick="resetAttendanceForm(${lessonNumber})" ${isConfirmed ? '' : 'disabled'}>
-                          <i class="fas fa-undo-alt"></i>
-                      </button>
-                    </div>
-                  </div>
-                  <div class="attendance-status ${isConfirmed ? 'attendance-confirmed' : ''}">
-                    ${isConfirmed ? `Presença confirmada para ${attendanceData[lessonNumber].name}` : 'Aguardando confirmação...'}
-                  </div>
-                </form>
-              </div>
-              
-              <div class="col-lg-6 col-12 align-self-center d-flex flex-column justify-content-center">
-                <div class="schedule-actions mx-auto mx-lg-0">
-                  <button type="button" class="btn btn-link ${hasLink ? '' : 'disabled'}" title="Abrir material da aula" onclick="${hasLink ? `openLessonLink(${lessonNumber})` : `alert('Material não disponível')`}">
-                    <i class="fas fa-file-pdf"></i>
-                  </button>
-                  <button type="button" class="btn btn-link ${hasLink ? '' : 'disabled'}" title="Copiar link" onclick="${hasLink ? `copyLessonLink(${lessonNumber})` : `alert('Material não disponível')`}" data-lesson="${lessonNumber}">
-                    <i class="fas fa-copy"></i>
-                  </button>
-                  <a href="#" class="btn btn-link" title="Adicionar ao Google Calendar" onclick="addToCalendar('${topic}', '${formattedDate}', '09:00', '10:30', 'Gnosis Jaraguá - Sala 15'); return false;">
-                      <i class="fas fa-calendar-plus"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
+      static showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = `toast-message ${type}`;
+        toast.textContent = message;
+        document.getElementById('toast-container').appendChild(toast);
         
-        container.insertAdjacentHTML('beforeend', lessonHTML);
-      });
-    }
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          setTimeout(() => toast.remove(), 300);
+        }, 3000);
+      }
 
-    // Função para abrir link da aula (Mantida)
-    function openLessonLink(lessonNumber) {
-      const link = lessonLinks[lessonNumber];
-      if (link) {
-        window.open(link, '_blank');
-      } else {
-        alert('Link da aula não disponível');
+      static validateName(name) {
+        return name && name.trim().length >= 3;
+      }
+
+      static validateCode(code) {
+        return /^\d{4}$/.test(code);
+      }
+
+      static calculateScheduleDates() {
+        const dates = [];
+        let currentDate = new Date(CONFIG.FIRST_LESSON_DATE);
+        
+        for (let i = 0; i < CONFIG.TOTAL_LESSONS; i++) {
+          dates.push(new Date(currentDate));
+          currentDate.setDate(currentDate.getDate() + 7);
+        }
+        
+        return dates;
+      }
+
+      static getLessonStatus(lessonNumber, lessonDate) {
+        const now = new Date();
+        const lessonDateTime = new Date(lessonDate);
+        lessonDateTime.setHours(9, 30, 0, 0);
+        
+        if (now > lessonDateTime) {
+          return 'past';
+        } else if (now.toDateString() === lessonDateTime.toDateString()) {
+          return 'current';
+        }
+        return 'future';
       }
     }
 
-    // Função para copiar link da aula (Mantida)
-    function copyLessonLink(lessonNumber) {
-      const link = lessonLinks[lessonNumber];
-      if (link) {
-        navigator.clipboard.writeText(link)
-          .then(() => {
-            const button = document.querySelector(`[data-lesson="${lessonNumber}"]`);
-            const originalHTML = button.innerHTML;
-            button.innerHTML = '<i class="fas fa-check"></i>';
-            button.style.backgroundColor = '#28a745';
-            
-            setTimeout(() => {
-              button.innerHTML = originalHTML;
-              button.style.backgroundColor = '';
-            }, 1500);
-          })
-          .catch(err => {
-            console.error('Erro ao copiar link: ', err);
-            alert('Não foi possível copiar o link');
+    // ==================== GERENCIAMENTO DE DADOS ====================
+    class DataManager {
+      static loadAttendanceData() {
+        try {
+          const data = localStorage.getItem(CONFIG.LOCAL_STORAGE_KEY);
+          return data ? JSON.parse(data) : {};
+        } catch (error) {
+          console.error('Erro ao carregar dados:', error);
+          return {};
+        }
+      }
+
+      static saveAttendanceData(data) {
+        try {
+          localStorage.setItem(CONFIG.LOCAL_STORAGE_KEY, JSON.stringify(data));
+          
+          // Backup automático
+          this.createAutoBackup(data);
+          
+          Utils.showToast('Dados salvos com sucesso!');
+        } catch (error) {
+          console.error('Erro ao salvar dados:', error);
+          Utils.showToast('Erro ao salvar dados', 'error');
+        }
+      }
+
+      static createAutoBackup(data) {
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const backupKey = `${CONFIG.BACKUP_PREFIX}${timestamp}`;
+        
+        try {
+          localStorage.setItem(backupKey, JSON.stringify(data));
+          
+          // Manter apenas últimos 10 backups
+          this.cleanupOldBackups();
+        } catch (error) {
+          console.error('Erro ao criar backup:', error);
+        }
+      }
+
+      static cleanupOldBackups() {
+        const backupKeys = Object.keys(localStorage)
+          .filter(key => key.startsWith(CONFIG.BACKUP_PREFIX))
+          .sort();
+        
+        if (backupKeys.length > 10) {
+          backupKeys.slice(0, backupKeys.length - 10).forEach(key => {
+            localStorage.removeItem(key);
           });
-      } else {
-        alert('Link da aula não disponível');
+        }
+      }
+
+      static restoreFromBackup(backupKey) {
+        try {
+          const data = localStorage.getItem(backupKey);
+          if (data) {
+            localStorage.setItem(CONFIG.LOCAL_STORAGE_KEY, data);
+            state.attendanceData = JSON.parse(data);
+            return true;
+          }
+        } catch (error) {
+          console.error('Erro ao restaurar backup:', error);
+        }
+        return false;
       }
     }
-    
-    // Função para fechar o calendário de forma limpa
-    function closeCalendarPopup() {
-        const existingCalendar = document.querySelector('.calendar-popup');
-        if (existingCalendar) {
-            existingCalendar.remove();
-            currentCalendarDate = null;
-            currentLessonNumber = null;
-        }
-        // Remove o listener de fechamento
-        if (closeCalendarHandler) {
-            // O argumento 'true' (useCapture) é necessário para remover o listener adicionado com capture: true
-            document.removeEventListener('click', closeCalendarHandler, true); 
-            closeCalendarHandler = null;
-        }
-    }
 
-    // Função para criar um calendário interativo (Corrigida para usar variáveis globais)
-    function createCalendar(date) {
-        const calendarPopup = document.createElement('div');
-        calendarPopup.className = 'calendar-popup';
+    // ==================== GERENCIAMENTO DO CALENDÁRIO ====================
+    class CalendarManager {
+      static show(lessonNumber, initialDate) {
+        // Fechar calendário existente
+        this.hide();
         
+        state.currentLessonNumber = lessonNumber;
+        state.currentCalendarDate = new Date(initialDate);
+        
+        // Criar overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'calendar-overlay';
+        overlay.onclick = this.hide;
+        document.body.appendChild(overlay);
+        
+        // Criar calendário
+        const calendar = this.createCalendar(state.currentCalendarDate);
+        document.body.appendChild(calendar);
+        
+        // Adicionar evento de tecla Escape
+        document.addEventListener('keydown', this.handleEscapeKey);
+      }
+
+      static hide() {
+        // Remover overlay
+        const overlay = document.querySelector('.calendar-overlay');
+        if (overlay) overlay.remove();
+        
+        // Remover calendário
+        const calendar = document.querySelector('.calendar-popup');
+        if (calendar) calendar.remove();
+        
+        // Remover evento de tecla
+        document.removeEventListener('keydown', this.handleEscapeKey);
+        
+        state.currentCalendarDate = null;
+        state.currentLessonNumber = null;
+      }
+
+      static handleEscapeKey(event) {
+        if (event.key === 'Escape') {
+          this.hide();
+        }
+      }
+
+      static createCalendar(date) {
         const year = date.getFullYear();
         const month = date.getMonth();
-        
-        // CORREÇÃO: Usar MIN_YEAR e MAX_YEAR
-        const minDate = new Date(MIN_YEAR, 9, 1); 
-        const maxDate = new Date(MAX_YEAR, 11, 31); 
         
         const firstDay = new Date(year, month, 1);
         const lastDay = new Date(year, month + 1, 0);
         const daysInMonth = lastDay.getDate();
-        // getDay() retorna 0 para Domingo, 1 para Segunda, etc.
-        const startingDay = firstDay.getDay(); 
+        const startingDay = firstDay.getDay();
         
         const monthNames = [
           'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
@@ -1008,219 +1566,528 @@
         
         const weekdays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
         
-        let calendarHTML = `
+        const calendar = document.createElement('div');
+        calendar.className = 'calendar-popup';
+        
+        // Criar HTML do calendário
+        let html = `
           <div class="calendar-header">
-            <button class="calendar-nav" ${year <= MIN_YEAR && month <= 10 ? 'disabled style="opacity:0.3; cursor:not-allowed;"' : ''} onclick="changeCalendarMonth(-1)">
+            <button class="calendar-nav" onclick="CalendarManager.changeMonth(-1)">
               <i class="fas fa-chevron-left"></i>
             </button>
             <div class="calendar-month">${monthNames[month]} ${year}</div>
-            <button class="calendar-nav" ${year >= MAX_YEAR && month >= 11 ? 'disabled style="opacity:0.3; cursor:not-allowed;"' : ''} onclick="changeCalendarMonth(1)">
+            <button class="calendar-nav" onclick="CalendarManager.changeMonth(1)">
               <i class="fas fa-chevron-right"></i>
             </button>
           </div>
-          <div class="calendar-weekdays">
+          <div class="calendar-body">
+            <div class="calendar-weekdays">
         `;
         
-        // Adicionar dias da semana
         weekdays.forEach(day => {
-          calendarHTML += `<div class="calendar-weekday">${day}</div>`;
+          html += `<div class="calendar-weekday">${day}</div>`;
         });
         
-        calendarHTML += `</div><div class="calendar-days">`;
+        html += `</div><div class="calendar-days">`;
         
-        // Dias vazios no início
+        // Dias vazios
         for (let i = 0; i < startingDay; i++) {
-          calendarHTML += `<div class="calendar-day other-month"></div>`;
+          html += `<div class="calendar-day other-month"></div>`;
         }
         
         // Dias do mês
         for (let day = 1; day <= daysInMonth; day++) {
           const dayDate = new Date(year, month, day);
-          const isSelected = formatDate(dayDate) === formatDate(currentCalendarDate);
+          const isSelected = state.currentCalendarDate && 
+                            Utils.formatDate(dayDate) === Utils.formatDate(state.currentCalendarDate);
           
-          // Apenas domingos entre 2025-2030, a partir de Nov/2025.
-          // Adicionado: ajuste de hora para evitar problemas de fuso horário na comparação.
-          dayDate.setHours(9, 0, 0, 0); 
-          minDate.setHours(9, 0, 0, 0);
-          maxDate.setHours(9, 0, 0, 0);
+          const isDisabled = dayDate.getDay() !== 0 || // Apenas domingos
+                            dayDate < new Date(CONFIG.MIN_YEAR, 10, 1) || // A partir de Nov/2025
+                            dayDate > new Date(CONFIG.MAX_YEAR, 11, 31); // Até Dez/2030
           
-          const isDisabled = dayDate < minDate || dayDate > maxDate || dayDate.getDay() !== 0; 
+          const isSunday = dayDate.getDay() === 0;
           
-          calendarHTML += `
-            <div class="calendar-day ${isSelected ? 'selected' : ''} ${isDisabled ? 'disabled' : ''}" 
-                  ${!isDisabled ? `onclick="selectDate(${currentLessonNumber}, new Date('${dayDate.toISOString()}'))"` : ''}>
+          html += `
+            <div class="calendar-day 
+                  ${isSelected ? 'selected' : ''} 
+                  ${isDisabled ? 'disabled' : ''}
+                  ${isSunday ? 'sunday' : ''}"
+                  ${!isDisabled ? `onclick="CalendarManager.selectDate(${state.currentLessonNumber}, new Date('${dayDate.toISOString()}'))"` : ''}>
               ${day}
             </div>
           `;
         }
         
-        calendarHTML += `</div>`;
+        html += `</div></div>`;
+        calendar.innerHTML = html;
         
-        calendarPopup.innerHTML = calendarHTML;
-        return calendarPopup;
-    }
-    
-    // Função auxiliar para navegação
-    function changeCalendarMonth(offset) {
-        if (!currentCalendarDate) return;
+        return calendar;
+      }
+
+      static changeMonth(offset) {
+        if (!state.currentCalendarDate) return;
         
-        // Clona a data para manipular sem afetar o estado original imediatamente
-        let newDate = new Date(currentCalendarDate);
+        const newDate = new Date(state.currentCalendarDate);
         newDate.setMonth(newDate.getMonth() + offset);
         
-        // Remoção da lógica de limite para o ano/mês
-        const minDate = new Date(MIN_YEAR, 10, 1); // Novembro (mês 10) de 2025
-        const maxDate = new Date(MAX_YEAR, 11, 31); // Dezembro (mês 11) de 2030
-
+        // Verificar limites
+        const minDate = new Date(CONFIG.MIN_YEAR, 10, 1); // Novembro
+        const maxDate = new Date(CONFIG.MAX_YEAR, 11, 31); // Dezembro
+        
         if (newDate < minDate || newDate > maxDate) {
-            // Se o novo mês estiver fora dos limites, volta para o mês anterior/próximo
-            // E desabilita o botão
-            return; 
+          return;
         }
+        
+        state.currentCalendarDate = newDate;
+        this.hide();
+        this.show(state.currentLessonNumber, state.currentCalendarDate);
+      }
 
-        currentCalendarDate = newDate;
+      static selectDate(lessonNumber, selectedDate) {
+        const dateInput = document.getElementById(`date-${lessonNumber}`);
+        if (dateInput) {
+          dateInput.value = Utils.formatDate(selectedDate);
+        }
         
-        // Remover calendário existente
-        closeCalendarPopup();
-        
-        // Renderizar novo calendário
-        showCalendar(currentLessonNumber, currentCalendarDate);
+        this.hide();
+        Utils.showToast('Data selecionada com sucesso!');
+      }
     }
 
-    // Função para selecionar uma data no calendário (Ajustada)
-    function selectDate(lessonNumber, selectedDate) {
-      const dateInput = document.getElementById(`date-${lessonNumber}`);
-      dateInput.value = formatDate(selectedDate);
-      
-      // Fecha o calendário após a seleção
-      closeCalendarPopup(); 
-    }
-
-    // Função para mostrar o calendário (Corrigida e Otimizada)
-    function showCalendar(lessonNumber, initialDate) {
-      // Fecha qualquer calendário aberto antes de abrir um novo
-      closeCalendarPopup();
-      
-      // Definir o estado global
-      currentLessonNumber = lessonNumber;
-      // Cria uma nova data para evitar modificação do objeto Date inicial
-      currentCalendarDate = new Date(initialDate); 
-
-      const dateInput = document.getElementById(`date-${lessonNumber}`);
-      const calendar = createCalendar(currentCalendarDate);
-      
-      document.body.appendChild(calendar);
-      
-      // CORREÇÃO CRÍTICA: Lógica de fechamento ajustada com 'capture: true'
-      // Isso garante que este listener seja executado ANTES do listener do dia
-      closeCalendarHandler = function(e) {
-          // Se o clique não estiver dentro do calendário E não for no input que o abriu
-          if (calendar && !calendar.contains(e.target) && e.target !== dateInput && !e.target.closest('.calendar-nav')) {
-              closeCalendarPopup();
+    // ==================== RENDERIZAÇÃO DO CRONOGRAMA ====================
+    class ScheduleRenderer {
+      static render() {
+        const dates = Utils.calculateScheduleDates();
+        const allLessons = [...LESSON_DATA.basicChamber, ...LESSON_DATA.advancedChamber];
+        state.attendanceData = DataManager.loadAttendanceData();
+        
+        // Limpar containers
+        document.getElementById('basicChamberDates').innerHTML = '';
+        document.getElementById('advancedChamberDates').innerHTML = '';
+        
+        // Renderizar aulas
+        allLessons.forEach((topic, index) => {
+          const lessonNumber = index + 1;
+          const expectedDate = dates[index];
+          const isBasic = lessonNumber <= 16;
+          const container = isBasic ? 
+            document.getElementById('basicChamberDates') : 
+            document.getElementById('advancedChamberDates');
+          
+          if (container) {
+            container.appendChild(this.createLessonCard(lessonNumber, topic, expectedDate));
           }
-      };
-      
-      // Adiciona o listener para fechar ao clicar fora, usando o modo de captura (true)
-      document.addEventListener('click', closeCalendarHandler, true);
-    }
-
-
-    // Função para lidar com o envio do formulário de presença (Otimizada e Corrigida)
-    function handleAttendanceForm(event, lessonNumber, expectedDate) {
-      event.preventDefault();
-      
-      const form = event.target;
-      const name = form.querySelector('input[name="fname"]').value.trim();
-      const code = form.querySelector('input[name="lname"]').value.trim();
-      const date = form.querySelector('input[name="date"]').value.trim();
-      
-      // Validação aprimorada
-      if (!name || name.length < 3) {
-        alert('Por favor, preencha o nome completo (mínimo 3 caracteres).');
-        return;
+        });
+        
+        // Atualizar estatísticas
+        this.updateStatistics();
+        
+        // Inicializar busca
+        this.initializeSearch();
+        
+        // Esconder loading
+        document.getElementById('loading').classList.add('hidden');
       }
-      
-      if (!/^\d{4}$/.test(code)) {
-        alert('O código deve conter exatamente 4 números.');
-        return;
+
+      static createLessonCard(lessonNumber, topic, expectedDate) {
+        const formattedDate = Utils.formatDate(expectedDate);
+        const isConfirmed = state.attendanceData[lessonNumber] !== undefined;
+        const status = Utils.getLessonStatus(lessonNumber, expectedDate);
+        const hasLink = LESSON_DATA.lessonLinks[lessonNumber] !== undefined;
+        
+        const card = document.createElement('div');
+        card.className = `schedule-item ${status}`;
+        card.setAttribute('data-lesson', lessonNumber.toString());
+        card.setAttribute('data-topic', topic.toLowerCase());
+        
+        card.innerHTML = `
+          <div class="schedule-header-row">
+            <div class="schedule-topic-container">
+              <div class="schedule-number">${lessonNumber}</div>
+              <span class="schedule-topic">${topic}</span>
+            </div>
+            <span class="schedule-date">${formattedDate}</span>
+          </div>
+          
+          <div class="row mt-3">
+            <!-- Formulário de Presença -->
+            <div class="col-lg-6 col-12 mb-3 mb-lg-0">
+              <form class="attendance-form" onsubmit="event.preventDefault(); AttendanceManager.handleSubmit(${lessonNumber}, '${expectedDate.toISOString()}')">
+                <h6><i class="fas fa-user-check"></i> Confirmar Presença</h6>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="name-${lessonNumber}">Nome Completo</label>
+                    <input type="text" 
+                           class="form-control" 
+                           id="name-${lessonNumber}"
+                           placeholder="Seu Nome"
+                           value="${isConfirmed ? state.attendanceData[lessonNumber].name : ''}"
+                           ${isConfirmed ? 'disabled' : ''}
+                           required>
+                  </div>
+                  <div class="form-group">
+                    <label for="code-${lessonNumber}">Código (4 dígitos)</label>
+                    <input type="text" 
+                           class="form-control" 
+                           id="code-${lessonNumber}"
+                           placeholder="0000"
+                           maxlength="4"
+                           pattern="\\d{4}"
+                           value="${isConfirmed ? state.attendanceData[lessonNumber].code : ''}"
+                           ${isConfirmed ? 'disabled' : ''}
+                           required>
+                  </div>
+                  <div class="form-group">
+                    <label for="date-${lessonNumber}">Data da Aula</label>
+                    <input type="text" 
+                           class="form-control calendar-input"
+                           id="date-${lessonNumber}"
+                           value="${formattedDate}"
+                           readonly
+                           onclick="CalendarManager.show(${lessonNumber}, new Date('${expectedDate.toISOString()}'))"
+                           ${isConfirmed ? 'disabled' : ''}
+                           required>
+                  </div>
+                </div>
+                <div class="form-actions">
+                  <button type="submit" 
+                          class="btn btn-present"
+                          ${isConfirmed ? 'disabled' : ''}>
+                    <i class="fas fa-sign-in-alt"></i>
+                    ${isConfirmed ? 'Confirmado' : 'Confirmar Presença'}
+                  </button>
+                  <button type="button" 
+                          class="btn btn-reset"
+                          onclick="AttendanceManager.reset(${lessonNumber})"
+                          ${isConfirmed ? '' : 'disabled'}>
+                    <i class="fas fa-undo-alt"></i> Alterar
+                  </button>
+                </div>
+                <div class="attendance-status ${isConfirmed ? 'attendance-confirmed' : 'attendance-pending'}">
+                  ${isConfirmed ? 
+                    `✓ Presença confirmada para ${state.attendanceData[lessonNumber].name}` : 
+                    'Aguardando confirmação...'}
+                </div>
+              </form>
+            </div>
+            
+            <!-- Ações -->
+            <div class="col-lg-6 col-12 align-self-center">
+              <div class="schedule-actions">
+                <button type="button" 
+                        class="btn btn-link ${hasLink ? '' : 'disabled'}"
+                        title="Abrir material da aula"
+                        onclick="${hasLink ? `LessonManager.open(${lessonNumber})` : 'alert("Material não disponível")'}">
+                  <i class="fas fa-file-pdf"></i>
+                </button>
+                <button type="button" 
+                        class="btn btn-link ${hasLink ? '' : 'disabled'}"
+                        title="Copiar link"
+                        onclick="${hasLink ? `LessonManager.copyLink(${lessonNumber})` : 'alert("Material não disponível")'}"
+                        data-lesson="${lessonNumber}">
+                  <i class="fas fa-copy"></i>
+                </button>
+                <a href="#" 
+                   class="btn btn-link"
+                   title="Adicionar ao Google Calendar"
+                   onclick="CalendarManager.addToGoogleCalendar('${topic}', '${formattedDate}', '09:00', '10:30')">
+                  <i class="fas fa-calendar-plus"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        return card;
       }
-      
-      const formattedExpectedDate = formatDate(expectedDate);
-      if (date !== formattedExpectedDate) {
-        alert(`A data informada não corresponde à data da palestra (${formattedExpectedDate}). Por favor, verifique ou use a data correta.`);
-        return;
+
+      static initializeSearch() {
+        const searchInput = document.getElementById('searchLessons');
+        if (searchInput) {
+          searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.schedule-item').forEach(item => {
+              const topic = item.getAttribute('data-topic');
+              item.style.display = topic.includes(searchTerm) ? '' : 'none';
+            });
+          });
+        }
       }
-      
-      // Simulação de envio
-      console.log(`Presença confirmada para a aula ${lessonNumber}:`, { name, code, date });
-      
-      // Mostrar mensagem de confirmação
-      const statusElement = form.querySelector('.attendance-status');
-      statusElement.textContent = `Presença confirmada para ${name}`;
-      statusElement.className = 'attendance-status attendance-confirmed';
-      
-      // Desabilitar o formulário após envio
-      const inputs = form.querySelectorAll('input');
-      inputs.forEach(input => input.disabled = true);
-      const submitButton = form.querySelector('.btn-present');
-      submitButton.textContent = 'Confirmado';
-      submitButton.disabled = true;
 
-      const resetButton = form.querySelector('.btn-reset');
-      resetButton.disabled = false; // Habilitar reset após confirmação
-      
-      // Salvar no localStorage (simulação de banco de dados)
-      const attendanceData = JSON.parse(localStorage.getItem('attendanceData') || '{}');
-      attendanceData[lessonNumber] = {
-        name: name,
-        code: code,
-        date: date,
-        timestamp: new Date().toISOString()
-      };
-      localStorage.setItem('attendanceData', JSON.stringify(attendanceData));
+      static updateStatistics() {
+        const totalLessons = CONFIG.TOTAL_LESSONS;
+        const confirmed = Object.keys(state.attendanceData).length;
+        const dates = Utils.calculateScheduleDates();
+        const now = new Date();
+        const remaining = dates.filter(date => date > now).length;
+        const completionRate = Math.round((confirmed / totalLessons) * 100);
+        
+        document.getElementById('total-lessons').textContent = totalLessons;
+        document.getElementById('confirmed-attendance').textContent = confirmed;
+        document.getElementById('remaining-lessons').textContent = remaining;
+        document.getElementById('completion-rate').textContent = `${completionRate}%`;
+      }
     }
 
-    // Função para resetar o formulário (Corrigida e Completa)
-    function resetAttendanceForm(lessonNumber) {
-      // Remover do localStorage
-      const attendanceData = JSON.parse(localStorage.getItem('attendanceData') || '{}');
-      delete attendanceData[lessonNumber];
-      localStorage.setItem('attendanceData', JSON.stringify(attendanceData));
-      
-      // Re-renderizar o cronograma para resetar o formulário dessa aula
-      renderSchedule(); 
-    }
-    
-    // MELHORIA: Função para adicionar evento ao Google Calendar (Mantida)
-    function addToCalendar(title, dateStr, startTime, endTime, location) {
-      // Converte data (DD/MM/AAAA) para formato YYYYMMDD
-      const parts = dateStr.split('/');
-      const dateForUrl = parts[2] + parts[1] + parts[0];
-      
-      const startDateTime = dateForUrl + 'T' + startTime.replace(':', '') + '00';
-      const endDateTime = dateForUrl + 'T' + endTime.replace(':', '') + '00';
-      
-      const details = `Conteúdo: ${title}. Duração: ${startTime} - ${endTime}.`;
-      
-      const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Gnosis 1ª Câmara - ' + title)}&dates=${startDateTime}/${endDateTime}&details=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}&sf=true&output=xml`;
-      
-      window.open(calendarUrl, '_blank');
+    // ==================== GERENCIAMENTO DE PRESENÇA ====================
+    class AttendanceManager {
+      static handleSubmit(lessonNumber, expectedDateISO) {
+        const nameInput = document.getElementById(`name-${lessonNumber}`);
+        const codeInput = document.getElementById(`code-${lessonNumber}`);
+        const dateInput = document.getElementById(`date-${lessonNumber}`);
+        
+        // Validações
+        if (!Utils.validateName(nameInput.value)) {
+          Utils.showToast('Nome deve ter pelo menos 3 caracteres', 'error');
+          return;
+        }
+        
+        if (!Utils.validateCode(codeInput.value)) {
+          Utils.showToast('Código deve conter 4 dígitos', 'error');
+          return;
+        }
+        
+        const expectedDate = new Date(expectedDateISO);
+        const selectedDate = Utils.parseDate(dateInput.value);
+        
+        if (Utils.formatDate(selectedDate) !== Utils.formatDate(expectedDate)) {
+          Utils.showToast('Data informada não corresponde à data da aula', 'error');
+          return;
+        }
+        
+        // Salvar dados
+        state.attendanceData[lessonNumber] = {
+          name: nameInput.value.trim(),
+          code: codeInput.value.trim(),
+          date: dateInput.value,
+          timestamp: new Date().toISOString()
+        };
+        
+        DataManager.saveAttendanceData(state.attendanceData);
+        
+        // Atualizar UI
+        nameInput.disabled = true;
+        codeInput.disabled = true;
+        dateInput.disabled = true;
+        
+        const submitBtn = nameInput.closest('form').querySelector('.btn-present');
+        submitBtn.innerHTML = '<i class="fas fa-check"></i> Confirmado';
+        submitBtn.disabled = true;
+        
+        const resetBtn = nameInput.closest('form').querySelector('.btn-reset');
+        resetBtn.disabled = false;
+        
+        const statusDiv = nameInput.closest('form').querySelector('.attendance-status');
+        statusDiv.className = 'attendance-status attendance-confirmed';
+        statusDiv.innerHTML = `✓ Presença confirmada para ${nameInput.value}`;
+        
+        ScheduleRenderer.updateStatistics();
+        Utils.showToast('Presença confirmada com sucesso!');
+      }
+
+      static reset(lessonNumber) {
+        if (confirm('Tem certeza que deseja alterar esta confirmação?')) {
+          delete state.attendanceData[lessonNumber];
+          DataManager.saveAttendanceData(state.attendanceData);
+          ScheduleRenderer.render();
+          Utils.showToast('Confirmação removida', 'warning');
+        }
+      }
     }
 
-    // Chamada inicial para renderizar o cronograma
-    window.onload = renderSchedule;
-    
-    // Funções globais necessárias para serem chamadas pelo HTML (onclick)
-    window.renderCalendar = renderSchedule; // Mantido por precaução
-    window.changeCalendarMonth = changeCalendarMonth;
-    window.selectDate = selectDate;
-    window.showCalendar = showCalendar;
-    window.handleAttendanceForm = handleAttendanceForm;
-    window.resetAttendanceForm = resetAttendanceForm;
-    window.openLessonLink = openLessonLink;
-    window.copyLessonLink = copyLessonLink;
-    window.addToCalendar = addToCalendar;
+    // ==================== GERENCIAMENTO DE AULAS ====================
+    class LessonManager {
+      static open(lessonNumber) {
+        const link = LESSON_DATA.lessonLinks[lessonNumber];
+        if (link) {
+          window.open(link, '_blank');
+        } else {
+          Utils.showToast('Link não disponível', 'error');
+        }
+      }
 
+      static copyLink(lessonNumber) {
+        const link = LESSON_DATA.lessonLinks[lessonNumber];
+        if (link) {
+          navigator.clipboard.writeText(link)
+            .then(() => {
+              Utils.showToast('Link copiado para a área de transferência!');
+              
+              const button = document.querySelector(`[data-lesson="${lessonNumber}"]`);
+              const originalHTML = button.innerHTML;
+              button.innerHTML = '<i class="fas fa-check"></i>';
+              button.style.backgroundColor = 'var(--color-success)';
+              
+              setTimeout(() => {
+                button.innerHTML = originalHTML;
+                button.style.backgroundColor = '';
+              }, 1500);
+            })
+            .catch(err => {
+              console.error('Erro ao copiar:', err);
+              Utils.showToast('Erro ao copiar link', 'error');
+            });
+        } else {
+          Utils.showToast('Link não disponível', 'error');
+        }
+      }
+    }
+
+    // ==================== EXPORTAÇÃO ====================
+    class ExportManager {
+      static exportToCSV() {
+        try {
+          const data = state.attendanceData;
+          const dates = Utils.calculateScheduleDates();
+          
+          let csvContent = "Aula;Tópico;Data;Nome;Código;Data de Confirmação\n";
+          
+          Object.keys(data).forEach(lessonNumber => {
+            const info = data[lessonNumber];
+            const lessonIndex = parseInt(lessonNumber) - 1;
+            const topic = [...LESSON_DATA.basicChamber, ...LESSON_DATA.advancedChamber][lessonIndex];
+            const lessonDate = dates[lessonIndex];
+            
+            csvContent += `${lessonNumber};"${topic}";${Utils.formatDate(lessonDate)};"${info.name}";${info.code};${info.date}\n`;
+          });
+          
+          const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+          const link = document.createElement('a');
+          const url = URL.createObjectURL(blob);
+          
+          link.setAttribute('href', url);
+          link.setAttribute('download', `presencas-gnosis-${new Date().toISOString().split('T')[0]}.csv`);
+          link.style.visibility = 'hidden';
+          
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          
+          Utils.showToast('CSV exportado com sucesso!');
+        } catch (error) {
+          console.error('Erro ao exportar CSV:', error);
+          Utils.showToast('Erro ao exportar CSV', 'error');
+        }
+      }
+
+      static exportToPDF() {
+        try {
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF();
+          
+          // Cabeçalho
+          doc.setFontSize(20);
+          doc.setTextColor(0, 91, 210);
+          doc.text('Relatório de Presenças - Gnosis', 105, 20, { align: 'center' });
+          
+          doc.setFontSize(12);
+          doc.setTextColor(100, 100, 100);
+          doc.text(`Gerado em: ${new Date().toLocaleDateString('pt-BR')}`, 105, 30, { align: 'center' });
+          
+          // Conteúdo
+          let y = 50;
+          doc.setFontSize(10);
+          doc.setTextColor(0, 0, 0);
+          
+          Object.keys(state.attendanceData).forEach((lessonNumber, index) => {
+            if (y > 270) {
+              doc.addPage();
+              y = 20;
+            }
+            
+            const info = state.attendanceData[lessonNumber];
+            const lessonIndex = parseInt(lessonNumber) - 1;
+            const topic = [...LESSON_DATA.basicChamber, ...LESSON_DATA.advancedChamber][lessonIndex];
+            
+            doc.text(`Aula ${lessonNumber}: ${topic}`, 20, y);
+            doc.text(`Nome: ${info.name} | Código: ${info.code} | Data: ${info.date}`, 20, y + 7);
+            
+            y += 20;
+          });
+          
+          // Salvar
+          doc.save(`presencas-gnosis-${new Date().getTime()}.pdf`);
+          Utils.showToast('PDF exportado com sucesso!');
+        } catch (error) {
+          console.error('Erro ao exportar PDF:', error);
+          Utils.showToast('Erro ao exportar PDF', 'error');
+        }
+      }
+
+      static createBackup() {
+        try {
+          const backupData = {
+            timestamp: new Date().toISOString(),
+            attendanceData: state.attendanceData,
+            version: '1.0'
+          };
+          
+          const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
+          const link = document.createElement('a');
+          const url = URL.createObjectURL(blob);
+          
+          link.setAttribute('href', url);
+          link.setAttribute('download', `backup-gnosis-${new Date().toISOString().split('T')[0]}.json`);
+          link.style.visibility = 'hidden';
+          
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          
+          Utils.showToast('Backup criado com sucesso!');
+        } catch (error) {
+          console.error('Erro ao criar backup:', error);
+          Utils.showToast('Erro ao criar backup', 'error');
+        }
+      }
+    }
+
+    // ==================== FUNÇÕES GLOBAIS ====================
+    function showStats() {
+      const statsContainer = document.getElementById('stats');
+      statsContainer.style.display = 'grid';
+      ScheduleRenderer.updateStatistics();
+      statsContainer.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function exportToCSV() {
+      ExportManager.exportToCSV();
+    }
+
+    function exportToPDF() {
+      ExportManager.exportToPDF();
+    }
+
+    function createBackup() {
+      ExportManager.createBackup();
+    }
+
+    // ==================== INICIALIZAÇÃO ====================
+    document.addEventListener('DOMContentLoaded', () => {
+      // Iniciar renderização após um pequeno delay para garantir que tudo foi carregado
+      setTimeout(() => {
+        ScheduleRenderer.render();
+        
+        // Backup automático a cada 30 minutos
+        setInterval(() => {
+          DataManager.createAutoBackup(state.attendanceData);
+        }, 30 * 60 * 1000);
+        
+        // Verificar se há dados salvos
+        if (Object.keys(state.attendanceData).length > 0) {
+          Utils.showToast(`${Object.keys(state.attendanceData).length} presenças carregadas.`);
+        }
+      }, 500);
+    });
+
+    // ==================== EXPORTAÇÃO PARA ESCOPO GLOBAL ====================
+    window.CalendarManager = CalendarManager;
+    window.AttendanceManager = AttendanceManager;
+    window.LessonManager = LessonManager;
+    window.showStats = showStats;
+    window.exportToCSV = exportToCSV;
+    window.exportToPDF = exportToPDF;
+    window.createBackup = createBackup;
   </script>
 </body>
 </html>
